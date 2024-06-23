@@ -60,7 +60,7 @@ const Footer = () => {
           <h1 className="font-bold text-sm">Newsletter</h1>
           <p className="py-4 font-bold text-sm">Sign up for the latest events and updates.</p>
           <div className="overflow-hidden w-full border border-foreground p-1 rounded-full flex items-center justify-between">
-            <input type="text" placeholder="Enter Your Email" className="outline-none pl-3 py-2" />
+            <input type="text" placeholder="Enter Your Email" className="outline-none pl-3 py-2 w-[90%]" />
             <button className="border bg-themeRed text-white px-3 py-2 rounded-full">
               Subscribe
             </button>
@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
       </div>
       {/* copyright */}
-      <div className="h-fit px-4 py-3 md:px-16 lg:px-20 xl:px-32 flex-col-reverse gap-4 sm:gap-0 sm:flex-row bg-foreground flex items-center justify-center sm:justify-between text-white text-sm">
+      <div className="h-fit px-4 py-3 md:px-16 lg:px-20 xl:px-32 flex-col-reverse gap-4 sm:gap-0 sm:flex-row bg-foreground flex items-center justify-center sm:justify-between text-white text-xs sm:text-sm">
         <p>© 2024 Meri Ride. All Rights Reserved.</p>
         <div className=" flex items-center justify-between gap-2">
           <Link href="/privacy">Privacy Policy</Link>
