@@ -28,6 +28,8 @@ const config = {
         themeRed: "hsl(var(--red))",
         themeGreen: "hsl(var(--green))",
         themeGrayText: "hsl(var(--grayText))",
+        textEm: "var(--text)",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -62,8 +64,6 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-
-      textEm: "var(--text)",
 
       keyframes: {
         "accordion-down": {

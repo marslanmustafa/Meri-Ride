@@ -26,11 +26,11 @@ const Header: React.FC = () => {
       {/* responsive Div */}
       <div className="px-4 py-2 sm:py-4 sm:px-6 md:p-0 h-16 w-full md:w-fit justify-between flex items-center md:justify-center bg-[#F7F8F7] border-none md:bg-none md:border-none">
         <Image
-          src="./logo.svg"
+          src="./logoGreen.svg"
           alt="Meri Ride"
           width={73}
           height={65}
-          className="lg:w-full md:w-14 w-12"
+          className="lg:w-[75px] md:w-14 w-12"
         />
         <div
           className="md:hidden flex items-center justify-center w-6 h-6"
@@ -99,16 +99,14 @@ const Header: React.FC = () => {
             </Link>
           </li>
         </ul>
-        <div>
-          <Link
-            className={`px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGray link ${
-              pathname === "/donate" ? "text-white bg-themeGreen" : ""
-            }`}
-            href="/donate"
-          >
-            Donate and Volunteer
-          </Link>
-        </div>
+        <Link
+          className={`px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText link ${
+            pathname === "/donate" ? "text-white bg-themeGreen" : ""
+          }`}
+          href="/donate"
+        >
+          Donate and Volunteer
+        </Link>
       </div>
     </div>
   );
