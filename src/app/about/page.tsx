@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -9,16 +10,17 @@ const featuresData = [
   { sr: 5, feature: "Global Reach and Impact" },
   { sr: 6, feature: "Feedback and Support" },
 ];
+const starArray = Array.from({ length: 5 });
 
 const page = () => {
   return (
     <div className="w-full">
       {/* div1 */}
-      <div className="w-full h-screen bg-white px-4 md:px-8 lg:px-20 xl:px-32 lg:py-10">
-        <div className="relative w-[78%] space-y-6 bg-white text-foreground">
+      <div className="w-full h-screen px-4 md:px-8 lg:px-20 xl:px-32 lg:py-10">
+        <div className="relative w-[78%] space-y-6 text-foreground">
           <div className="absolute -bottom-20 -right-60">
             <Image
-              src="./images/DoodleLine.svg"
+              src="/images/DoodleLine.svg"
               alt=""
               width={410}
               height={114}
@@ -54,7 +56,7 @@ const page = () => {
             </h2>
           </div>
           <Image
-            src="./images/OurStory.svg"
+            src="/images/OurStory.svg"
             alt="Meri Ride"
             width={410}
             height={298}
@@ -99,8 +101,8 @@ const page = () => {
         </p>
       </div>
       {/* div4 */}
-      <div className="w-full h-screen flex justify-between bg-white px-4 md:px-8 lg:px-20 xl:px-32 py-14">
-        <div className="w-[55%]  space-y-6 bg-white text-foreground">
+      <div className="w-full min-h-screen flex justify-between px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+        <div className="w-[55%]  space-y-5 text-foreground">
           <h1 className="text-5xl font-bold">Our Team</h1>
           <p className="text-textEm">
             The Leadership Team is responsible for setting the strategic
@@ -122,19 +124,168 @@ const page = () => {
             lives of individuals with disabilities, please visit our careers
             page
           </p>
-          <div
-            className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-themeGreen"          >
+          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-themeGreen">
             Join Us
           </div>
         </div>
         <div className="">
           <Image
-            src="./images/TeamImage.svg"
+            src="/images/TeamImage.svg"
             alt=""
             width={620}
             height={532}
             className="w-[620px] h-[532px]"
           />
+        </div>
+      </div>
+      {/* div5 */}
+      <div className="w-full bg-white px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+        <h1 className="text-4xl font-bold m-auto text-center">
+          Partners & Collaborators
+        </h1>
+        <div className="items-center flex-wrap flex justify-center gap-6">
+          <Image
+            src="/images/about/partners/Mailchimp.svg"
+            alt="Mailchimp"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Codecademy.svg"
+            alt="Codecademy"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Webflow.svg"
+            alt="Webflow"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Spotify.svg"
+            alt="Spotify"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Classpass.svg"
+            alt="Classpass"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/DoorDash.svg"
+            alt="DoorDash"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/DocuSign.svg"
+            alt="DocuSign"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Nike.svg"
+            alt="Nike"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+          <Image
+            src="/images/about/partners/Google.svg"
+            alt="Google"
+            width={140}
+            height={140}
+            className="w-[160px] h-[160px"
+          />
+        </div>
+      </div>
+      {/* div6 */}
+      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+        <h1 className="text-5xl font-semibold text-black m-auto text-center pb-10">
+          Success Stories{" "}
+        </h1>
+        {/* maindiv */}
+        <div className="flex justify-between gap-12">
+          <div className="w-[400px] flex items-center justify-center">
+            <Image
+              src="/images/Cameron.svg"
+              alt="Star"
+              width={390}
+              height={300}
+              className="w-[390px] h-[300px]"
+            />
+          </div>
+          <div className="w-[calc(100%-400px)] space-y-6 text-themeGrayText">
+            <div className="w-fit flex items-center justify-center gap-2">
+              {starArray.map((_, index) => (
+                <Image
+                  key={index}
+                  src="/images/Star.svg"
+                  alt="Star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
+              ))}
+            </div>
+            <p className="text-textEm">
+              Volunteering with Empowering Opportunities Inc. has been one of
+              the most rewarding experiences of my life. Mentoring individuals
+              with disabilities and seeing their progress and confidence grow is
+              incredibly fulfilling. I&apos;m grateful for the opportunity to
+              give back to the community in such a meaningful way
+            </p>
+            <h3 className="text-3xl font-bold">Cameron Williamson</h3>
+            <h4 className="text-xl font-semibold">
+              CEO & CO Founder At Cikafy
+            </h4>
+          </div>
+        </div>
+        {/* buttons */}
+        <div className="w-full flex justify-end gap-4">
+          <div className="w-14 h-14 flex items-center justify-center rounded-full p-3 bg-foreground text-white">
+            <ChevronLeft size={32} />
+          </div>
+          <div className="w-14 h-14 flex items-center justify-center rounded-full p-3 bg-foreground text-white">
+            <ChevronRight size={32} />
+          </div>
+        </div>
+        {/* support */}
+        <div className="mt-20 w-full h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
+          <div className="w-[calc(100%-432px)] h-full p-12 space-y-6">
+            <h1 className="text-5xl font-semibold">Support Us</h1>
+            <p className="text-sm">
+              <span className="font-semibold">
+                Empowering Opportunities Inc.
+              </span>{" "}
+              thrives on the generosity and support of individuals, businesses,
+              and communities. Your contributions help us provide vital services
+              to individuals with disabilities, fostering independence and
+              inclusion. Here are various ways you can support us:
+            </p>
+            <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
+              Join Us
+            </div>
+          </div>
+          <div className="">
+            <Image
+              src="/images/Support.svg"
+              alt="Donate"
+              width={432}
+              height={307}
+              className="w-[432px] h-full"
+            />
+          </div>
         </div>
       </div>
     </div>
