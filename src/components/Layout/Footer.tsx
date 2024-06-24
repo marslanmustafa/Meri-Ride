@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="w-full">
-      <div className="w-full flex gap-5 flex-wrap lg:flex-nowrap px-4 md:px-16 lg:px-20 xl:px-32 pt-10 pb-2 lg:py-14 bg-white text-foreground text-xs">
+    <div className="w-full relative bottom-0 left-0">
+      <div className="w-full flex gap-5 flex-wrap lg:flex-nowrap px-4 md:px-8 lg:px-20 xl:px-32 pt-10 pb-2 lg:py-14 bg-white text-foreground text-xs">
         {/* div1 */}
         <div className="w-full">
           <Image src="./logo.svg" alt="Meri Ride" width={74} height={74} />
@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
       </div>
       {/* copyright */}
-      <div className="h-fit px-4 py-3 md:px-16 lg:px-20 xl:px-32 flex-col-reverse gap-4 sm:gap-0 sm:flex-row bg-foreground flex items-center justify-center sm:justify-between text-white text-xs sm:text-sm">
+      <div className="h-fit px-4 py-3 md:px-8 lg:px-20 xl:px-32 flex-col-reverse gap-4 sm:gap-0 sm:flex-row bg-foreground flex items-center justify-center sm:justify-between text-white text-xs sm:text-sm">
         <p>© 2024 Meri Ride. All Rights Reserved.</p>
         <div className=" flex items-center justify-between gap-2">
           <Link href="/privacy">Privacy Policy</Link>

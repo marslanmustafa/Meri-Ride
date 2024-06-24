@@ -25,9 +25,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./favicon.ico" />
       </head>
-      <body className={`w-screen min-h-screen bg-background ${poppins.variable}`}>
+      <body className={`w-screen ${poppins.variable}`}>
         <Header/>
+        <main className="w-screen min-h-screen bg-background">
         {children}
+        </main>
         <Footer/>
         </body>
     </html>

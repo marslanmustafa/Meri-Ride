@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -25,9 +25,9 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
-        themeRed:"hsl(var(--red))",
-        themeGreen:"hsl(var(--green))",
-        themeGrayText:"hsl(var(--grayText))",
+        themeRed: "hsl(var(--red))",
+        themeGreen: "hsl(var(--green))",
+        themeGrayText: "hsl(var(--grayText))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -63,7 +63,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
 
-        textEm: "var(--text)",
+      textEm: "var(--text)",
 
       keyframes: {
         "accordion-down": {
@@ -81,7 +81,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwindcss-animated")],
 } satisfies Config
 
 export default config
