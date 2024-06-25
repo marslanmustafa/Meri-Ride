@@ -101,23 +101,23 @@ const page = () => {
         </p>
       </div>
       {/* div4 */}
-      <div className="w-full min-h-screen flex justify-between px-4 md:px-8 lg:px-20 xl:px-32 py-14">
-        <div className="w-[55%]  space-y-5 text-foreground">
-          <h1 className="text-5xl font-bold">Our Team</h1>
-          <p className="text-textEm">
+      <div className="w-full h-fit lg:min-h-screen flex justify-between flex-col lg:flex-row px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+        <div className="w-full lg:w-[55%]  space-y-5 text-foreground">
+          <h1 className="text-3xl lg:text-5xl font-bold">Our Team</h1>
+          <p className="text-sm lg:text-textEm">
             The Leadership Team is responsible for setting the strategic
             direction of the organization, ensuring alignment with our mission
             and values, and overseeing overall operations. This team includes
             our Executive Director, Chief Operating Officer, and other senior
             leaders.
           </p>
-          <p className="text-textEm">
+          <p className="text-sm lg:text-textEm">
             This team recruits, trains, and supports our volunteers, and manages
             community outreach initiatives. They build strong relationships with
             volunteers and community partners to enhance our impact.
           </p>
-          <h1 className="text-4xl font-bold">Join our team</h1>
-          <p className="text-textEm">
+          <h1 className="text-2xl lg:text-4xl font-bold">Join our team</h1>
+          <p className="text-sm lg:text-textEm">
             We are always looking for passionate individuals to join our team
             and help us further our mission. If you are interested in
             contributing to a meaningful cause and making a difference in the
@@ -128,13 +128,13 @@ const page = () => {
             Join Us
           </div>
         </div>
-        <div className="">
+        <div className="hidden md:block">
           <Image
             src="/images/about/TeamImage.svg"
             alt=""
             width={620}
             height={532}
-            className="w-[620px] h-[532px]"
+            className="w-full lg:w-[620px] g:h-[532px]"
           />
         </div>
       </div>
