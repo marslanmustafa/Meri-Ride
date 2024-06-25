@@ -20,7 +20,7 @@ const page = () => {
         <div className="relative w-[78%] space-y-6 text-foreground">
           <div className="absolute -bottom-20 -right-60">
             <Image
-              src="/images/DoodleLine.svg"
+              src="/images/about/DoodleLine.svg"
               alt=""
               width={410}
               height={114}
@@ -56,7 +56,7 @@ const page = () => {
             </h2>
           </div>
           <Image
-            src="/images/OurStory.svg"
+            src="/images/about/OurStory.svg"
             alt="Meri Ride"
             width={410}
             height={298}
@@ -130,7 +130,7 @@ const page = () => {
         </div>
         <div className="">
           <Image
-            src="/images/TeamImage.svg"
+            src="/images/sbout/TeamImage.svg"
             alt=""
             width={620}
             height={532}
@@ -218,7 +218,7 @@ const page = () => {
         <div className="flex justify-between gap-12">
           <div className="w-[400px] flex items-center justify-center">
             <Image
-              src="/images/Cameron.svg"
+              src="/images/about/Cameron.svg"
               alt="Star"
               width={390}
               height={300}
@@ -230,7 +230,7 @@ const page = () => {
               {starArray.map((_, index) => (
                 <Image
                   key={index}
-                  src="/images/Star.svg"
+                  src="/images/about/Star.svg"
                   alt="Star"
                   width={20}
                   height={20}
@@ -279,7 +279,7 @@ const page = () => {
           </div>
           <div className="">
             <Image
-              src="/images/Support.svg"
+              src="/images/about/Support.svg"
               alt="Donate"
               width={432}
               height={307}
