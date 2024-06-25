@@ -358,7 +358,7 @@ const page = () => {
             </div>
             <button
               type="submit"
-              className=" bg-foreground px-10 sm:px-20 lg:px-40 py-3 text-sm md:text-textEm text-white rounded-lg"
+              className=" bg-foreground px-10 sm:px-20 lg:px-40 py-3 text-sm md:text-textEm !text-white rounded-lg"
             >
               Submit
             </button>
