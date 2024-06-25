@@ -149,63 +149,63 @@ const page = () => {
             alt="Mailchimp"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Codecademy.svg"
             alt="Codecademy"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Webflow.svg"
             alt="Webflow"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Spotify.svg"
             alt="Spotify"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Classpass.svg"
             alt="Classpass"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/DoorDash.svg"
             alt="DoorDash"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/DocuSign.svg"
             alt="DocuSign"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Nike.svg"
             alt="Nike"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
           <Image
             src="/images/about/partners/Google.svg"
             alt="Google"
             width={140}
             height={140}
-            className="w-[160px] h-[160px"
+            className="w-[160px]"
           />
         </div>
       </div>
@@ -286,6 +286,70 @@ const page = () => {
               className="w-[432px] h-full"
             />
           </div>
+        </div>
+      </div>
+      {/* div7 */}
+      <div
+        style={{ backgroundImage: `url('/images/about/bg.svg')` }}
+        className="w-full min-h-screen px-4 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText"
+      >
+        <h1 className="text-4xl font-bold m-auto text-center pb-6">
+          Let&apos;s Start
+        </h1>
+        <div className="w-full bg-white px-20 py-14 rounded-3xl">
+          <div className="w-[430px]">
+            <h2 className="text-[30px] font-bold">
+              Let&apos;s connect constellations
+            </h2>
+            <h3 className="text-textEm">
+              Let&apos;s align our constellations! Reach out and let the magic
+              of collaboration illuminate our skies.
+            </h3>
+          </div>
+          <form
+            className="w-full py-4 space-y-5 flex flex-col items-center"
+            action=""
+          >
+            <div className="w-full flex justify-between flex-wrap gap-4">
+              <input
+                type="text"
+                name="fname"
+                className="w-[48%] h-11 border border-border rounded-lg px-4 py-3"
+                placeholder="First Name"
+              />
+              <input
+                type="text"
+                name="lname"
+                className="w-[48%] h-11 border border-border rounded-lg px-4 py-3"
+                placeholder="Last Name"
+              />
+              <input
+                type="email"
+                name="email"
+                className="w-full h-11 border border-border rounded-lg px-4 py-3"
+                placeholder="Email"
+              />
+              <input
+                type="number"
+                name="phone"
+                className="w-full h-11 border border-border rounded-lg px-4 py-3"
+                placeholder="Phone"
+              />
+              <textarea
+                name="message"
+                id=""
+                rows={4}
+                className="w-full h-44 border border-border rounded-lg px-4 py-3 resize-none"
+                placeholder="Message"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className=" bg-foreground px-40 py-3 text-textEm text-white rounded-lg"
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>
