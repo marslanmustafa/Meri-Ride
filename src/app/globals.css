@@ -81,7 +81,7 @@
       font-family: var(--font-poppins);
     }
   
-    /* ::-webkit-scrollbar {
+    div::-webkit-scrollbar {
       display: none;
-    } */
+    }
   }

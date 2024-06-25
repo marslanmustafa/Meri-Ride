@@ -210,22 +210,22 @@ const page = () => {
         </div>
       </div>
       {/* div6 */}
-      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 py-14">
-        <h1 className="text-5xl font-semibold text-black m-auto text-center pb-10">
+      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 py-7 md:py-10 lg:py-14">
+        <h1 className="text-xl sm:text-2xl lg:text-4xl xl:text-5xl m-auto text-center pb-5 font-semibold text-black lgpb-10">
           Success Stories{" "}
         </h1>
         {/* maindiv */}
-        <div className="flex justify-between gap-12">
-          <div className="w-[400px] flex items-center justify-center">
+        <div className="flex justify-between gap-4 sm:gap-8 md:gap-12 flex-col md:flex-row">
+          <div className="w-[400px] flex items-center justify-start ms:justify-center">
             <Image
               src="/images/about/Cameron.svg"
               alt="Star"
               width={390}
               height={300}
-              className="w-[390px] h-[300px]"
+              className="w-[100px] sm:w-[140px] md:w-320px lg:w-[390px] lg:h-[300px]"
             />
           </div>
-          <div className="w-[calc(100%-400px)] space-y-6 text-themeGrayText">
+          <div className="w-full md:w-[calc(100%-320px)] lg:w-[calc(100%-400px)] space-y-3 md:space-y-6 text-themeGrayText py-3 lg:py-6">
             <div className="w-fit flex items-center justify-center gap-2">
               {starArray.map((_, index) => (
                 <Image
@@ -234,37 +234,37 @@ const page = () => {
                   alt="Star"
                   width={20}
                   height={20}
-                  className="w-5 h-5"
+                  className="w-3 h-3 lg:w-5 lg:h-5"
                 />
               ))}
             </div>
-            <p className="text-textEm">
+            <p className="text-sm lg:text-textEm">
               Volunteering with Empowering Opportunities Inc. has been one of
               the most rewarding experiences of my life. Mentoring individuals
               with disabilities and seeing their progress and confidence grow is
               incredibly fulfilling. I&apos;m grateful for the opportunity to
               give back to the community in such a meaningful way
             </p>
-            <h3 className="text-3xl font-bold">Cameron Williamson</h3>
-            <h4 className="text-xl font-semibold">
+            <h3 className="text-lg sm:text-xl lg:text-3xl font-bold">Cameron Williamson</h3>
+            <h4 className="text-xs sm:text-textEm lg:text-xl font-semibold">
               CEO & CO Founder At Cikafy
             </h4>
           </div>
         </div>
         {/* buttons */}
         <div className="w-full flex justify-end gap-4">
-          <div className="w-14 h-14 flex items-center justify-center rounded-full p-3 bg-foreground text-white">
+          <div className="w-10 h-10 lg:w-14 lg:h-14 text-[24px] lg:text-[32px] flex items-center justify-center rounded-full p-3 bg-foreground text-white">
             <ChevronLeft size={32} />
           </div>
-          <div className="w-14 h-14 flex items-center justify-center rounded-full p-3 bg-foreground text-white">
+          <div className="w-10 h-10 lg:w-14 lg:h-14 text-[24px] lg:text-[32px] flex items-center justify-center rounded-full p-3 bg-foreground text-white">
             <ChevronRight size={32} />
           </div>
         </div>
         {/* support */}
-        <div className="mt-20 w-full h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
-          <div className="w-[calc(100%-432px)] h-full p-12 space-y-6">
-            <h1 className="text-5xl font-semibold">Support Us</h1>
-            <p className="text-sm">
+        <div className="mt-4 sm:mt-10 md:mt-20 w-full h-fit md:h-[262px] lg:h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
+          <div className="w-full md:w-[calc(100%-386px)] lg:w-[calc(100%-432px)] h-full p-5 md:py-10 md:px-10 md:pr-2 xl:p-12 space-y-3 xl:space-y-6">
+            <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">Support Us</h1>
+            <p className="text-[10px] text-xs lg:text-sm">
               <span className="font-semibold">
                 Empowering Opportunities Inc.
               </span>{" "}
@@ -273,17 +273,17 @@ const page = () => {
               to individuals with disabilities, fostering independence and
               inclusion. Here are various ways you can support us:
             </p>
-            <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
+            <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
               Join Us
             </div>
           </div>
-          <div className="">
+          <div className="hidden md:block">
             <Image
               src="/images/about/Support.svg"
               alt="Donate"
               width={432}
               height={307}
-              className="w-[432px] h-full"
+              className="w-[382px] lg:w-[432px] h-full"
             />
           </div>
         </div>
