@@ -27,8 +27,12 @@ const page = () => {
               className="w-40 h-auto lg:w-[410px] lg:h-[114px]"
             />
           </div>
-          <h1 className="text-4xl lg:text-6xl xl:text-8xl font-semibold">About Us</h1>
-          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">Welcome to Empowerment</h2>
+          <h1 className="text-4xl lg:text-6xl xl:text-8xl font-semibold">
+            About Us
+          </h1>
+          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">
+            Welcome to Empowerment
+          </h2>
           <p className="text-sm md:text-textEm lg:text-lg xl:text-xl tracking-wide">
             Through Partnership, a non-profit organization dedicated to
             transforming the lives of individuals with disabilities by creating
@@ -50,7 +54,9 @@ const page = () => {
       <div className="w-full lg:min-h-screen bg-black flex-col lg:flex-row flex items-center justify-between px-4 py-10 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-white">
         <div className="w-full lg:w-[360px] xl:w-[420px] pb-8 lg:block flex-col sm:flex-row flex sm:items-center justify-between gap-5 sm:gap-10">
           <div className="lg:pl-12 xl:pl-16">
-            <h1 className="text-3xl xl:text-5xl font-semibold pb-10">Our Story</h1>
+            <h1 className="text-3xl xl:text-5xl font-semibold pb-10">
+              Our Story
+            </h1>
             <h2 className="text-2xl xl:text-4xl font-semibold pb-8 sm:pb-14">
               Meri Ride was born
             </h2>
@@ -83,7 +89,10 @@ const page = () => {
                   <div className="w-7 h-7 rounded-full bg-themeGreen text-themeGrayText p-3 flex items-center justify-center">
                     {data.sr}
                   </div>
-                  <p className="font-semibold text-sm xl:text-textEm"> {data.feature}</p>
+                  <p className="font-semibold text-sm xl:text-textEm">
+                    {" "}
+                    {data.feature}
+                  </p>
                 </div>
               );
             })}
@@ -245,7 +254,9 @@ const page = () => {
               incredibly fulfilling. I&apos;m grateful for the opportunity to
               give back to the community in such a meaningful way
             </p>
-            <h3 className="text-lg sm:text-xl lg:text-3xl font-bold">Cameron Williamson</h3>
+            <h3 className="text-lg sm:text-xl lg:text-3xl font-bold">
+              Cameron Williamson
+            </h3>
             <h4 className="text-xs sm:text-textEm lg:text-xl font-semibold">
               CEO & CO Founder At Cikafy
             </h4>
@@ -263,7 +274,9 @@ const page = () => {
         {/* support */}
         <div className="mt-4 sm:mt-10 md:mt-20 w-full h-fit md:h-[262px] lg:h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
           <div className="w-full md:w-[calc(100%-386px)] lg:w-[calc(100%-432px)] h-full p-5 md:py-10 md:px-10 md:pr-2 xl:p-12 space-y-3 xl:space-y-6">
-            <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">Support Us</h1>
+            <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">
+              Support Us
+            </h1>
             <p className="text-[10px] text-xs lg:text-sm">
               <span className="font-semibold">
                 Empowering Opportunities Inc.
@@ -291,61 +304,61 @@ const page = () => {
       {/* div7 */}
       <div
         style={{ backgroundImage: `url('/images/about/bg.svg')` }}
-        className="w-full min-h-screen px-4 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText"
+        className="w-full h-fit lg:min-h-screen p-4 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText"
       >
-        <h1 className="text-4xl font-bold m-auto text-center pb-6">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center font-bold p-4 sm:pb-6">
           Let&apos;s Start
         </h1>
-        <div className="w-full bg-white px-20 py-14 rounded-3xl">
-          <div className="w-[430px]">
-            <h2 className="text-[30px] font-bold">
+        <div className="w-full bg-white px-2 py-4 sm:px-8 md:px-20 sm:py-6 md:py-14 rounded-3xl">
+          <div className="m-auto sm:m-0 w-full sm:w-[430px]">
+            <h2 className="text-xl md:text-[30px] font-semibold">
               Let&apos;s connect constellations
             </h2>
-            <h3 className="text-textEm">
+            <h3 className="text-xs md:text-textEm">
               Let&apos;s align our constellations! Reach out and let the magic
               of collaboration illuminate our skies.
             </h3>
           </div>
           <form
-            className="w-full py-4 space-y-5 flex flex-col items-center"
+            className="w-full py-4 space-y-3 md:space-y-5 flex flex-col items-center"
             action=""
           >
-            <div className="w-full flex justify-between flex-wrap gap-4">
+            <div className="text-sm sm:text-textEm w-full flex justify-between flex-wrap gap-4">
               <input
                 type="text"
                 name="fname"
-                className="w-[48%] h-11 border border-border rounded-lg px-4 py-3"
+                className="w-full sm:w-[48%] h-9 md:h-11 border border-border rounded-lg px-4 py-3"
                 placeholder="First Name"
               />
               <input
                 type="text"
                 name="lname"
-                className="w-[48%] h-11 border border-border rounded-lg px-4 py-3"
+                className="w-full sm:w-[48%] h-9 md:h-11 border border-border rounded-lg px-4 py-3"
                 placeholder="Last Name"
               />
               <input
                 type="email"
                 name="email"
-                className="w-full h-11 border border-border rounded-lg px-4 py-3"
+                className="w-full h-9 md:h-11 border border-border rounded-lg px-4 py-3"
                 placeholder="Email"
               />
               <input
                 type="number"
                 name="phone"
-                className="w-full h-11 border border-border rounded-lg px-4 py-3"
+                className="w-full h-9 md:h-11 border border-border rounded-lg px-4 py-3"
                 placeholder="Phone"
               />
               <textarea
                 name="message"
                 id=""
                 rows={4}
-                className="w-full h-44 border border-border rounded-lg px-4 py-3 resize-none"
+                className="w-full sm:h-44 border border-border rounded-lg px-4 py-3 resize-none"
                 placeholder="Message"
               ></textarea>
             </div>
             <button
               type="submit"
-              className=" bg-foreground px-40 py-3 text-textEm text-white rounded-lg"
+              className=" bg-foreground px-10 sm:px-20 lg:px-40 py-3 text-sm md:text-textEm text-white rounded-lg"
             >
               Submit
             </button>
