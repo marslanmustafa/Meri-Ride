@@ -92,10 +92,10 @@ const page = () => {
       </div>
       {/* div3 */}
       <div className="w-full bg-themeGreen  px-4 md:px-8 lg:px-20 xl:px-32 py-4">
-        <h1 className="text-black font-bold text-[26px]">
+        <h1 className="text-black font-bold text-lg sm:text-xl lg:text-[26px] pb-2 sm:pb-0">
           Join us in making a difference{" "}
         </h1>
-        <p className="text-themeGrayText text-lg">
+        <p className="text-themeGrayText text-xs sm:text-sm lg:text-lg">
           Empowering Opportunities Inc thrives on the generosity and support of
           individuals, businesses, and communities.
         </p>
