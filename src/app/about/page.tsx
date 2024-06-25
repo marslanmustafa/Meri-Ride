@@ -47,11 +47,11 @@ const page = () => {
         </div>
       </div>
       {/* div2 */}
-      <div className="w-full h-screen bg-black flex justify-between px-4 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-white">
-        <div className="w-[420px]">
-          <div className="pl-16">
-            <h1 className="text-[48px] font-semibold pb-10">Our Story</h1>
-            <h2 className="text-[28px] font-semibold pb-10">
+      <div className="w-full lg:min-h-screen bg-black flex-col lg:flex-row flex items-center justify-between px-4 py-10 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-white">
+        <div className="w-full lg:w-[360px] xl:w-[420px] pb-8 lg:block flex-col sm:flex-row flex sm:items-center justify-between gap-5 sm:gap-10">
+          <div className="lg:pl-12 xl:pl-16">
+            <h1 className="text-3xl xl:text-5xl font-semibold pb-10">Our Story</h1>
+            <h2 className="text-2xl xl:text-4xl font-semibold pb-8 sm:pb-14">
               Meri Ride was born
             </h2>
           </div>
@@ -60,11 +60,11 @@ const page = () => {
             alt="Meri Ride"
             width={410}
             height={298}
-            className="w-[410px] h-[298px]"
+            className="w-full sm:w-[360px] xl:w-[410px] xl:h-[298px]"
           />
         </div>
-        <div className="w-[calc(100%-420px)] flex items-center justify-center flex-col gap-10">
-          <p className="text-sm">
+        <div className="w-full lg:w-[calc(100%-360px)] xl:w-[calc(100%-420px)] flex items-center justify-center flex-col gap-5 sm:gap-10">
+          <p className="text-xs sm:text-sm">
             The Rickshaw Service Website project is an initiative by Empowering
             Opportunities Inc. aimed at providing a reliable, user-friendly
             platform for booking rickshaw transportation services for
@@ -73,17 +73,17 @@ const page = () => {
             system for scheduling rides, managing bookings, and ensuring safe,
             comfortable transportation.
           </p>
-          <div className="w-full grid grid-cols-2 grid-rows-3 gap-5">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-3 gap-5">
             {featuresData.map((data, index) => {
               return (
                 <div
                   key={index}
-                  className="w-full flex items-center justify-start gap-5 text-textEm bg-foreground px-6 py-5 rounded-[6px]"
+                  className="px-4 py-3 xl:px-6 xl:py-5 w-full flex items-center justify-start gap-3 xl:gap-5 text-textEm bg-foreground rounded-[6px]"
                 >
                   <div className="w-7 h-7 rounded-full bg-themeGreen text-themeGrayText p-3 flex items-center justify-center">
                     {data.sr}
                   </div>
-                  <p className="font-semibold"> {data.feature}</p>
+                  <p className="font-semibold text-sm xl:text-textEm"> {data.feature}</p>
                 </div>
               );
             })}
