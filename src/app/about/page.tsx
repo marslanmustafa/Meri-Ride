@@ -14,22 +14,22 @@ const starArray = Array.from({ length: 5 });
 
 const page = () => {
   return (
-    <div className="w-full">
+    <div className="overflow-x-hidden w-full">
       {/* div1 */}
-      <div className="w-full h-screen px-4 md:px-8 lg:px-20 xl:px-32 lg:py-10">
-        <div className="relative w-[78%] space-y-6 text-foreground">
-          <div className="absolute -bottom-20 -right-60">
+      <div className="w-full h-fit md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+        <div className="relative w-full lg:w-[80%] flex justify-start gap-6 flex-col text-foreground">
+          <div className="hidden md:block md:absolute -bottom-20 right-0 lg:-right-60">
             <Image
               src="/images/about/DoodleLine.svg"
               alt=""
               width={410}
               height={114}
-              className="w-[410px] h-[114px]"
+              className="w-40 h-auto lg:w-[410px] lg:h-[114px]"
             />
           </div>
-          <h1 className="text-8xl font-semibold">About Us</h1>
-          <h2 className="text-6xl">Welcome to Empowerment</h2>
-          <p className="text-xl tracking-wide">
+          <h1 className="text-4xl lg:text-6xl xl:text-8xl font-semibold">About Us</h1>
+          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">Welcome to Empowerment</h2>
+          <p className="text-sm md:text-textEm lg:text-lg xl:text-xl tracking-wide">
             Through Partnership, a non-profit organization dedicated to
             transforming the lives of individuals with disabilities by creating
             sustainable income opportunities. Our mission is to bridge the gap
@@ -37,7 +37,7 @@ const page = () => {
             especially the blind, to foster a collaborative environment where
             both can thrive.
           </p>
-          <p className="text-xl tracking-wide">
+          <p className="text-sm md:text-textEm lg:text-lg xl:text-xl tracking-wide">
             We believe in the power of partnership and the potential of every
             individual, regardless of their physical abilities. By developing
             innovative projects that pair able-bodied and disabled individuals,
@@ -130,7 +130,7 @@ const page = () => {
         </div>
         <div className="">
           <Image
-            src="/images/sbout/TeamImage.svg"
+            src="/images/about/TeamImage.svg"
             alt=""
             width={620}
             height={532}
