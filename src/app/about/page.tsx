@@ -140,16 +140,16 @@ const page = () => {
       </div>
       {/* div5 */}
       <div className="w-full bg-white px-4 md:px-8 lg:px-20 xl:px-32 py-14">
-        <h1 className="text-4xl font-bold m-auto text-center">
+        <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold m-auto text-center pb-3 lg:pb-0">
           Partners & Collaborators
         </h1>
-        <div className="items-center flex-wrap flex justify-center gap-6">
+        <div className="items-center overflow-scroll lg:flex-wrap flex justify-start lg:justify-center gap-6">
           <Image
             src="/images/about/partners/Mailchimp.svg"
             alt="Mailchimp"
             width={140}
             height={140}
-            className="w-[160px]"
+            className="w-[100px] sm:w-[160px]"
           />
           <Image
             src="/images/about/partners/Codecademy.svg"
