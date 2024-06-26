@@ -3,6 +3,25 @@ import Image from "next/image";
 const Home = () => {
   return (
     <div className="overflow-x-hidden w-full">
+
+
+      {/* div3 */}
+      <div className="relative bg-foreground flex items-center w-full h-fit md:h-[160px] xl:min-h-[200px] px-4 md:px-8 lg:px-20 xl:px-32 py-5">
+          <p className="w-full md:w-[82%] lg:w-[86%] text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl tracking-wide text-white font-semibold">
+          <span className="!text-themeGreen">We believe</span> in the power of partnership and the potential of every individual, regardless of their physical abilities. 
+          </p>
+          <div className="w-[312px] h-[80px] xl:w-[384px] xl:h-[98px] hidden md:block md:absolute rotate-12 bottom-14 px-4 md:right-8 lg:right-20 xl:right-32">
+            <Image
+              src="/images/DoodleLine.svg"
+              alt=""
+              width={386}
+              height={106}
+              className="h-auto w-auto"
+            />
+          </div>
+        
+      </div>
+
       {/* div4 */}
       <div className="border-t border-b border-border w-full h-fit flex items-center justify-between gap-5 md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
         <div className="hidden md:block md:w-1/2">
