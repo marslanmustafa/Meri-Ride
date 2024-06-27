@@ -99,4 +99,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.faq-item:last-child {
+  border-bottom: none;
+}
   }

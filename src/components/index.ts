@@ -1,2 +1,8 @@
 export * from './Layout'
-export * from './ServiceCard'
+import ServiceCard from './ServiceCard'
+import Faq from './Faq'
+
+export {
+  ServiceCard,
+  Faq,
+}

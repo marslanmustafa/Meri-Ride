@@ -1,4 +1,4 @@
-import ServiceCard from "@/components/ServiceCard";
+import { ServiceCard, Faq} from "@/components";
 import { Service } from "@/lib/types";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -31,6 +31,8 @@ const ServicesCards: Service[] = [
   },
 ];
 
+
+
 const Home = () => {
   return (
     <div className="overflow-x-hidden w-full">
@@ -42,20 +44,23 @@ const Home = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
+        
         className="relative bg-foreground flex items-center w-[768px] h-[386px] sm:w-full sm:h-[336px] md:h-[436px] lg:h-[596px] xl:h-[696px] px-4 md:px-8 lg:px-20 xl:px-32 py-5"
       >
         <div className="px-4 h-full w-screen sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
           <h1 className="text-2xl md:text-4xl xl:text-6xl text-white font-bold xl:leading-[80px]">
-            Empowering individuals with <span className="text-themeGreen">
-            disabilities.
-            </span>
+            Empowering individuals with{" "}
+            <span className="text-themeGreen">disabilities.</span>
           </h1>
           <h2 className="text-lg md:text-2xl xl:text-4xl text-white">
             Through self-reliance and collaboration.
           </h2>
-          <div className={"w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
-            }>
-          <Link href="/hire">Hire MeriRide</Link>
+          <div
+            className={
+              "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
+            }
+          >
+            <Link href="/hire">Hire MeriRide</Link>
           </div>
         </div>
       </div>
@@ -173,31 +178,11 @@ const Home = () => {
       </div>
       {/* div5 */}
       <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-1">
-      <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold pb-10">
+        <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold pb-3 md:pb-10">
           Frequenlty Asked Questions
         </h1>
-        <div className="relative w-full flex items-center h-[500px]">
-          <div className="absolute left-0 w-[58%] h-[420px] bg-white text-themeGrayText rounded-2xl overflow-visible z-10">
-            <div className="flex items-center gap-3 justify-between truncate-multiline-md px-4 py-6 border-b border-border">
-              <input type="radio" className="bg-border w-6 h-6 checked:bg-themeGreen appearance-none rounded-full" />
-              <p className="text-lg"> What is the mission of Empowering Opportunities Inc.?</p>
-              <div className="w-5 h-5 lg:w-7 lg:h-7 flex items-center justify-center rounded-full p-1">
-        <ChevronRight size={20} />
+        <Faq/>
       </div>
-            </div>
-          </div>
-          <div className="absolute right-0 w-[50%] h-[474px] bg-foreground rounded-2xl z-1 text-white py-10 pr-10 pl-28">
-            <h1 className="text-lg font-semibold">Our mission is to empower individuals with</h1>
-            <p className="text-sm py-6">Disabilities by creating sustainable income opportunities through innovative partnerships, fostering a community of inclusion, and transforming lives through self-reliance and collaboration.
-            </p>
-            <p className="text-sm">
-              Sustainable income opportunities through innovative partnerships, fostering a community of inclusion, and transforming lives through self-reliance and collaboration.
-              </p>
-          </div>
-
-        </div>
-        
-    </div>
     </div>
   );
 };
