@@ -1,5 +1,6 @@
 import ServiceCard from "@/components/ServiceCard";
 import { Service } from "@/lib/types";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -170,6 +171,33 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* div5 */}
+      <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-1">
+      <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold pb-10">
+          Frequenlty Asked Questions
+        </h1>
+        <div className="relative w-full flex items-center h-[500px]">
+          <div className="absolute left-0 w-[58%] h-[420px] bg-white text-themeGrayText rounded-2xl overflow-visible z-10">
+            <div className="flex items-center gap-3 justify-between truncate-multiline-md px-4 py-6 border-b border-border">
+              <input type="radio" className="bg-border w-6 h-6 checked:bg-themeGreen appearance-none rounded-full" />
+              <p className="text-lg"> What is the mission of Empowering Opportunities Inc.?</p>
+              <div className="w-5 h-5 lg:w-7 lg:h-7 flex items-center justify-center rounded-full p-1">
+        <ChevronRight size={20} />
+      </div>
+            </div>
+          </div>
+          <div className="absolute right-0 w-[50%] h-[474px] bg-foreground rounded-2xl z-1 text-white py-10 pr-10 pl-28">
+            <h1 className="text-lg font-semibold">Our mission is to empower individuals with</h1>
+            <p className="text-sm py-6">Disabilities by creating sustainable income opportunities through innovative partnerships, fostering a community of inclusion, and transforming lives through self-reliance and collaboration.
+            </p>
+            <p className="text-sm">
+              Sustainable income opportunities through innovative partnerships, fostering a community of inclusion, and transforming lives through self-reliance and collaboration.
+              </p>
+          </div>
+
+        </div>
+        
+    </div>
     </div>
   );
 };
