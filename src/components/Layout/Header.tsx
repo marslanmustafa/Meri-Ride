@@ -42,7 +42,7 @@ const Header: React.FC = () => {
       {/* NavBar */}
       <div
         className={`${
-          navOpen ? "!flex animate-fade-down" : "hidden"
+          navOpen ? "z-[200] !flex animate-fade-down" : "hidden"
         } absolute top-16 left-0 md:static hidden bg-[#fff] md:bg-transparent py-5 flex-col md:flex-row w-full md:flex items-center justify-between text-themeGrayText md:w-[calc(100%-80px)] lg:w-[calc(100%-110px)] xl:w-[calc(92%-100px)] gap-5 md:gap-0`}
       >
         <ul className="flex-col md:flex-row flex items-center justify-center text-sm lg:text-textEm xl:text-lg gap-5 md:gap-3 lg:gap-6 xl:gap-8">
