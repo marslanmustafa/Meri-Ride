@@ -39,14 +39,24 @@ const Home = () => {
       {/* div1 */}
       <div
         style={{
-          background: `url(/images/home/LandingBg.svg)`,
+          background: `linear-gradient(106deg , #000000, #00000000)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
         
-        className="relative bg-foreground flex items-center w-[768px] h-[386px] sm:w-full sm:h-[336px] md:h-[436px] lg:h-[596px] xl:h-[696px] px-4 md:px-8 lg:px-20 xl:px-32 py-5"
+        className="relative w-[768px] h-[386px] sm:w-full sm:h-[336px] md:h-[436px] lg:h-[596px] xl:h-[696px]"
       >
+        <div
+        style={{
+          background: `url(/images/home/LandingBg.svg)`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="absolute top-0 left-0 w-full h-full z-[1] flex items-center px-4 md:px-8 lg:px-20 xl:px-32 py-5"
+      >
+        
         <div className="px-4 h-full w-screen sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
           <h1 className="text-2xl md:text-4xl xl:text-6xl text-white font-bold xl:leading-[80px]">
             Empowering individuals with{" "}
@@ -64,6 +74,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+      </div>
+      
       {/* div2 */}
       <div className="relative bg-foreground flex items-center w-full h-fit md:h-[160px] xl:min-h-[200px] px-4 md:px-8 lg:px-20 xl:px-32 py-5">
         <p className="w-full md:w-[82%] lg:w-[86%] text-sm md:text-lg lg:text-2xl xl:text-3xl tracking-wide text-white font-semibold">
