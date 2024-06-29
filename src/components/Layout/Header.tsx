@@ -26,7 +26,7 @@ const Header: React.FC = () => {
       {/* responsive Div */}
       <div className="px-4 py-2 sm:py-4 sm:px-6 md:p-0 h-16 w-full md:w-fit justify-between flex items-center md:justify-center bg-[#F7F8F7] border-none md:bg-none md:border-none">
         <Image
-          src="./logoGreen.svg"
+          src="/logoGreen.svg"
           alt="Meri Ride"
           width={73}
           height={65}
