@@ -9,7 +9,7 @@ const ConnectForm: React.FC = ()=> {
     </h1>
     <div className="w-full bg-white px-2 py-4 sm:px-8 md:px-20 sm:py-6 md:py-14 rounded-3xl">
       <div className="m-auto sm:m-0 w-full sm:w-[430px]">
-        <h2 className="text-xl md:text-[30px] font-semibold">
+        <h2 className="text-xl md:text-[30px] font-semibold pb-3">
           Let&apos;s connect constellations
         </h2>
         <h3 className="text-xs md:text-textEm">
