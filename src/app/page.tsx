@@ -9,19 +9,19 @@ const ServicesCards: Service[] = [
     icon: "/images/home/servicesCards/Transportation.svg",
     heading: "Transportation Services",
     para: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    link: "/services/Transportation",
+    link: "/services/transportation",
   },
   {
     icon: "/images/home/servicesCards/LocalCourier.svg",
     heading: "Local Courier Service",
     para: "We offer a fast and reliable courier service for the community. Whether it's important documents ",
-    link: "/services/LocalCourier",
+    link: "/services/localCourier",
   },
   {
     icon: "/images/home/servicesCards/LastMileDelivery.svg",
     heading: "Last Mile Delivery Services",
     para: "In partnership with local businesses, our motorcycle rickshaw service ensures that goods reach their....",
-    link: "/services/LastMile",
+    link: "/services/lastMile",
   },
   {
     icon: "/images/home/servicesCards/adModel.svg",
