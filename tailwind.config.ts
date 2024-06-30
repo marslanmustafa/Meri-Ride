@@ -18,6 +18,7 @@ const config = {
       },
     },
     extend: {
+      textEm: "var(--text)",
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -28,7 +29,7 @@ const config = {
         themeRed: "hsl(var(--red))",
         themeGreen: "hsl(var(--green))",
         themeGrayText: "hsl(var(--grayText))",
-        textEm: "var(--text)",
+        themeGrayText2: "hsl(var(--grayText2))",
 
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -64,7 +65,6 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
