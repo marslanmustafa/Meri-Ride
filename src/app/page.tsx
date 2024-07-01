@@ -67,7 +67,7 @@ const Home = () => {
           </h2>
           <div
             className={
-              "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
+              "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
             }
           >
             <Link href="/hire">Hire MeriRide</Link>
@@ -111,19 +111,19 @@ const Home = () => {
           <h2 className="text-lg lg:text-xl xl:text-2xl pb-5 lg-pb-0">
             Welcome to Empowerment
           </h2>
-          <p className="text-xs lg:text-sm xl:text-textEm tracking-wide pb-3 lg-pb-0">
+          <p className="text-xs lg:text-sm xl:text-[16px] tracking-wide pb-3 lg-pb-0">
             Through Partnership, a{" "}
             <span className="font-semibold"> non-profit organization</span>{" "}
             dedicated to transforming the lives of individuals with disabilities
             by creating sustainable income opportunities
           </p>
-          <p className="text-xs lg:text-sm xl:text-textEm tracking-wide pb-3 lg-pb-0">
+          <p className="text-xs lg:text-sm xl:text-[16px] tracking-wide pb-3 lg-pb-0">
             Our mission is to bridge the gap between able-bodied{" "}
             <span className="font-semibold">individuals and those</span> with
             disabilities, especially the blind, to foster a collaborative
             environment where both can thrive.
           </p>
-          <p className="text-xs lg:text-sm xl:text-textEm tracking-wide">
+          <p className="text-xs lg:text-sm xl:text-[16px] tracking-wide">
             <span className="font-semibold">We believe</span> in the power of
             partnership and the potential of every individual, regardless of
             their physical abilities. By developing innovative projects that
@@ -166,13 +166,13 @@ const Home = () => {
               inclusion.
             </p>
             <div className="flex items-center justify start gap-2 sm:gap-4">
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-textEm md:font-medium rounded-lg !text-themeGrayText bg-themeGreen">
+              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-themeGreen">
                 Donate
               </div>
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-textEm md:font-medium rounded-lg !text-themeGrayText bg-white">
+              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-white">
                 Volunteer
               </div>
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-textEm md:font-medium rounded-lg text-white bg-transparent">
+              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg text-white bg-transparent">
                 Join Us
               </div>
             </div>

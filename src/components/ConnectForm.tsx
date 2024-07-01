@@ -2,17 +2,17 @@ const ConnectForm: React.FC = ()=> {
   return(
     <div
     style={{ backgroundImage: `url('/images/about/bg.svg')` }}
-    className="w-full h-fit lg:min-h-screen p-4 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText"
+    className="w-full h-fit lg:min-h-screen py-5 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText"
   >
     <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center font-bold p-4 sm:pb-6">
       Let&apos;s Start
     </h1>
-    <div className="w-full bg-white px-2 py-4 sm:px-8 md:px-20 sm:py-6 md:py-14 rounded-3xl">
+    <div className="w-full bg-white px-2 py-4 sm:px-8 md:px-20 sm:py-6 md:py-14 md:rounded-3xl">
       <div className="m-auto sm:m-0 w-full sm:w-[430px]">
         <h2 className="text-xl md:text-[30px] font-semibold pb-3">
           Let&apos;s connect constellations
         </h2>
-        <h3 className="text-xs md:text-textEm">
+        <h3 className="text-xs md:text-[16px]">
           Let&apos;s align our constellations! Reach out and let the magic
           of collaboration illuminate our skies.
         </h3>
@@ -21,7 +21,7 @@ const ConnectForm: React.FC = ()=> {
         className="w-full py-4 space-y-3 md:space-y-5 flex flex-col items-center"
         action=""
       >
-        <div className="text-sm sm:text-textEm w-full flex justify-between flex-wrap gap-4">
+        <div className="text-sm sm:text-[16px] w-full flex justify-between flex-wrap gap-4">
           <input
             type="text"
             name="fname"
@@ -56,7 +56,7 @@ const ConnectForm: React.FC = ()=> {
         </div>
         <button
           type="submit"
-          className=" bg-foreground px-10 sm:px-20 lg:px-40 py-3 text-sm md:text-textEm !text-white rounded-lg"
+          className=" bg-foreground px-10 sm:px-20 lg:px-40 py-3 text-sm md:text-[16px] !text-white rounded-lg"
         >
           Submit
         </button>

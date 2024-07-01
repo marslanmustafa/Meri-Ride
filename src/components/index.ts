@@ -1,10 +1,6 @@
 export * from './Layout'
-import ServiceCard from './ServiceCard'
-import Faq from './Faq'
-import ConnectForm from './ConnectForm'
-
-export {
-  ServiceCard,
-  Faq,
-  ConnectForm,
-}
+export * from './services'
+export {default as ServiceCard } from './ServiceCard'
+export {default as Faq } from './Faq'
+export {default as ConnectForm } from './ConnectForm'
+export {default as SupportBanner } from './SupportBanner'

@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { ConnectForm } from "@/components"
+import { ConnectForm, SupportBanner } from "@/components"
 
 const featuresData = [
   { sr: 1, feature: "User Profile Management" },
@@ -33,7 +33,7 @@ const page = () => {
           <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">
             Welcome to Empowerment
           </h2>
-          <p className="text-sm md:text-textEm lg:text-lg xl:text-xl tracking-wide">
+          <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
             Through Partnership, a non-profit organization dedicated to
             transforming the lives of individuals with disabilities by creating
             sustainable income opportunities. Our mission is to bridge the gap
@@ -41,7 +41,7 @@ const page = () => {
             especially the blind, to foster a collaborative environment where
             both can thrive.
           </p>
-          <p className="text-sm md:text-textEm lg:text-lg xl:text-xl tracking-wide">
+          <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
             We believe in the power of partnership and the potential of every
             individual, regardless of their physical abilities. By developing
             innovative projects that pair able-bodied and disabled individuals,
@@ -84,12 +84,12 @@ const page = () => {
               return (
                 <div
                   key={index}
-                  className="px-4 py-3 xl:px-6 xl:py-5 w-full flex items-center justify-start gap-3 xl:gap-5 text-textEm bg-foreground rounded-[6px]"
+                  className="px-4 py-3 xl:px-6 xl:py-5 w-full flex items-center justify-start gap-3 xl:gap-5 text-[16px] bg-foreground rounded-[6px]"
                 >
                   <div className="w-7 h-7 rounded-full bg-themeGreen text-themeGrayText p-3 flex items-center justify-center">
                     {data.sr}
                   </div>
-                  <p className="font-semibold text-sm xl:text-textEm">
+                  <p className="font-semibold text-sm xl:text-[16px]">
                     {" "}
                     {data.feature}
                   </p>
@@ -113,27 +113,27 @@ const page = () => {
       <div className="w-full h-fit lg:min-h-screen flex justify-between flex-col lg:flex-row px-4 md:px-8 lg:px-20 xl:px-32 py-14">
         <div className="w-full lg:w-[55%]  space-y-5 text-foreground">
           <h1 className="text-3xl lg:text-5xl font-bold">Our Team</h1>
-          <p className="text-sm lg:text-textEm">
+          <p className="text-sm lg:text-[16px]">
             The Leadership Team is responsible for setting the strategic
             direction of the organization, ensuring alignment with our mission
             and values, and overseeing overall operations. This team includes
             our Executive Director, Chief Operating Officer, and other senior
             leaders.
           </p>
-          <p className="text-sm lg:text-textEm">
+          <p className="text-sm lg:text-[16px]">
             This team recruits, trains, and supports our volunteers, and manages
             community outreach initiatives. They build strong relationships with
             volunteers and community partners to enhance our impact.
           </p>
           <h1 className="text-2xl lg:text-4xl font-bold">Join our team</h1>
-          <p className="text-sm lg:text-textEm">
+          <p className="text-sm lg:text-[16px]">
             We are always looking for passionate individuals to join our team
             and help us further our mission. If you are interested in
             contributing to a meaningful cause and making a difference in the
             lives of individuals with disabilities, please visit our careers
             page
           </p>
-          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-themeGreen">
+          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-themeGreen">
             Join Us
           </div>
         </div>
@@ -219,7 +219,7 @@ const page = () => {
         </div>
       </div>
       {/* div6 */}
-      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 py-7 md:py-10 lg:py-14">
+      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 pt-7 md:pt-10 lg:pt-14">
         <h1 className="text-xl sm:text-2xl lg:text-4xl xl:text-5xl m-auto text-center pb-5 font-semibold text-black lgpb-10">
           Success Stories{" "}
         </h1>
@@ -247,7 +247,7 @@ const page = () => {
                 />
               ))}
             </div>
-            <p className="text-sm lg:text-textEm">
+            <p className="text-sm lg:text-[16px]">
               Volunteering with Empowering Opportunities Inc. has been one of
               the most rewarding experiences of my life. Mentoring individuals
               with disabilities and seeing their progress and confidence grow is
@@ -257,7 +257,7 @@ const page = () => {
             <h3 className="text-lg sm:text-xl lg:text-3xl font-bold">
               Cameron Williamson
             </h3>
-            <h4 className="text-xs sm:text-textEm lg:text-xl font-semibold">
+            <h4 className="text-xs sm:text-[16px] lg:text-xl font-semibold">
               CEO & CO Founder At Cikafy
             </h4>
           </div>
@@ -271,36 +271,9 @@ const page = () => {
             <ChevronRight size={32} />
           </div>
         </div>
-        {/* support */}
-        <div className="mt-4 sm:mt-10 md:mt-20 w-full h-fit md:h-[262px] lg:h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
-          <div className="w-full md:w-[calc(100%-386px)] lg:w-[calc(100%-432px)] h-full p-5 md:py-10 md:px-10 md:pr-2 xl:p-12 space-y-3 xl:space-y-6">
-            <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">
-              Support Us
-            </h1>
-            <p className="text-[10px] text-xs lg:text-sm">
-              <span className="font-semibold">
-                Empowering Opportunities Inc.
-              </span>{" "}
-              thrives on the generosity and support of individuals, businesses,
-              and communities. Your contributions help us provide vital services
-              to individuals with disabilities, fostering independence and
-              inclusion. Here are various ways you can support us:
-            </p>
-            <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-textEm md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
-              Join Us
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <Image
-              src="/images/about/Support.svg"
-              alt="Donate"
-              width={432}
-              height={307}
-              className="w-[382px] lg:w-[432px] h-full"
-            />
-          </div>
-        </div>
       </div>
+        {/* support */}
+       <SupportBanner/>
       {/* div7 */}
      <ConnectForm />
     </div>

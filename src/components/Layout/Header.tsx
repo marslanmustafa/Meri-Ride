@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
+import HeaderDropDown from "./HeaderDropDown";
+import HeaderAccordion from "./HeaderAccordion";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -45,7 +47,7 @@ const Header: React.FC = () => {
           navOpen ? "z-[200] !flex animate-fade-down" : "hidden"
         } absolute top-16 left-0 md:static hidden bg-[#fff] md:bg-transparent py-5 flex-col md:flex-row w-full md:flex items-center justify-between text-themeGrayText md:w-[calc(100%-80px)] lg:w-[calc(100%-110px)] xl:w-[calc(92%-100px)] gap-5 md:gap-0`}
       >
-        <ul className="flex-col md:flex-row flex items-center justify-center text-sm lg:text-textEm xl:text-lg gap-5 md:gap-3 lg:gap-6 xl:gap-8">
+        <ul className="flex-col md:flex-row flex items-center justify-center text-sm lg:text-[16px] xl:text-lg gap-5 md:gap-3 lg:gap-6 xl:gap-8">
           <li>
             <Link
               className={`link ${
@@ -67,14 +69,8 @@ const Header: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link
-              className={`link ${
-                pathname === "/services" ? "text-themeGreen font-bold" : ""
-              }`}
-              href="/services"
-            >
-              Services
-            </Link>
+           <div className="hidden md:block"> <HeaderDropDown/></div>
+           <div className="block md:hidden"> <HeaderAccordion/></div>
           </li>
           <li>
             <Link
@@ -100,7 +96,7 @@ const Header: React.FC = () => {
           </li>
         </ul>
         <Link
-          className={`px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-textEm md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText link ${
+          className={`px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText link ${
             pathname === "/donate" ? "text-white bg-themeGreen" : ""
           }`}
           href="/donate"

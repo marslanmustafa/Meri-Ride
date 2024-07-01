@@ -38,7 +38,6 @@
     --ring: 224 71.4% 4.1%;
 
     --radius: 0.5rem;
-    --text: 1em;
   }
 
   .dark {
@@ -106,6 +105,7 @@
 
   .faq-item:last-child {
     border-bottom: none;
+    border-radius: 0 0 1rem 1rem;
   }
 
   .text-area {

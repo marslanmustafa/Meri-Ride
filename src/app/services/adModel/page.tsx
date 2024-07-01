@@ -40,7 +40,7 @@ const page = () => {
               className=" h-auto w-[280px] lg:w-[340px]"
             />
           </div>
-          <h3 className="bg-themeGreen py-1 px-2 text-textEm sm:text-lg uppercase w-fit rounded-md">
+          <h3 className="bg-themeGreen py-1 px-2 text-[16px] sm:text-lg uppercase w-fit rounded-md">
             Pricing
           </h3>
           <h1 className="py-1 px-2 text-center themeGrayText2 font-bold text-2xl sm:text-4xl lg:text-6xl w-fit">
@@ -49,20 +49,20 @@ const page = () => {
         </div>
         <div className="flex md:flex-row flex-col items-center justify-center gap-5  ">
           <div className="w-full lg:max-w-[400px] lg:px-6 px-4 py-5  space-y-4 bg-white rounded-lg shadow-sm">
-            <h2 className="text-textEm lg:text-lg font-semibold">Interior Ads</h2>
-            <p className="text-sm lg:text-textEm">
+            <h2 className="text-[16px] lg:text-lg font-semibold">Interior Ads</h2>
+            <p className="text-sm lg:text-[16px]">
               Ads placed inside the rickshaw, such as on the back of the seats
             </p>
           </div>
           <div className="w-full lg:max-w-[400px] lg:px-6 px-4 py-5  space-y-4 bg-white rounded-lg shadow-sm">
-            <h2 className="text-textEm lg:text-lg font-semibold">Exterior Ads</h2>
-            <p className="text-sm lg:text-textEm">
+            <h2 className="text-[16px] lg:text-lg font-semibold">Exterior Ads</h2>
+            <p className="text-sm lg:text-[16px]">
               Ads placed inside the rickshaw, such as on the back of the seats
             </p>
           </div>
           <div className="w-full lg:max-w-[400px] lg:px-6 px-4 py-5  space-y-4 bg-white rounded-lg shadow-sm">
-            <h2 className="text-textEm lg:text-lg font-semibold">Digital Ads</h2>
-            <p className="text-sm lg:text-textEm">
+            <h2 className="text-[16px] lg:text-lg font-semibold">Digital Ads</h2>
+            <p className="text-sm lg:text-[16px]">
               Small digital screens inside the rickshaw displaying rotating ads
             </p>
           </div>
@@ -82,7 +82,7 @@ const page = () => {
             </p>
             <h4 className="w-[110px] relative text-4xl font-semibold"><span className="text-lg absolute top-0 left-0">$</span> <span className="pl-5">12/</span> <span className="text-lg absolute bottom-0 right-0">mo</span></h4>
             <div className="w-full flex items-center justify-center">
-              <button className="py-2 text-textEm bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
+              <button className="py-2 text-[16px] bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
 
             </div>
             <div className="py-3 border-t border-border">
@@ -126,7 +126,7 @@ const page = () => {
             </p>
             <h4 className="w-[110px] relative text-4xl font-semibold"><span className="text-lg absolute top-0 left-0">$</span> <span className="pl-5">12/</span> <span className="text-lg absolute bottom-0 right-0">mo</span></h4>
             <div className="w-full flex items-center justify-center">
-              <button className="py-2 text-textEm bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
+              <button className="py-2 text-[16px] bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
             </div>
             <div className="py-3 border-t border-border">
               <h3 className="font-semibold text-sm">What Included:</h3>
@@ -213,7 +213,7 @@ const page = () => {
             </p>
             <h4 className="w-[110px] relative text-4xl font-semibold"><span className="text-lg absolute top-0 left-0">$</span> <span className="pl-5">12/</span> <span className="text-lg absolute bottom-0 right-0">mo</span></h4>
             <div className="w-full flex items-center justify-center">
-              <button className="py-2 text-textEm bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
+              <button className="py-2 text-[16px] bg-foreground rounded-md text-white w-[90%]" >Get Started</button>
 
             </div>
             <div className="py-3 border-t border-border">
