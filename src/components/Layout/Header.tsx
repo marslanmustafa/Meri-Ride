@@ -75,13 +75,13 @@ const Header: React.FC = () => {
           <li>
             <Link
               className={`link ${
-                pathname === "/driverRecuritments"
-                  ? "text-themeRed font-bold"
+                pathname === "/driverRecuritment"
+                  ? "text-themeGreen font-bold"
                   : ""
               }`}
-              href="/driverRecuritments"
+              href="/driverRecuritment"
             >
-              Driver Recuritments
+              Driver Recuritment
             </Link>
           </li>
           <li>

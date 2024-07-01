@@ -26,3 +26,13 @@ export type BannerData = {
 export type LandingBannerProps = {
   data: BannerData;
 }
+
+export type ListItem = {
+  category: string;
+  items: string[];
+}
+
+export type RecruitmentData = {
+  heading: string;
+  listItems: ListItem[];
+}
