@@ -47,12 +47,11 @@ const Footer = () => {
          <div className="w-full sm:w-[48%] lg:w-9/12">
           <h1 className="font-bold text-sm">Quick Links</h1>
           <ul className="py-4 flex flex-col gap-3">
-           <li>Home</li>
-           <li>About</li>
-           <li>Services</li>
-           <li>Driver Recuritment</li>
-           <li>Contact Us</li>
-           <li>Donate and Volunteer</li>
+           <li><Link href="/home">Home</Link></li>
+           <li><Link href="/about">About</Link></li>
+           <li><Link href="/driverRecuritment">Driver Recuritment</Link></li>
+           <li><Link href="/contact">Contact Us</Link></li>
+           <li><Link href="/donateAndVolunteer">Donate and Volunteer</Link></li>
           </ul>
         </div>
          {/* div5 */}
