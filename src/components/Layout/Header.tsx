@@ -97,9 +97,9 @@ const Header: React.FC = () => {
         </ul>
         <Link
           className={`px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText link ${
-            pathname === "/donate" ? "text-white bg-themeGreen" : ""
+            pathname === "/donateAndVolunteer" ? "text-white bg-themeGreen" : ""
           }`}
-          href="/donate"
+          href="/donateAndVolunteer"
         >
           Donate and Volunteer
         </Link>

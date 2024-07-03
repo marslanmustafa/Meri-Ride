@@ -94,7 +94,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   .truncate-multiline-md {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -103,11 +102,15 @@
     text-overflow: ellipsis;
   }
 
+  /* FAQ */
+  .faq-item:first-child {
+    border-radius: 1rem 1rem 0 0;
+  }
   .faq-item:last-child {
     border-bottom: none;
     border-radius: 0 0 1rem 1rem;
   }
-
+  /* message Input */
   .text-area {
     display: -webkit-box;
     -webkit-line-clamp: 5;

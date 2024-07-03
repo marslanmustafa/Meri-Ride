@@ -79,7 +79,7 @@ const page = () => {
             ))}
           </div>
           <div className='w-full flex items-center justify-center sm:w-fit sm:block'>
-            <ApplicationForm/>
+            <ApplicationForm />
           </div>
         </div>
       </div>

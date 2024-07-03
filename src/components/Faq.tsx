@@ -70,7 +70,7 @@ const Faq = () => {
           <div
           onClick={() => setSelectedQuestionIndex(index)}
             key={index}
-            className={`faq-item cursor-pointer relative flex items-center gap-5 justify-start px-4 py-5 xl:py-6 rounded-t-2xl border-b border-[#b8b8b8] ${selectedQuestionIndex === index ? 'bg-gray-100' : 'bg-transparent'}`}
+            className={`faq-item cursor-pointer relative flex items-center gap-5 justify-start px-4 py-5 xl:py-6  border-b border-[#b8b8b8] ${selectedQuestionIndex === index ? 'bg-gray-100' : 'bg-transparent'}`}
           >
             <input
               type="radio"
