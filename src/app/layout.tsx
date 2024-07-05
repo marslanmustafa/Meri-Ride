@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
+import Loading from "./Loading";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,11 +27,13 @@ export default function RootLayout({
         <link rel="icon" href="./icon.svg" type="image/svg+xml"/>
       </head>
       <body className={`w-screen ${poppins.variable}`}>
-        <Header/>
+       <Loading>
+       <Header/>
         <main className="w-screen min-h-screen bg-background">
         {children}
         </main>
         <Footer/>
+       </Loading>
         </body>
     </html>
   );
