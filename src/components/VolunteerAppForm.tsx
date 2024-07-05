@@ -245,7 +245,7 @@ const VolunteerAppForm: React.FC = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <div className="relative">
-                      <div className="w-full h-9 py-2 pl-3 pr-10 border rounded-lg outline-none cursor-pointer flex items-center justify-between">
+                      <div className="w-full h-9 py-2 pr-3 outline-none cursor-pointer flex items-center justify-between">
                         {selectedGender ? (
                           <span>{selectedGender.label}</span>
                         ) : (

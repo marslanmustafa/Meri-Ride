@@ -9,7 +9,13 @@ const Footer = () => {
       <div className="w-full flex gap-5 flex-wrap lg:flex-nowrap px-4 md:px-8 lg:px-20 xl:px-32 pt-10 pb-2 lg:py-14 bg-white text-foreground text-xs">
         {/* div1 */}
         <div className="w-full">
-          <Image src="/logo.svg" alt="Meri Ride" width={74} height={74} className="w-[74px] h-[74px]"/>
+        <Image
+          src="/logoTop.svg"
+          alt="Meri Ride"
+          width={1100}
+          height={715}
+          className="lg:w-[120px] xl:w-[150px] md:w-20 w-24"
+        />
           <p className="py-3">
             Through Partnership, a non-profit organization dedicated to
             transforming the lives of individuals with disabilities by creating
