@@ -36,3 +36,32 @@ export type RecruitmentData = {
   heading: string;
   listItems: ListItem[];
 }
+
+
+
+export type VolunteerFormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+  };
+  preferredRoles: string[];
+  availability: string[];
+  preferredTimeSlots: string[];
+  volunteerExperience: string;
+  skills: string[];
+  whyVolunteer: string;
+  additionalInfo: string;
+  references: {
+    name: string;
+    relationship: string;
+    phone: string;
+    email: string;
+  };
+}
