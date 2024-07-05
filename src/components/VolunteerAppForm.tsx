@@ -1,15 +1,21 @@
 // @ts-nocheck
-"use client"
+"use client";
 
 import * as React from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+} from "@/components/ui/dropdown-menu"; // Assuming you have a custom dropdown menu component
+import { Button } from "@/components/ui/button"; // Assuming you have a custom button component
+import { ChevronDown } from "lucide-react"; // Assuming you have an icon library
 
 interface Option {
   label: string;
   value: string;
 }
-
 const DropdownMenuCheckboxes: React.FC<{
   label: string;
   options: Option[];
@@ -18,13 +24,9 @@ const DropdownMenuCheckboxes: React.FC<{
 }> = ({ label, options, selectedValues, onSelectionChange }) => {
   const handleCheckboxChange = (optionValue: string) => {
     const isSelected = selectedValues.includes(optionValue);
-    let updatedSelection;
-
-    if (isSelected) {
-      updatedSelection = selectedValues.filter((value) => value !== optionValue);
-    } else {
-      updatedSelection = [...selectedValues, optionValue];
-    }
+    const updatedSelection = isSelected
+      ? selectedValues.filter((value) => value !== optionValue)
+      : [...selectedValues, optionValue];
 
     onSelectionChange(updatedSelection);
   };
@@ -52,11 +54,9 @@ const DropdownMenuCheckboxes: React.FC<{
   );
 };
 
+
 const VolunteerAppForm: React.FC = () => {
-  const [roles, setRoles] = React.useState<string[]>([]);
-  const [availability, setAvailability] = React.useState<string[]>([]);
-  const [timeSlots, setTimeSlots] = React.useState<string[]>([]);
-  const [relevantSkills, setRelevantSkills] = React.useState<string[]>([]);
+  // State for form data
   const [formData, setFormData] = React.useState({
     fullName: "",
     gender: "",
@@ -72,10 +72,24 @@ const VolunteerAppForm: React.FC = () => {
     volunteerExperience: "",
     whyVolunteer: "",
     additionalInfo: "",
-    references: [
-      { name: "", relationship: "", phone: "", email: "" },
-    ],
+    references: [{ name: "", relationship: "", phone: "", email: "" }],
   });
+
+  // State for selected options
+  const [selectedGender, setSelectedGender] = React.useState<Option | null>(null);
+  const [selectedRoles, setSelectedRoles] = React.useState<string[]>([]);
+  const [selectedAvailability, setSelectedAvailability] = React.useState<string[]>([]);
+  const [selectedTimeSlots, setSelectedTimeSlots] = React.useState<string[]>([]);
+  const [selectedSkills, setSelectedSkills] = React.useState<string[]>([]);
+
+  // Options for dropdowns
+  const genderOptions: Option[] = [
+    { label: "Select Gender", value: "" },
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
+    { label: "Other", value: "Other" },
+    { label: "Prefer not to say", value: "Prefer not to say" },
+  ];
 
   const roleOptions: Option[] = [
     { label: "Driver Coordination", value: "Driver Coordination" },
@@ -117,15 +131,32 @@ const VolunteerAppForm: React.FC = () => {
     { label: "Other", value: "Other" },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle form input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name.includes("name-") || name.includes("relationship-") || name.includes("phone-") || name.includes("email-")) {
+      const index = Number(name.split('-')[1]);
+      const updatedReferences = formData.references.map((reference, i) =>
+        i === index ? { ...reference, [name.split('-')[0]]: value } : reference
+      );
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        references: updatedReferences
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle address input changes
+  const handleAddressChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -136,52 +167,49 @@ const VolunteerAppForm: React.FC = () => {
     });
   };
 
+  // Handle dropdown selection changes
+  const handleGenderChange = (option: Option) => {
+    setSelectedGender(option);
+    setFormData({
+      ...formData,
+      gender: option.value,
+    });
+  };
+
   const handleRoleChange = (selectedRoles: string[]) => {
-    setRoles(selectedRoles);
+    setSelectedRoles(selectedRoles);
   };
 
   const handleAvailabilityChange = (selectedAvailability: string[]) => {
-    setAvailability(selectedAvailability);
+    setSelectedAvailability(selectedAvailability);
   };
 
   const handleTimeSlotChange = (selectedTimeSlots: string[]) => {
-    setTimeSlots(selectedTimeSlots);
+    setSelectedTimeSlots(selectedTimeSlots);
   };
 
   const handleSkillChange = (selectedSkills: string[]) => {
-    setRelevantSkills(selectedSkills);
+    setSelectedSkills(selectedSkills);
   };
 
-  const handleReferenceChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const updatedReferences = formData.references.map((ref, i) =>
-      i === index ? { ...ref, [name]: value } : ref
-    );
-    setFormData({ ...formData, references: updatedReferences });
-  };
-
+  // Handle form submission
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const formDataOutput = {
       ...formData,
-      roles,
-      availability,
-      timeSlots,
-      relevantSkills,
+      roles: selectedRoles,
+      availability: selectedAvailability,
+      timeSlots: selectedTimeSlots,
+      relevantSkills: selectedSkills,
     };
     console.log("Form Data:", formDataOutput);
-  };
-
-  const handleGenderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      gender: e.target.value,
-    });
+    // Here you can add logic to submit the form data to your backend or perform other actions
   };
 
   return (
     <div className="w-full h-fit lg:min-h-screen py-5 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-themeGrayText">
       <div className="w-full bg-white px-2 py-4 sm:px-8 md:px-20 sm:py-6 md:py-14 md:rounded-3xl">
+        {/* Form heading */}
         <div className="sm:m-0 w-full text-center space-y-4 py-3">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
             Volunteer Application Form
@@ -190,10 +218,14 @@ const VolunteerAppForm: React.FC = () => {
             An online form that allows individuals to sign up for volunteer opportunities, collecting essential information to match their skills and availability with the organization’s needs.
           </p>
         </div>
+
+        {/* Form */}
         <form className="w-full px-4 pt-8 space-y-3 md:space-y-5" onSubmit={handleSubmit}>
+          {/* Personal Information */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
             <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Full Name */}
               <div className="w-full border-b border-border flex flex-col">
                 <label htmlFor="fullName">Full Name</label>
                 <input
@@ -206,22 +238,37 @@ const VolunteerAppForm: React.FC = () => {
                   required
                 />
               </div>
+
+              {/* Gender */}
               <div className="w-full border-b border-border flex flex-col">
-                <label htmlFor="gender">Gender</label>
-                <select
-                  name="gender"
-                  className="w-full h-9 py-2 outline-none"
-                  value={formData.gender}
-                  onChange={handleGenderChange}
-                  required
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                  <option value="Prefer not to say">Prefer not to say</option>
-                </select>
+                <label>Gender</label>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="relative">
+                      <div className="w-full h-9 py-2 pl-3 pr-10 border rounded-lg outline-none cursor-pointer flex items-center justify-between">
+                        {selectedGender ? (
+                          <span>{selectedGender.label}</span>
+                        ) : (
+                          <span className="text-gray-500">Select Gender</span>
+                        )}
+                        <ChevronDown />
+                      </div>
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="py-1 bg-white border border-gray-200 rounded-lg shadow-lg absolute top-10 left-0 w-full">
+                    {genderOptions.map((option) => (
+                      <DropdownMenuItem
+                        key={option.value}
+                        onClick={() => handleGenderChange(option)}
+                      >
+                        {option.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
+
+              {/* Phone Number */}
               <div className="w-full border-b border-border flex flex-col">
                 <label htmlFor="phoneNumber">Phone Number</label>
                 <input
@@ -234,6 +281,8 @@ const VolunteerAppForm: React.FC = () => {
                   required
                 />
               </div>
+
+              {/* Email Address */}
               <div className="w-full border-b border-border flex flex-col">
                 <label htmlFor="emailAddress">Email Address</label>
                 <input
@@ -246,6 +295,8 @@ const VolunteerAppForm: React.FC = () => {
                   required
                 />
               </div>
+
+              {/* Address */}
               <div className="w-full border-b border-border flex flex-col">
                 <label>Address</label>
                 <input
@@ -297,36 +348,46 @@ const VolunteerAppForm: React.FC = () => {
             </div>
           </div>
 
+          {/* Volunteer Information */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
             <h3 className="text-lg font-semibold mb-4">Volunteer Information</h3>
+            {/* Role Selection */}
             <DropdownMenuCheckboxes
               label="Preferred Volunteer Role"
               options={roleOptions}
-              selectedValues={roles}
+              selectedValues={selectedRoles}
               onSelectionChange={handleRoleChange}
             />
+
+            {/* Availability */}
             <DropdownMenuCheckboxes
               label="Availability"
               options={availabilityOptions}
-              selectedValues={availability}
+              selectedValues={selectedAvailability}
               onSelectionChange={handleAvailabilityChange}
             />
+
+            {/* Time Slots */}
             <DropdownMenuCheckboxes
               label="Preferred Time Slots"
               options={timeSlotOptions}
-              selectedValues={timeSlots}
+              selectedValues={selectedTimeSlots}
               onSelectionChange={handleTimeSlotChange}
             />
           </div>
 
+          {/* Skills and Interests */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
             <h3 className="text-lg font-semibold mb-4">Skills and Interests</h3>
+            {/* Relevant Skills */}
             <DropdownMenuCheckboxes
               label="Relevant Skills"
               options={skillOptions}
-              selectedValues={relevantSkills}
+              selectedValues={selectedSkills}
               onSelectionChange={handleSkillChange}
             />
+
+            {/* Why Volunteer */}
             <div className="w-full border-b border-border flex flex-col">
               <label htmlFor="whyVolunteer">Why do you want to volunteer with us?</label>
               <textarea
@@ -337,8 +398,10 @@ const VolunteerAppForm: React.FC = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+            {/* Additional Information */}
             <div className="w-full border-b border-border flex flex-col">
-              <label htmlFor="additionalInfo">Any additional information youd like to share?</label>
+              <label htmlFor="additionalInfo">Any additional information you&apos;d like to share?</label>
               <textarea
                 name="additionalInfo"
                 className="w-full h-24 py-2 outline-none"
@@ -349,10 +412,12 @@ const VolunteerAppForm: React.FC = () => {
             </div>
           </div>
 
+          {/* References */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
             <h3 className="text-lg font-semibold mb-4">References</h3>
             {formData.references.map((reference, index) => (
               <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 space-y-2">
+                {/* Reference Name */}
                 <div className="w-full border-b border-border flex flex-col">
                   <label htmlFor={`name-${index}`}>Reference Name</label>
                   <input
@@ -361,9 +426,11 @@ const VolunteerAppForm: React.FC = () => {
                     className="w-full h-9 py-2 outline-none"
                     placeholder="Reference Name"
                     value={reference.name}
-                    onChange={(e) => handleReferenceChange(index, e)}
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </div>
+
+                {/* Reference Relationship */}
                 <div className="w-full border-b border-border flex flex-col">
                   <label htmlFor={`relationship-${index}`}>Reference Relationship</label>
                   <input
@@ -372,9 +439,11 @@ const VolunteerAppForm: React.FC = () => {
                     className="w-full h-9 py-2 outline-none"
                     placeholder="Reference Relationship"
                     value={reference.relationship}
-                    onChange={(e) => handleReferenceChange(index, e)}
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </div>
+
+                {/* Reference Phone Number */}
                 <div className="w-full border-b border-border flex flex-col">
                   <label htmlFor={`phone-${index}`}>Reference Phone Number</label>
                   <input
@@ -383,9 +452,11 @@ const VolunteerAppForm: React.FC = () => {
                     className="w-full h-9 py-2 outline-none"
                     placeholder="Reference Phone Number"
                     value={reference.phone}
-                    onChange={(e) => handleReferenceChange(index, e)}
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </div>
+
+                {/* Reference Email Address */}
                 <div className="w-full border-b border-border flex flex-col">
                   <label htmlFor={`email-${index}`}>Reference Email Address</label>
                   <input
@@ -394,16 +465,20 @@ const VolunteerAppForm: React.FC = () => {
                     className="w-full h-9 py-2 outline-none"
                     placeholder="Reference Email Address"
                     value={reference.email}
-                    onChange={(e) => handleReferenceChange(index, e)}
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="w-full flex justify-center mt-10">
-            <Button type="submit" variant="primary" className="w-48 h-12">
-              Submit Application
+          {/* Submit Button */}
+          <div className="w-full flex mt-10">
+            <Button
+              type="submit"
+              className=" bg-foreground px-10 w-fit  py-3 text-sm md:text-[16px] !text-white rounded-lg"
+            >
+              Submit
             </Button>
           </div>
         </form>
