@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import Loading from "./Loading";
+import Provider from "./Provider";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -24,17 +25,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="./icon.svg" type="image/svg+xml"/>
+        <link rel="icon" href="./icon.svg" type="image/svg+xml" />
       </head>
       <body className={`w-screen ${poppins.variable}`}>
-       <Loading>
-       <Header/>
-        <main className="w-screen min-h-screen bg-background">
-        {children}
-        </main>
-        <Footer/>
-       </Loading>
-        </body>
+        <Provider>
+          <Loading>
+            <Header />
+            <main className="w-screen min-h-screen bg-background">
+              {children}
+            </main>
+            <Footer />
+          </Loading>
+        </Provider>
+      </body>
     </html>
   );
 }

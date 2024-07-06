@@ -12,7 +12,7 @@ export default function Loading({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 600);
+    }, 900);
 
     return () => clearTimeout(timer);
   }, []);
