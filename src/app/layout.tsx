@@ -5,6 +5,8 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import Loading from "./Loading";
 import Provider from "./Provider";
+import { Toaster } from "@/components/ui/toaster"
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -33,6 +35,8 @@ export default function RootLayout({
             <Header />
             <main className="w-screen min-h-screen bg-background">
               {children}
+          <Toaster />
+
             </main>
             <Footer />
           </Loading>
