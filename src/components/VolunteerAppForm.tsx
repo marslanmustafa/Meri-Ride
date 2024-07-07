@@ -1,90 +1,79 @@
 // @ts-nocheck
 "use client";
 
-import * as React from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-} from "@/components/ui/dropdown-menu"; // Assuming you have a custom dropdown menu component
-import { Button } from "@/components/ui/button"; // Assuming you have a custom button component
-import { ChevronDown } from "lucide-react"; // Assuming you have an icon library
+import { useEffect, useRef, useState } from "react";
+import { Dropdown, SingleInput, TextareaInput, CheckboxGroup } from "./inputs";
+import { useNewVolunteerRequestMutation } from "@/hooks/UseVolunteer";
+import { useToast } from "@/components/ui/use-toast";
+import Success from "@/components/misc/Success";
+import { Button } from "@/components/ui/button";
 
 interface Option {
   label: string;
   value: string;
 }
-const DropdownMenuCheckboxes: React.FC<{
-  label: string;
-  options: Option[];
-  selectedValues: string[];
-  onSelectionChange: (selected: string[]) => void;
-}> = ({ label, options, selectedValues, onSelectionChange }) => {
-  const handleCheckboxChange = (optionValue: string) => {
-    const isSelected = selectedValues.includes(optionValue);
-    const updatedSelection = isSelected
-      ? selectedValues.filter((value) => value !== optionValue)
-      : [...selectedValues, optionValue];
-
-    onSelectionChange(updatedSelection);
-  };
-
-  return (
-    <div className="w-full border-b border-border flex flex-col">
-      <label>{label}</label>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Select {label}</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="space-y-2">
-          {options.map((option) => (
-            <DropdownMenuCheckboxItem
-              key={option.value}
-              checked={selectedValues.includes(option.value)}
-              onCheckedChange={() => handleCheckboxChange(option.value)}
-            >
-              {option.label}
-            </DropdownMenuCheckboxItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  );
-};
-
 
 const VolunteerAppForm: React.FC = () => {
-  // State for form data
-  const [formData, setFormData] = React.useState({
+  const { toast } = useToast();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [selectedGender, setSelectedGender] = useState<Option | null>(null);
+  const [selectedRole, setSelectedRole] = useState<string[]>([]);
+  const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<Option | null>(null);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [addVolunteer, { isSuccess, error, data: responseData, isLoading }] = useNewVolunteerRequestMutation();
+
+  useEffect(() => {
+    if (isLoading) {
+      toast({
+        title: "Adding Volunteer",
+        description: "Please wait while Adding your Information",
+        duration: 2000,
+      });
+    } else if (isSuccess) {
+      if (responseData?.success) {
+        setShowSuccessModal(true);
+        setTimeout(() => {
+          handleModalClose();
+        }, 3000);
+      } else {
+        toast({
+          title: "Failed",
+          description: responseData?.message || "Failed to Add Volunteer Information",
+          duration: 2000,
+        });
+      }
+    } else if (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed",
+        description: "Failed to Add Volunteer Information",
+        duration: 2000,
+      });
+    }
+  }, [isSuccess, isLoading, error, responseData, toast]);
+
+
+  const [formData, setFormData] = useState({
     fullName: "",
     gender: "",
-    address: {
-      street: "",
-      city: "",
-      state: "",
-      postalCode: "",
-      country: "",
-    },
-    phoneNumber: "",
-    emailAddress: "",
+    streetAddress: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
+    phoneNo: "",
+    email: "",
     volunteerExperience: "",
     whyVolunteer: "",
     additionalInfo: "",
-    references: [{ name: "", relationship: "", phone: "", email: "" }],
+    referenceName: "",
+    referenceRelationship: "",
+    referencePhone: "",
+    referenceEmail: "",
   });
 
-  // State for selected options
-  const [selectedGender, setSelectedGender] = React.useState<Option | null>(null);
-  const [selectedRoles, setSelectedRoles] = React.useState<string[]>([]);
-  const [selectedAvailability, setSelectedAvailability] = React.useState<string[]>([]);
-  const [selectedTimeSlots, setSelectedTimeSlots] = React.useState<string[]>([]);
-  const [selectedSkills, setSelectedSkills] = React.useState<string[]>([]);
-
-  // Options for dropdowns
   const genderOptions: Option[] = [
-    { label: "Select Gender", value: "" },
     { label: "Male", value: "Male" },
     { label: "Female", value: "Female" },
     { label: "Other", value: "Other" },
@@ -114,9 +103,9 @@ const VolunteerAppForm: React.FC = () => {
   ];
 
   const timeSlotOptions: Option[] = [
-    { label: "Morning (8 AM - 12 PM)", value: "Morning (8 AM - 12 PM)" },
-    { label: "Afternoon (12 PM - 4 PM)", value: "Afternoon (12 PM - 4 PM)" },
-    { label: "Evening (4 PM - 8 PM)", value: "Evening (4 PM - 8 PM)" },
+    { label: "Morning (8 AM - 12 PM)", value: "Morning" },
+    { label: "Afternoon (12 PM - 4 PM)", value: "Afternoon" },
+    { label: "Evening (4 PM - 8 PM)", value: "Evening" },
   ];
 
   const skillOptions: Option[] = [
@@ -136,34 +125,9 @@ const VolunteerAppForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    if (name.includes("name-") || name.includes("relationship-") || name.includes("phone-") || name.includes("email-")) {
-      const index = Number(name.split('-')[1]);
-      const updatedReferences = formData.references.map((reference, i) =>
-        i === index ? { ...reference, [name.split('-')[0]]: value } : reference
-      );
-      setFormData(prevFormData => ({
-        ...prevFormData,
-        references: updatedReferences
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  // Handle address input changes
-  const handleAddressChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = e.target;
     setFormData({
       ...formData,
-      address: {
-        ...formData.address,
-        [name]: value,
-      },
+      [name]: value,
     });
   };
 
@@ -177,33 +141,96 @@ const VolunteerAppForm: React.FC = () => {
   };
 
   const handleRoleChange = (selectedRoles: string[]) => {
-    setSelectedRoles(selectedRoles);
+    setSelectedRole(selectedRoles);
   };
 
   const handleAvailabilityChange = (selectedAvailability: string[]) => {
     setSelectedAvailability(selectedAvailability);
   };
 
-  const handleTimeSlotChange = (selectedTimeSlots: string[]) => {
-    setSelectedTimeSlots(selectedTimeSlots);
+  const handleTimeSlotChange = (selectedTimeSlots: Option | null) => {
+    setSelectedTimeSlot(selectedTimeSlots);
   };
 
   const handleSkillChange = (selectedSkills: string[]) => {
     setSelectedSkills(selectedSkills);
   };
 
-  // Handle form submission
+  const validateForm = () => {
+    const requiredFields = [
+      "fullName",
+      "gender",
+      "streetAddress",
+      "city",
+      "state",
+      "postalCode",
+      "country",
+      "phoneNo",
+      "email",
+      "volunteerExperience",
+      "whyVolunteer",
+      "additionalInfo",
+      "referenceName",
+      "referenceRelationship",
+      "referencePhone",
+      "referenceEmail",
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        toast({
+          variant: "destructive",
+          title: "Validation Error",
+          description: "Please fill out the entire Application.",
+          duration: 2000,
+        });
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const formDataOutput = {
+
+    if (!validateForm()) return;
+
+    const FormData = {
       ...formData,
-      roles: selectedRoles,
+      preferredRole: selectedRole.value,
       availability: selectedAvailability,
-      timeSlots: selectedTimeSlots,
+      timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
       relevantSkills: selectedSkills,
     };
-    console.log("Form Data:", formDataOutput);
-    // Here you can add logic to submit the form data to your backend or perform other actions
+    console.log("Form Data:", FormData);
+    addVolunteer(FormData);
+  };
+
+  const handleModalClose = () => {
+    setShowSuccessModal(false);
+    setFormData({
+      fullName: "",
+      gender: "",
+      streetAddress: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+      phoneNo: "",
+      email: "",
+      volunteerExperience: "",
+      whyVolunteer: "",
+      additionalInfo: "",
+      referenceName: "",
+      referenceRelationship: "",
+      referencePhone: "",
+      referenceEmail: "",
+    });
+    setSelectedGender(null);
+    setSelectedRole([]);
+    setSelectedAvailability([]);
+    setSelectedTimeSlot(null);
+    setSelectedSkills([]);
   };
 
   return (
@@ -223,266 +250,227 @@ const VolunteerAppForm: React.FC = () => {
         <form className="w-full px-4 pt-8 space-y-3 md:space-y-5" onSubmit={handleSubmit}>
           {/* Personal Information */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
+            <h3 className="text-lg font-bold mb-4">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Full Name */}
-              <div className="w-full border-b border-border flex flex-col">
-                <label htmlFor="fullName">Full Name</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Full Name"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
+              <SingleInput
+                label="Full Name"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+              />
               {/* Gender */}
-              <div className="w-full border-b border-border flex flex-col">
-                <label>Gender</label>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <div className="relative">
-                      <div className="w-full h-9 py-2 pr-3 outline-none cursor-pointer flex items-center justify-between">
-                        {selectedGender ? (
-                          <span>{selectedGender.label}</span>
-                        ) : (
-                          <span className="text-gray-500">Select Gender</span>
-                        )}
-                        <ChevronDown />
-                      </div>
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="py-1 bg-white border border-gray-200 rounded-lg shadow-lg absolute top-10 left-0 w-full">
-                    {genderOptions.map((option) => (
-                      <DropdownMenuItem
-                        key={option.value}
-                        onClick={() => handleGenderChange(option)}
-                      >
-                        {option.label}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-
+              <Dropdown
+                label="Gender"
+                options={genderOptions}
+                selectedOption={selectedGender}
+                onChange={handleGenderChange}
+              />
               {/* Phone Number */}
-              <div className="w-full border-b border-border flex flex-col">
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Phone Number"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
+              <SingleInput
+                label="Phone Number"
+                name="phoneNo"
+                type="tel"
+                value={formData.phoneNo}
+                onChange={handleInputChange}
+                required
+              />
 
               {/* Email Address */}
-              <div className="w-full border-b border-border flex flex-col">
-                <label htmlFor="emailAddress">Email Address</label>
-                <input
-                  type="email"
-                  name="emailAddress"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Email Address"
-                  value={formData.emailAddress}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              {/* Address */}
-              <div className="w-full border-b border-border flex flex-col">
-                <label>Address</label>
-                <input
-                  type="text"
-                  name="street"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Street Address"
-                  value={formData.address.street}
-                  onChange={handleAddressChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="city"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="City"
-                  value={formData.address.city}
-                  onChange={handleAddressChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="state"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="State/Province"
-                  value={formData.address.state}
-                  onChange={handleAddressChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="postalCode"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Postal Code"
-                  value={formData.address.postalCode}
-                  onChange={handleAddressChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="country"
-                  className="w-full h-9 py-2 outline-none"
-                  placeholder="Country"
-                  value={formData.address.country}
-                  onChange={handleAddressChange}
-                  required
-                />
-              </div>
+              <SingleInput
+                label="Email Address"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
             </div>
           </div>
 
-          {/* Volunteer Information */}
+          {/* Address */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-semibold mb-4">Volunteer Information</h3>
-            {/* Role Selection */}
-            <DropdownMenuCheckboxes
-              label="Preferred Volunteer Role"
-              options={roleOptions}
-              selectedValues={selectedRoles}
-              onSelectionChange={handleRoleChange}
-            />
-
-            {/* Availability */}
-            <DropdownMenuCheckboxes
-              label="Availability"
-              options={availabilityOptions}
-              selectedValues={selectedAvailability}
-              onSelectionChange={handleAvailabilityChange}
-            />
-
-            {/* Time Slots */}
-            <DropdownMenuCheckboxes
-              label="Preferred Time Slots"
-              options={timeSlotOptions}
-              selectedValues={selectedTimeSlots}
-              onSelectionChange={handleTimeSlotChange}
-            />
+            <h3 className="text-lg font-semibold mb-4">Address</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Street Address */}
+              <SingleInput
+                label="Street Address"
+                name="streetAddress"
+                value={formData.streetAddress}
+                onChange={handleInputChange}
+                required
+              />
+              {/* City */}
+              <SingleInput
+                label="City"
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+                required
+              />
+              {/* State */}
+              <SingleInput
+                label="State"
+                name="state"
+                value={formData.state}
+                onChange={handleInputChange}
+                required
+              />
+              {/* Postal Code */}
+              <SingleInput
+                label="Postal Code"
+                name="postalCode"
+                value={formData.postalCode}
+                onChange={handleInputChange}
+                required
+              />
+              {/* Country */}
+              <SingleInput
+                label="Country"
+                name="country"
+                value={formData.country}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
           </div>
 
-          {/* Skills and Interests */}
-          <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-semibold mb-4">Skills and Interests</h3>
-            {/* Relevant Skills */}
-            <DropdownMenuCheckboxes
-              label="Relevant Skills"
-              options={skillOptions}
-              selectedValues={selectedSkills}
-              onSelectionChange={handleSkillChange}
-            />
+          {/* personal information end */}
 
-            {/* Why Volunteer */}
-            <div className="w-full border-b border-border flex flex-col">
-              <label htmlFor="whyVolunteer">Why do you want to volunteer with us?</label>
-              <textarea
-                name="whyVolunteer"
-                className="w-full h-24 py-2 outline-none"
-                placeholder="Tell us why you want to volunteer"
-                value={formData.whyVolunteer}
+          {/* volunteer Information */}
+          <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+            <h3 className="text-lg font-bold mb-4">Volunteer Information</h3>
+            <div className="grid grid-cols-1 gap-4">
+              {/* Preferred Volunteer Role */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold mb-4">Role Interested In</h3>
+                <Dropdown
+                  label="Select Role(s)"
+                  options={roleOptions}
+                  selectedOption={selectedRole}
+                  onChange={handleRoleChange}
+                  multiple
+                />
+              </div>
+              {/* Availability */}
+              <CheckboxGroup
+                label="Availability"
+                options={availabilityOptions}
+                selectedOptions={selectedAvailability}
+                onChange={handleAvailabilityChange}
+              />
+              {/* Preferred Time Slots */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold mb-4">Preferred Time Slot</h3>
+                <Dropdown
+                  label="Select Time Slot"
+                  options={timeSlotOptions}
+                  selectedOption={selectedTimeSlot}
+                  onChange={handleTimeSlotChange}
+                />
+              </div>
+              {/* Volunteer Experience */}
+              <TextareaInput
+                label="Please provide details about any previous volunteer experience you have."
+                name="volunteerExperience"
+                value={formData.volunteerExperience}
                 onChange={handleInputChange}
               />
             </div>
+          </div>
+          {/* volunteer Information end */}
 
-            {/* Additional Information */}
-            <div className="w-full border-b border-border flex flex-col">
-              <label htmlFor="additionalInfo">Any additional information you&apos;d like to share?</label>
-              <textarea
+          {/* Skills and Interests */}
+          <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+            <h3 className="text-lg font-bold mb-4">Skills and Interests</h3>
+            <div className="grid grid-cols-1 gap-4">
+              {/* Relevant Skills */}
+              <CheckboxGroup
+                label="Relevant Skills"
+                options={skillOptions}
+                selectedOptions={selectedSkills}
+                onChange={handleSkillChange}
+              />
+              {/* Why Volunteer */}
+              <TextareaInput
+                label="Why do you want to volunteer with us?"
+                name="whyVolunteer"
+                value={formData.whyVolunteer}
+                onChange={handleInputChange}
+              />
+
+              {/* Additional Information */}
+              <TextareaInput
+                label="Is there anything else you'd like us to know?"
                 name="additionalInfo"
-                className="w-full h-24 py-2 outline-none"
-                placeholder="Provide any additional information"
                 value={formData.additionalInfo}
                 onChange={handleInputChange}
               />
             </div>
           </div>
+          {/* Skills and Interests end*/}
 
           {/* References */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-semibold mb-4">References</h3>
-            {formData.references.map((reference, index) => (
-              <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 space-y-2">
-                {/* Reference Name */}
-                <div className="w-full border-b border-border flex flex-col">
-                  <label htmlFor={`name-${index}`}>Reference Name</label>
-                  <input
-                    type="text"
-                    name={`name-${index}`}
-                    className="w-full h-9 py-2 outline-none"
-                    placeholder="Reference Name"
-                    value={reference.name}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-
-                {/* Reference Relationship */}
-                <div className="w-full border-b border-border flex flex-col">
-                  <label htmlFor={`relationship-${index}`}>Reference Relationship</label>
-                  <input
-                    type="text"
-                    name={`relationship-${index}`}
-                    className="w-full h-9 py-2 outline-none"
-                    placeholder="Reference Relationship"
-                    value={reference.relationship}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-
-                {/* Reference Phone Number */}
-                <div className="w-full border-b border-border flex flex-col">
-                  <label htmlFor={`phone-${index}`}>Reference Phone Number</label>
-                  <input
-                    type="tel"
-                    name={`phone-${index}`}
-                    className="w-full h-9 py-2 outline-none"
-                    placeholder="Reference Phone Number"
-                    value={reference.phone}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-
-                {/* Reference Email Address */}
-                <div className="w-full border-b border-border flex flex-col">
-                  <label htmlFor={`email-${index}`}>Reference Email Address</label>
-                  <input
-                    type="email"
-                    name={`email-${index}`}
-                    className="w-full h-9 py-2 outline-none"
-                    placeholder="Reference Email Address"
-                    value={reference.email}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-              </div>
-            ))}
+            <h3 className="text-lg font-bold mb-4">References</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <SingleInput
+                label="Name"
+                name="referenceName"
+                value={formData.referenceName}
+                onChange={handleInputChange}
+                required
+              />
+              <SingleInput
+                label="Relationship"
+                name="referenceRelationship"
+                value={formData.referenceRelationship}
+                onChange={handleInputChange}
+                required
+              />
+              <SingleInput
+                label="Phone"
+                name="referencePhone"
+                value={formData.referencePhone}
+                onChange={handleInputChange}
+                required
+              />
+              <SingleInput
+                label="Email"
+                name="referenceEmail"
+                value={formData.referenceEmail}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
           </div>
 
           {/* Submit Button */}
-          <div className="w-full flex mt-10">
-            <Button
-              type="submit"
-              className=" bg-foreground px-10 w-fit  py-3 text-sm md:text-[16px] !text-white rounded-lg"
-            >
-              Submit
-            </Button>
+          <div className="flex justify-center mt-8">
+          <button
+                type="submit"
+                className="bg-foreground px-10 w-fit py-3 text-sm md:text-[16px] !text-white rounded-lg"
+                disabled={isLoading}
+              >
+                {isLoading ? "Submitting..." : "Submit Application"}
+              </button>
           </div>
         </form>
       </div>
+      {showSuccessModal && (
+        <div className="z-50 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 fixed top-0 left-0">
+          <div className="w-[94%] h-[300px] mx-2 sm:mx-0 sm:w-[420px] sm:h-[380px] flex items-center flex-col justify-around rounded-lg bg-secondary px-4 py-3 sm:p-5 shadow-lg">
+            <Success />
+            <p className="text-xs sm:text-base font-medium py-2 mx-auto w-fit text-center">Your information has been sent successfully! We will contact you soon.</p>
+            <div className="flex items-center justify-center gap-3">
+            <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
