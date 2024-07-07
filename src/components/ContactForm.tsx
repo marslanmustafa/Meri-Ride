@@ -216,9 +216,9 @@ const ContactForm: React.FC = () => {
       </div>
       {showSuccessModal && (
         <div className="z-50 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 fixed top-0 left-0">
-          <div className="w-[290px] h-[300px] mx-2 sm:mx-0 sm:w-[420px] sm:h-[380px] flex items-center flex-col justify-around rounded-lg bg-secondary px-2 py-3 sm:p-5 shadow-lg">
+          <div className="w-[94%] h-[300px] mx-2 sm:mx-0 sm:w-[420px] sm:h-[380px] flex items-center flex-col justify-around rounded-lg bg-secondary px-4 py-3 sm:p-5 shadow-lg">
             <Success />
-            <p className="text-sm sm:text-base font-medium py-2 mx-auto w-fit">Your information has been sent successfully! We will contact you soon.</p>
+            <p className="text-xs sm:text-base font-medium py-2 mx-auto w-fit text-center">Your information has been sent successfully! We will contact you soon.</p>
             <div className="flex items-center justify-center gap-3">
               <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
                 Close
