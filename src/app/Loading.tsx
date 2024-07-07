@@ -22,7 +22,7 @@ export default function Loading({ children }: { children: React.ReactNode }) {
     <div>
       {isLoading ? 
       <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center flex-col bg-background">
-         <Image width={240} height={70} src={"/logo.svg"} alt="Meri Ride" />
+         <Image width={240} height={70} src={"/logo.svg"} alt="Meri Ride" className="w-[240px] h-[70px]"/>
         {/* <LoadingSpinner /> */}
       </div>
       : children}

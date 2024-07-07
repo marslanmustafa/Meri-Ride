@@ -35,9 +35,9 @@ const Header: React.FC = () => {
           <Image
             src="/logo.svg"
             alt="Meri Ride"
-            width={1560}
-            height={369}
-            className="lg:w-[120px] xl:w-[150px] md:w-20 w-24"
+            width={240}
+            height={70}
+            className="lg:w-[120px] xl:w-[150px] md:w-20 w-24 h-auto"
           />
         </Link>
         <div
@@ -78,8 +78,8 @@ const Header: React.FC = () => {
           <li>
             <Link
               className={`link ${pathname === "/driverRecuritment"
-                  ? "text-themeGreen font-bold"
-                  : ""
+                ? "text-themeGreen font-bold"
+                : ""
                 }`}
               href="/driverRecuritment"
             >
