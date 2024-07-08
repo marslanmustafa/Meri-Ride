@@ -17,8 +17,8 @@ const SingleInput: React.FC<SingleInputProps> = ({
   onChange,
   required = false,
 }) => (
-  <div className="w-full border-b border-border flex flex-col">
-    <label htmlFor={name}>{label}</label>
+  <div className="w-full border-b border-border h-11 flex items-end">
+    {/* <label htmlFor={name}>{label}</label> */}
     <input
       type={type}
       name={name}

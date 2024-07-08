@@ -23,8 +23,8 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 
   return (
     <div className="w-full border-border flex flex-col">
-      <h3 className='text-lg font-semibold mb-4'>{label}</h3>
-      <div className="grid grid-cols-3 gap-4 mt-2">
+      <h3 className='text-lg font-semibold mb-2'>{label}</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
         {options.map((option) => (
           <div key={option.value} className="flex items-center space-x-2">
             <Checkbox
@@ -32,7 +32,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
               checked={selectedOptions.includes(option.value)}
               onCheckedChange={() => handleCheckboxChange(option.value)}
             />
-            <label htmlFor={option.value} className="text-sm font-medium">
+            <label htmlFor={option.value} className="text-xs sm:text-sm font-medium">
               {option.label}
             </label>
           </div>

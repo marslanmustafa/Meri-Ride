@@ -85,6 +85,14 @@
   div::-webkit-scrollbar {
     display: none;
   }
+  textarea::-webkit-scrollbar {
+    width: 6px;
+  }
+  textarea::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 20px;
+    background-color: hsl(var(--grayText));
+  }
 
   /* for ServiceCard */
   .truncate-multiline {

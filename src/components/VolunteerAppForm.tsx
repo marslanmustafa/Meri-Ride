@@ -17,7 +17,7 @@ const VolunteerAppForm: React.FC = () => {
   const { toast } = useToast();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedGender, setSelectedGender] = useState<Option | null>(null);
-  const [selectedRole, setSelectedRole] = useState<string[]>([]);
+  const [selectedRole, setSelectedRole] = useState<Option | null>(null);
   const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<Option | null>(null);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
@@ -64,6 +64,7 @@ const VolunteerAppForm: React.FC = () => {
     country: "",
     phoneNo: "",
     email: "",
+    preferredRole:"",
     volunteerExperience: "",
     whyVolunteer: "",
     additionalInfo: "",
@@ -139,10 +140,14 @@ const VolunteerAppForm: React.FC = () => {
       gender: option.value,
     });
   };
-
-  const handleRoleChange = (selectedRoles: string[]) => {
-    setSelectedRole(selectedRoles);
+  const handleRoleChange = (option) => {
+    setSelectedRole(option);
+    setFormData({
+      ...formData,
+      preferredRole: option.value,
+    });
   };
+
 
   const handleAvailabilityChange = (selectedAvailability: string[]) => {
     setSelectedAvailability(selectedAvailability);
@@ -167,6 +172,7 @@ const VolunteerAppForm: React.FC = () => {
       "country",
       "phoneNo",
       "email",
+      "preferredRole",
       "volunteerExperience",
       "whyVolunteer",
       "additionalInfo",
@@ -197,13 +203,12 @@ const VolunteerAppForm: React.FC = () => {
 
     const FormData = {
       ...formData,
-      preferredRole: selectedRole.value,
       availability: selectedAvailability,
       timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
       relevantSkills: selectedSkills,
     };
     console.log("Form Data:", FormData);
-    addVolunteer(FormData);
+    // addVolunteer(FormData);
   };
 
   const handleModalClose = () => {
@@ -227,7 +232,6 @@ const VolunteerAppForm: React.FC = () => {
       referenceEmail: "",
     });
     setSelectedGender(null);
-    setSelectedRole([]);
     setSelectedAvailability([]);
     setSelectedTimeSlot(null);
     setSelectedSkills([]);
@@ -250,7 +254,7 @@ const VolunteerAppForm: React.FC = () => {
         <form className="w-full px-4 pt-8 space-y-3 md:space-y-5" onSubmit={handleSubmit}>
           {/* Personal Information */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-bold mb-4">Personal Information</h3>
+            <h3 className="text-lg font-bold mb-2">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Full Name */}
               <SingleInput
@@ -291,7 +295,7 @@ const VolunteerAppForm: React.FC = () => {
 
           {/* Address */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-semibold mb-4">Address</h3>
+            <h3 className="text-lg font-semibold mb-2">Address</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Street Address */}
               <SingleInput
@@ -340,17 +344,16 @@ const VolunteerAppForm: React.FC = () => {
 
           {/* volunteer Information */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-bold mb-4">Volunteer Information</h3>
+            <h3 className="text-lg font-bold mb-2">Volunteer Information</h3>
             <div className="grid grid-cols-1 gap-4">
               {/* Preferred Volunteer Role */}
-              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-                <h3 className="text-lg font-semibold mb-4">Role Interested In</h3>
+              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold">Role Interested In</h3>
                 <Dropdown
-                  label="Select Role(s)"
+                  label="Select Role"
                   options={roleOptions}
                   selectedOption={selectedRole}
                   onChange={handleRoleChange}
-                  multiple
                 />
               </div>
               {/* Availability */}
@@ -361,8 +364,8 @@ const VolunteerAppForm: React.FC = () => {
                 onChange={handleAvailabilityChange}
               />
               {/* Preferred Time Slots */}
-              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-                <h3 className="text-lg font-semibold mb-4">Preferred Time Slot</h3>
+              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold">Preferred Time Slot</h3>
                 <Dropdown
                   label="Select Time Slot"
                   options={timeSlotOptions}
@@ -383,7 +386,7 @@ const VolunteerAppForm: React.FC = () => {
 
           {/* Skills and Interests */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-bold mb-4">Skills and Interests</h3>
+            <h3 className="text-lg font-bold mb-2">Skills and Interests</h3>
             <div className="grid grid-cols-1 gap-4">
               {/* Relevant Skills */}
               <CheckboxGroup
@@ -413,7 +416,7 @@ const VolunteerAppForm: React.FC = () => {
 
           {/* References */}
           <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-            <h3 className="text-lg font-bold mb-4">References</h3>
+            <h3 className="text-lg font-bold mb-2">References</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <SingleInput
                 label="Name"

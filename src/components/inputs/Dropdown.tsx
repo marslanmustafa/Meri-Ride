@@ -20,12 +20,11 @@ const Dropdown: React.FC<DropdownProps> = ({
   selectedOption,
   onChange,
 }) => (
-  <div className="w-full border-b border-border flex flex-col">
-    <label>{label}</label>
+  <div className="w-full h-11 justify-end border-b border-border flex flex-col ">
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="relative">
-          <div className="w-full h-9 py-2 pr-3 outline-none cursor-pointer flex items-center justify-between">
+          <div className="w-full h-9 py-2 pr-3 outline-none cursor-pointer flex justify-between items-end">
             {selectedOption ? (
               <span>{selectedOption.label}</span>
             ) : (
