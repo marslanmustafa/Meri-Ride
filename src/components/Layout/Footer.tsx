@@ -99,10 +99,10 @@ const Footer: React.FC = () => {
         <div className="py-2 w-[90%] sm:w-[300px] text-themeGrayText">
           <ul className=" flex items-center justify-center sm:justify-between gap-4">
             <li className="sm:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faXTwitter} className="w-4 h-4" /></li>
-            <li className="m:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faFacebook} className="w-4 h-4" /></li>
-            <li className="m:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faYoutube} className="w-4 h-4" /></li>
-            <li className="m:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faLinkedin} className="w-4 h-4" /></li>
-            <li className="m:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faInstagram} className="w-4 h-4" /></li>
+            <li className="sm:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faFacebook} className="w-4 h-4" /></li>
+            <li className="sm:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faYoutube} className="w-4 h-4" /></li>
+            <li className="sm:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faLinkedin} className="w-4 h-4" /></li>
+            <li className="sm:w-9 sm:h-9 w-7 h-7 rounded-full bg-[#F1F2F4] flex items-center justify-center"><FontAwesomeIcon icon={faInstagram} className="w-4 h-4" /></li>
           </ul>
         </div>
       </div>

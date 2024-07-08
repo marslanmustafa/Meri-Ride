@@ -4,7 +4,9 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuCheckboxItem,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+  DropdownMenuGroup,
 } from '@/components/ui/dropdown-menu';
 
 interface DropdownProps {
@@ -20,30 +22,31 @@ const Dropdown: React.FC<DropdownProps> = ({
   selectedOption,
   onChange,
 }) => (
-  <div className="w-full h-11 justify-end border-b border-border flex flex-col ">
+  <div className="">
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div className="relative">
-          <div className="w-full h-9 py-2 pr-3 outline-none cursor-pointer flex justify-between items-end">
-            {selectedOption ? (
-              <span>{selectedOption.label}</span>
-            ) : (
-              <span className="text-gray-500">Select {label}</span>
-            )}
-            <ChevronDown />
-          </div>
+      <DropdownMenuTrigger className='w-full h-11 justify-end border-b border-border flex flex-col overflow-hidden relative outline-none'>
+        <div className="w-full py-2 pr-3 outline-none cursor-pointer flex justify-between items-end">
+          {selectedOption ? (
+            <span>{selectedOption.label}</span>
+          ) : (
+            <span className="text-gray-500">Select {label}</span>
+          )}
+          <ChevronDown />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="py-1 bg-white border border-gray-200 rounded-lg shadow-lg absolute top-10 left-0 w-full">
-        {options.map((option) => (
-          <DropdownMenuCheckboxItem
-            key={option.value}
-            checked={selectedOption?.value === option.value}
-            onCheckedChange={() => onChange(option)}
-          >
-            {option.label}
-          </DropdownMenuCheckboxItem>
-        ))}
+      <DropdownMenuContent className="w-64 border-gray-100 shadow-lg overflow-scroll max-h-[280px] scrollbar">
+        {/* <DropdownMenuSeparator /> */}
+        <DropdownMenuGroup>
+          {options.map((option) => (
+            <DropdownMenuItem
+              key={option.value}
+              onClick={() => onChange(option)}
+              className="pt-2"
+            >
+              {option.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   </div>

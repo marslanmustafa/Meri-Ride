@@ -85,13 +85,26 @@
   div::-webkit-scrollbar {
     display: none;
   }
+
   textarea::-webkit-scrollbar {
     width: 6px;
   }
+
   textarea::-webkit-scrollbar-thumb {
     width: 6px;
     border-radius: 20px;
     background-color: hsl(var(--grayText));
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    display: block !important;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 20px;
+    background-color: #8f8f8f;
   }
 
   /* for ServiceCard */
@@ -102,6 +115,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .truncate-multiline-md {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -114,10 +128,12 @@
   .faq-item:first-child {
     border-radius: 1rem 1rem 0 0;
   }
+
   .faq-item:last-child {
     border-bottom: none;
     border-radius: 0 0 1rem 1rem;
   }
+
   /* message Input */
   .text-area {
     display: -webkit-box;
