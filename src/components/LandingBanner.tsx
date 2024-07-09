@@ -21,6 +21,7 @@ const LandingBanner: React.FC<LandingBannerProps> = ({ data }) => {
             layout="fill"
             objectFit="cover"
             className="rounded-3xl"
+            priority
           />
           <h1 className="absolute bottom-2.5 left-2.5 sm:bottom-10 sm:left-10 text-themeGreen text-2xl md:text-3xl lg:text-6xl font-bold drop-shadow-3xl">
             {data.heading}
