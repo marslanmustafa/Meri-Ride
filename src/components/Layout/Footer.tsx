@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
           </ul> */}
           <h1 className="font-bold text-sm">Quick Links</h1>
           <ul className="py-4 flex flex-col gap-3">
-            <li><Link href="/home">Home</Link></li>
+            <li><Link href="/">Home</Link></li>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/driverRecuritment">Driver Recuritment</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
