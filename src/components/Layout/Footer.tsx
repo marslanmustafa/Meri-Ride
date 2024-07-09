@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
           <ul className="py-4 flex flex-col gap-3">
             <li><Link href="/">Home</Link></li>
             <li><Link href="/about">About</Link></li>
-            <li><Link href="/driverRecuritment">Driver Recuritment</Link></li>
+            <li><Link href="/driverRecruitment ">Driver Recruitment </Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
             <li><Link href="/donateAndVolunteer">Donate and Volunteer</Link></li>
           </ul>

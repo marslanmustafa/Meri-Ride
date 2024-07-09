@@ -4,8 +4,8 @@ import { BannerData } from '@/lib/types';
 import Image from 'next/image';
 
 const bannerData: BannerData = {
-  heading: "Driver Recuritment",
-  image: "/images/driverRecuritment/Drivers.svg"
+  heading: "Driver Recruitment ",
+  image: "/images/driverRecruitment/Drivers.svg"
 };
 
 const recruitmentData = {
