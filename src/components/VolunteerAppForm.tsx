@@ -21,6 +21,8 @@ const VolunteerAppForm: React.FC = () => {
   const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<Option | null>(null);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [showOtherSkillInput, setShowOtherSkillInput] = useState(false);
+  const [otherSkill, setOtherSkill] = useState("");
   const [addVolunteer, { isSuccess, error, data: responseData, isLoading }] = useNewVolunteerRequestMutation();
 
   useEffect(() => {
@@ -159,6 +161,12 @@ const VolunteerAppForm: React.FC = () => {
 
   const handleSkillChange = (selectedSkills: string[]) => {
     setSelectedSkills(selectedSkills);
+    if (selectedSkills.includes("Other")) {
+      setShowOtherSkillInput(true);
+    } else {
+      setShowOtherSkillInput(false);
+      setOtherSkill("");
+    }
   };
 
   const validateForm = () => {
@@ -200,12 +208,13 @@ const VolunteerAppForm: React.FC = () => {
     event.preventDefault();
 
     if (!validateForm()) return;
+    const filteredSkills = selectedSkills.filter(skill => skill !== "Other");
 
     const FormData = {
       ...formData,
       availability: selectedAvailability,
       timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
-      relevantSkills: selectedSkills,
+      relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
     };
     // console.log("Form Data:", FormData);
     addVolunteer(FormData);
@@ -235,6 +244,8 @@ const VolunteerAppForm: React.FC = () => {
     setSelectedAvailability([]);
     setSelectedTimeSlot(null);
     setSelectedSkills([]);
+    setShowOtherSkillInput(false);
+    setOtherSkill("");
   };
 
   return (
@@ -395,6 +406,16 @@ const VolunteerAppForm: React.FC = () => {
                 selectedOptions={selectedSkills}
                 onChange={handleSkillChange}
               />
+               {showOtherSkillInput && (
+                <SingleInput
+                  label="Please specify your skill"
+                  type="text"
+                  name="otherSkill"
+                  value={otherSkill}
+                  onChange={(e) => setOtherSkill(e.target.value)}
+                  required
+                />
+              )}
               {/* Why Volunteer */}
               <TextareaInput
                 label="Why do you want to volunteer with us?"

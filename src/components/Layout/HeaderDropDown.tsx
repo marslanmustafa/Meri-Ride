@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,66 +7,66 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu-header"
-import Link from "next/link"
+} from "@/components/ui/dropdown-menu-header";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
-const HeaderDropDown = () => {
+const HeaderDropDown: React.FC = () => {
+  const router = useRouter();
   const pathname = usePathname();
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>Services</DropdownMenuTrigger>
+      <DropdownMenuTrigger className='outline-none border-0'>Services</DropdownMenuTrigger>
       <DropdownMenuContent>
-        {/* <DropdownMenuLabel></DropdownMenuLabel> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link
+        <DropdownMenuItem onClick={() => handleNavigation("/services/transportation")}>
+          <span
             className={`text-sm lg:text-[16px] xl:text-lg outline-none border-0 link ${pathname === "/services/transportation"
                 ? "text-themeGreen font-bold"
                 : ""
               }`}
-            href="/services/transportation"
           >
             Transportation Services
-          </Link>
+          </span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link
+        <DropdownMenuItem onClick={() => handleNavigation("/services/lastMile")}>
+          <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/lastMile"
                 ? "text-themeGreen font-bold"
                 : ""
               }`}
-            href="/services/lastMile"
           >
             Last Mile Delivery
-          </Link>
+          </span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link
+        <DropdownMenuItem onClick={() => handleNavigation("/services/localCourier")}>
+          <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/localCourier"
                 ? "text-themeGreen font-bold"
                 : ""
               }`}
-            href="/services/localCourier"
           >
             Local Courier Service
-          </Link>
+          </span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link
+        <DropdownMenuItem onClick={() => handleNavigation("/services/adModel")}>
+          <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/ladModel"
                 ? "text-themeGreen font-bold"
                 : ""
               }`}
-            href="/services/adModel"
           >
             Advertisement Model for Rickshaw
-          </Link>
+          </span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default HeaderDropDown
+export default HeaderDropDown;

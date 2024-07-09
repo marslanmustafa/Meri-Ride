@@ -29,7 +29,7 @@ const page = () => {
   return (
     <div className="overflow-x-hidden w-full bg-[#F7F8F7]">
       {/* div1 */}
-      <div className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-col w-full min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
+      <div className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-col w-full max-h-fit lg:max-h-[796px] px-4 py-6 sm:pt-8 sm:pb-12  md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className=" relative w-full sm:w-[500px] lg:w-[730px] h-fit py-10 flex items-center flex-col gap-4">
           <div className="hidden md:block md:absolute bottom-3 -right-12">
             <Image
@@ -69,7 +69,7 @@ const page = () => {
         </div>
       </div>
       {/* div2 */}
-      <div className="w-full xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12 bg-black">
+      <div className="w-full lg:max-h-[796px] px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12 bg-black">
         <h1 className="py-1 px-2 mb-10 text-white font-bold text-2xl sm:text-4xl lg:text-5xl w-fit">
           <span className="text-themeGreen">Advertisement</span> and Pricing Model for Rickshaw Service
         </h1>

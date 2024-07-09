@@ -6,7 +6,7 @@ const SupportBanner = () => {
   return (
     <div className="w-full h-fit px-4 md:px-8 lg:px-20 xl:px-32 py-7 md:py-10 lg:py-14">
     <div className=" w-full h-fit md:h-[262px] lg:h-[307px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-5 overflow-hidden">
-    <div className="w-full md:w-[calc(100%-386px)] lg:w-[calc(100%-432px)] h-full p-5 md:py-10 md:px-10 md:pr-2 xl:p-12 space-y-3 xl:space-y-6">
+    <div className="w-full md:w-[calc(100%-386px)] lg:w-[calc(100%-432px)] h-full p-5 md:py-10 md:px-10 md:pr-2 xl:p-12 space-y-3 xl:space-y-7">
       <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold">
         <span className='text-themeGreen'>Support</span> Us
       </h1>
@@ -19,9 +19,11 @@ const SupportBanner = () => {
         to individuals with disabilities, fostering independence and
         inclusion. Here are various ways you can support us:
       </p>
-      <Link href="//contact" className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
+      <div>
+      <Link href="/contact" className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
         Join Us
       </Link>
+      </div>
     </div>
     <div className="hidden md:block">
       <Image
