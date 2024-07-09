@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { ConnectForm, SupportBanner } from "@/components"
+import { SupportBanner } from "@/components"
 
 const featuresData = [
   { sr: 1, feature: "User Profile Management" },
@@ -16,7 +16,7 @@ const page = () => {
   return (
     <div className="overflow-x-hidden w-full">
       {/* div1 */}
-      <div className="w-full h-fit md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+      <div className="w-full h-fit md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className="relative w-full lg:w-[80%] flex justify-start gap-6 flex-col text-foreground">
           <div className="hidden md:block md:absolute -bottom-20 right-0 lg:-right-60">
             <Image
@@ -51,7 +51,7 @@ const page = () => {
         </div>
       </div>
       {/* div2 */}
-      <div className="w-full lg:min-h-screen bg-black flex-col lg:flex-row flex items-center justify-between px-4 py-10 md:px-8 lg:px-20 xl:px-32 lg:py-16 text-white">
+      <div className="w-full lg:min-h-screen bg-black flex-col lg:flex-row flex items-center justify-between px-4 py-10 md:px-8 lg:px-20 xl:px-28 lg:py-16 text-white">
         <div className="w-full lg:w-[360px] xl:w-[420px] pb-8 lg:block flex-col sm:flex-row flex sm:items-center justify-between gap-5 sm:gap-10">
           <div className="lg:pl-12 xl:pl-16">
             <h1 className="text-3xl xl:text-5xl font-semibold pb-10">
@@ -100,7 +100,7 @@ const page = () => {
         </div>
       </div>
       {/* div3 */}
-      <div className="w-full bg-themeGreen  px-4 md:px-8 lg:px-20 xl:px-32 py-4">
+      <div className="w-full bg-themeGreen  px-4 md:px-8 lg:px-20 xl:px-28 py-4">
         <h1 className="text-black font-bold text-lg sm:text-xl lg:text-[26px] pb-2 sm:pb-0">
           Join us in making a difference{" "}
         </h1>
@@ -110,7 +110,7 @@ const page = () => {
         </p>
       </div>
       {/* div4 */}
-      <div className="w-full h-fit lg:min-h-screen flex justify-between flex-col lg:flex-row px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+      <div className="w-full h-fit lg:min-h-screen flex justify-between flex-col lg:flex-row px-4 md:px-8 lg:px-20 xl:px-28 py-14">
         <div className="w-full lg:w-[55%]  space-y-5 text-foreground">
           <h1 className="text-3xl lg:text-5xl font-bold">Our Team</h1>
           <p className="text-sm lg:text-[16px]">
@@ -148,7 +148,7 @@ const page = () => {
         </div>
       </div>
       {/* div5 */}
-      <div className="w-full bg-white px-4 md:px-8 lg:px-20 xl:px-32 py-14">
+      <div className="w-full bg-white px-4 md:px-8 lg:px-20 xl:px-28 py-14">
         <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold m-auto text-center pb-3 lg:pb-0">
           Partners & Collaborators
         </h1>
@@ -219,7 +219,7 @@ const page = () => {
         </div>
       </div>
       {/* div6 */}
-      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-32 pt-7 md:pt-10 lg:pt-14">
+      <div className="w-full px-4 md:px-8 lg:px-20 xl:px-28 pt-7 md:pt-10 lg:pt-14">
         <h1 className="text-xl sm:text-2xl lg:text-4xl xl:text-5xl m-auto text-center pb-5 font-semibold text-black lgpb-10">
           Success Stories{" "}
         </h1>
@@ -275,7 +275,7 @@ const page = () => {
         {/* support */}
        <SupportBanner/>
       {/* div7 */}
-     <ConnectForm />
+     {/* <ConnectForm /> */}
     </div>
   );
 };

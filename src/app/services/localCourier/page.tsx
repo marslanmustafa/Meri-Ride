@@ -1,5 +1,5 @@
 import React from 'react'
-import { ConnectForm, LandingBanner, SupportBanner } from "@/components"
+import { LandingBanner, SupportBanner } from "@/components"
 import { BannerData } from '@/lib/types';
 import Image from 'next/image';
 
@@ -56,27 +56,27 @@ const page = () => {
       {/* div1 */}
       <LandingBanner data={bannerData} />
       {/* div2 */}
-      <div className='w-full h-fit md:pb-10 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12 flex items-center justify-between md:flex-row flex-col gap-4'>
+      <div className='w-full h-fit md:pb-10 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12 flex items-center justify-between md:flex-row flex-col gap-4'>
         <h2 className='w-full md:w-[48%] text-xl sm:text-2xl lg:text-3xl font-bold text-black'>
           We offer comprehensive training programs tailored to the unique needs
         </h2>
         <p className='w-full md:w-[48%] text-sm lg:text-[16px] text-black'>These programs encompass a wide range of vocational skills, from technical training and computer literacy to creative arts and crafts, ensuring participants can pursue careers aligned with their interests and abilities</p>
       </div>
       {/* div3 */}
-      <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-5'>
+      <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-5'>
         <div className=" bg-black rounded-3xl px-5 py-10">
           <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-themeGreen'>Volunteers can share</span> their professional skills and expertise by providing training, mentorship</h1>
         </div>
       </div>
       {/* div4 */}
-      <div className='w-full h-fit  px-4 md:px-8 lg:px-20 xl:px-32 pb-5 '>
+      <div className='w-full h-fit  px-4 md:px-8 lg:px-20 xl:px-28 pb-5 '>
         <div className=" rounded-3xl px-5 md:py-10">
           <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black pb-5' >{bannerData.heading}</h1>
           <p className='w-full text-sm lg:text-[16px] text-black'>Our motorcycle rickshaw service provides affordable and reliable transportation for local communities. Our drivers are partnered with blind individuals to ensure that both benefit from the earnings, fostering a sense of teamwork and shared success.</p>
         </div>
       </div>
       {/* div5 */}
-      <div className='w-full h-fit bg-foreground px-2 sm:px-4 md:px-8 lg:px-20 xl:px-32 py-8'>
+      <div className='w-full h-fit bg-foreground px-2 sm:px-4 md:px-8 lg:px-20 xl:px-28 py-8'>
         <div className='relative w-fit'>
           <div className="hidden md:block md:absolute -bottom-3 -right-10 lg:-right-12">
             <Image
@@ -115,7 +115,7 @@ const page = () => {
         </div>
       </div>
       {/* div6 */}
-      <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-16'>
+      <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-16'>
       <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
           <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">How to Book a Ride</h1>
           <div className="w-full space-y-4 sm:space-y-7">
@@ -138,7 +138,7 @@ const page = () => {
       {/* div7 */}
       <SupportBanner />
       {/* div8 */}
-      <ConnectForm />
+      {/* <ConnectForm /> */}
     </div>
   )
 }

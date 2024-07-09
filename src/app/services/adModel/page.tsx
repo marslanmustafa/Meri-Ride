@@ -29,7 +29,7 @@ const page = () => {
   return (
     <div className="overflow-x-hidden w-full bg-[#F7F8F7]">
       {/* div1 */}
-      <div className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-col w-full min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+      <div className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-col w-full min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className=" relative w-full sm:w-[500px] lg:w-[730px] h-fit py-10 flex items-center flex-col gap-4">
           <div className="hidden md:block md:absolute bottom-3 -right-12">
             <Image
@@ -37,7 +37,7 @@ const page = () => {
               alt=""
               width={340}
               height={72}
-              className=" h-auto w-[280px] lg:w-[340px]"
+              className="h-auto w-[280px] lg:w-[340px]"
             />
           </div>
           <h3 className="bg-themeGreen py-1 px-2 text-[16px] sm:text-lg uppercase w-fit rounded-md">
@@ -69,7 +69,7 @@ const page = () => {
         </div>
       </div>
       {/* div2 */}
-      <div className="w-full xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12 bg-black">
+      <div className="w-full xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12 bg-black">
         <h1 className="py-1 px-2 mb-10 text-white font-bold text-2xl sm:text-4xl lg:text-5xl w-fit">
           <span className="text-themeGreen">Advertisement</span> and Pricing Model for Rickshaw Service
         </h1>
@@ -252,7 +252,7 @@ const page = () => {
         </div>
       </div>
       {/* div3 */}
-      <div className="w-full px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+      <div className="w-full px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6">
           <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">Benefits for Business</h1>
           <p className="text-sm sm:text-[16px]">This section highlights the advantages of advertising with Empowering Opportunities Inc., helping businesses see the value in partnering with a nonprofit organization that has a dedicated audience.</p>

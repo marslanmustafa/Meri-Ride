@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const SupportBanner = () => {
@@ -18,9 +19,9 @@ const SupportBanner = () => {
         to individuals with disabilities, fostering independence and
         inclusion. Here are various ways you can support us:
       </p>
-      <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
+      <Link href="//contact" className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-xs sm:text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg !text-themeGrayText bg-themeGreen">
         Join Us
-      </div>
+      </Link>
     </div>
     <div className="hidden md:block">
       <Image

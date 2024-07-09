@@ -55,13 +55,13 @@ const page = () => {
       {/* div1 */}
       <LandingBanner data={bannerData} />
       {/* div2 */}
-      <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-5'>
+      <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-5'>
         <div className=" bg-black rounded-3xl px-5 py-10">
           <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-themeGreen'>Our Driver</span> Recruitment Page is designed to attract qualified candidates who are passionate </h1>
         </div>
       </div>
       {/* div3 */}
-      <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-16'>
+      <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-16'>
         <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
           <p className="text-xs sm:text-sm py-2 sm:py-4">
             This section outlines the qualifications and responsibilities expected of our drivers. It ensures that potential applicants understand what is required for the role and can assess their suitability before applying.

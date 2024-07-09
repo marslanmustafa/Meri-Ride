@@ -54,10 +54,10 @@ const Home = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="absolute top-0 left-0 w-full h-full z-[1] flex items-center px-4 md:px-8 lg:px-20 xl:px-32 py-5"
+        className="absolute top-0 left-0 w-full h-full z-[1] flex items-center px-4 md:px-8 lg:px-20 xl:px-28 py-5"
       >
         
-        <div className="px-4 h-full w-screen sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
+        <div className="h-full w-screen sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
           <h1 className="text-2xl md:text-4xl xl:text-6xl text-white font-bold xl:leading-[80px]">
             Empowering individuals with{" "}
             <span className="text-themeGreen">disabilities.</span>
@@ -70,14 +70,14 @@ const Home = () => {
               "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
             }
           >
-            <Link href="/hire">Hire MeriRide</Link>
+            <Link href="/contact">Hire MeriRide</Link>
           </div>
         </div>
       </div>
       </div>
       
       {/* div2 */}
-      <div className="relative bg-foreground flex items-center w-full h-fit md:h-[160px] xl:min-h-[200px] px-4 md:px-8 lg:px-20 xl:px-32 py-5">
+      <div className="relative bg-foreground flex items-center w-full h-fit md:h-[160px] xl:min-h-[200px] px-4 md:px-8 lg:px-20 xl:px-28 py-5">
         <p className="w-full md:w-[82%] lg:w-[86%] text-sm md:text-lg lg:text-2xl xl:text-3xl tracking-wide text-white font-semibold">
           <span className="!text-themeGreen">We believe</span> in the power of
           partnership and the potential of every individual, regardless of their
@@ -94,7 +94,7 @@ const Home = () => {
         </div>
       </div>
       {/* div3 */}
-      <div className="border-t border-b border-border w-full h-fit flex items-center justify-between gap-5 md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+      <div className="border-t border-b border-border w-full h-fit flex items-center justify-between gap-5 md:pb-24 xl:min-h-screen px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className="hidden md:block md:w-1/2">
           <Image
             src="/images/home/about.svg"
@@ -134,7 +134,7 @@ const Home = () => {
         </div>
       </div>
       {/* div4 */}
-      <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-12">
+      <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <h1 className="text-2xl xl:text-4xl font-semibold pb-10">
           Our Services
         </h1>
@@ -166,15 +166,12 @@ const Home = () => {
               inclusion.
             </p>
             <div className="flex items-center justify start gap-2 sm:gap-4">
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-themeGreen">
-                Donate
-              </div>
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-white">
-                Volunteer
-              </div>
-              <div className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg text-white bg-transparent">
+              <Link href="/donateAndVolunteer" className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-themeGreen">
+                Donate and Volunteer
+              </Link>
+              <Link href="/contact" className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg text-white bg-transparent">
                 Join Us
-              </div>
+              </Link>
             </div>
           </div>
           <div className="hidden md:block !h-full">
@@ -189,7 +186,7 @@ const Home = () => {
         </div>
       </div>
       {/* div5 */}
-      <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-32 md:pt-1">
+      <div className="w-full h-fit md:pb-24 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-1">
         <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold pb-3 md:pb-10">
           Frequenlty Asked Questions
         </h1>
