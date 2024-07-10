@@ -79,7 +79,7 @@ const page = () => {
         </div>
       </div>
        {/* div4 */}
-       <DonorInfoForm/>
+       {/* <DonorInfoForm/> */}
        {/* div5 */}
        <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-10'>
         <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6">

@@ -2,7 +2,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { Dropdown, SingleInput, TextareaInput, CheckboxGroup, RadioInput } from "./inputs";
-import { useNewVolunteerRequestMutation } from "@/hooks/UseVolunteer";
+import { useNewRecruitmentRequestMutation } from "@/hooks/UseRecruitment";
 import { useToast } from "@/components/ui/use-toast";
 import Success from "@/components/misc/Success";
 import { Button } from "@/components/ui/button";
@@ -21,13 +21,15 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui";
 
-
 interface Option {
   label: string;
   value: string;
 }
 
 const ApplicationForm: React.FC = () => {
+  const today = new Date();
+  const dateString = today.toDateString();
+
   const { toast } = useToast();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedGender, setSelectedGender] = useState<Option | null>(null);
@@ -48,13 +50,15 @@ const ApplicationForm: React.FC = () => {
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [showOtherSkillInput, setShowOtherSkillInput] = useState(false);
   const [otherSkill, setOtherSkill] = useState("");
-  
-  const [addVolunteer, { isSuccess, error, data: responseData, isLoading }] = useNewVolunteerRequestMutation();
+  const [agreeTermsAndCondition, setAgreeTermsAndCondition] = useState<boolean>(false);
+  const [confirmAboutInfo, setConfirmAboutInfo] = useState<boolean>(false);
+
+  const [addRecruitment, { isSuccess, error, data: responseData, isLoading }] = useNewRecruitmentRequestMutation();
 
   useEffect(() => {
     if (isLoading) {
       toast({
-        title: "Adding Volunteer",
+        title: "Adding Driver Recruitment",
         description: "Please wait while Adding your Information",
         duration: 2000,
       });
@@ -67,7 +71,7 @@ const ApplicationForm: React.FC = () => {
       } else {
         toast({
           title: "Failed",
-          description: responseData?.message || "Failed to Add Volunteer Information",
+          description: responseData?.message || "Failed to Add Driver Recruitment Information",
           duration: 2000,
         });
       }
@@ -75,7 +79,7 @@ const ApplicationForm: React.FC = () => {
       toast({
         variant: "destructive",
         title: "Failed",
-        description: "Failed to Add Volunteer Information",
+        description: "Failed to Add Driver Recruitment Information",
         duration: 2000,
       });
     }
@@ -123,6 +127,12 @@ const ApplicationForm: React.FC = () => {
     driverLicenseNumber: "",
     whyWorkWithUs: "",
     additionalInfo: "",
+    referenceName: "",
+    referenceRelationship: "",
+    referencePhone: "",
+    referenceEmail: "",
+    Signature: "",
+    date: dateString,
   });
 
   // Handle form input changes
@@ -149,6 +159,12 @@ const ApplicationForm: React.FC = () => {
   }
   const handleMissionAgreement = () => {
     setCompanyMissionAgreement(!companyMissionAgreement)
+  }
+  const handleAgreeCondition = () => {
+    setAgreeTermsAndCondition(!agreeTermsAndCondition)
+  }
+  const handleConfirmInfo = () => {
+    setConfirmAboutInfo(!confirmAboutInfo)
   }
   const handleAvailabilityChange = (selectedAvailability: string[]) => {
     setSelectedAvailability(selectedAvailability);
@@ -182,6 +198,11 @@ const ApplicationForm: React.FC = () => {
       "driverLicenseNumber",
       "whyWorkWithUs",
       "additionalInfo",
+      "referenceName",
+      "referenceRelationship",
+      "referencePhone",
+      "referenceEmail",
+      "Signature",
     ];
 
     for (const field of requiredFields) {
@@ -251,56 +272,74 @@ const ApplicationForm: React.FC = () => {
       }
     };
 
-      if (!selectedAvailability[0]) {
-        toast({
-          variant: "destructive",
-          title: "Validation Error",
-          description: "Please select atleast 1 Day",
-          duration: 2000,
-        });
-        return false;
-      }
+    if (!selectedAvailability[0]) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select atleast 1 Day",
+        duration: 2000,
+      });
+      return false;
+    }
 
-      if (selectedTimeSlot === null) {
+    if (selectedTimeSlot === null) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select a Time slot",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (previousExperience) {
+      if (!previousExperienceDetail) {
         toast({
           variant: "destructive",
           title: "Validation Error",
-          description: "Please select a Time slot",
+          description: "Please Explain Driving Violance",
           duration: 2000,
         });
         return false;
       }
-      if (previousExperience) {
-        if (!previousExperienceDetail) {
-          toast({
-            variant: "destructive",
-            title: "Validation Error",
-            description: "Please Explain Driving Violance",
-            duration: 2000,
-          });
-          return false;
-        }
-      };
-      if (!selctedSkills[0]) {
+    };
+    if (!selectedSkills[0]) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select atleast 1 skill",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (selectedSkills.includes("Other")) {
+      if (otherSkill === "") {
         toast({
           variant: "destructive",
           title: "Validation Error",
-          description: "Please select atleast 1 skill",
+          description: "Please fill specify skill ",
           duration: 2000,
         });
         return false;
       }
-      if (selctedSkills[0]) {
-        if (otherSkill === "") {
-          toast({
-            variant: "destructive",
-            title: "Validation Error",
-            description: "Please fill specify skill ",
-            duration: 2000,
-          });
-          return false;
-        }
-      };
+    };
+    if (!agreeTermsAndCondition) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please Agree the terms and conditions",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (!confirmAboutInfo) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please check all information provided is accurate",
+        duration: 2000,
+      });
+      return false;
+    }
 
     return true;
   };
@@ -308,7 +347,7 @@ const ApplicationForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // if (!validateForm()) return;
+    if (!validateForm()) return;
     const filteredSkills = selectedSkills.filter(skill => skill !== "Other");
     const FormData = {
       ...formData,
@@ -327,10 +366,12 @@ const ApplicationForm: React.FC = () => {
       previousExperience: previousExperience,
       previousExperienceDetail: previousExperienceDetail,
       relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
+      agreeTermsAndCondition: agreeTermsAndCondition,
+      confirmAboutInfo: confirmAboutInfo,
 
     };
     console.log("Form Data:", FormData);
-    // addVolunteer(FormData);
+    addRecruitment(FormData);
   };
 
   const handleModalClose = () => {
@@ -346,6 +387,8 @@ const ApplicationForm: React.FC = () => {
       phoneNo: "",
       email: "",
       driverLicenseNumber: "",
+      whyWorkWithUs: "",
+      additionalInfo: "",
     });
     setSelectedGender(null);
     setSelectedAvailability([]);
@@ -358,12 +401,13 @@ const ApplicationForm: React.FC = () => {
     setAuthorizationForBackgroundCheck(false);
     setCriminalHistory(false);
     setCriminalHistoryDetail("");
-    setCompanyMissionAgreement(false);
     setPreviousExperience(false);
     setPreviousExperienceDetail("");
     setSelectedSkills([]);
     setShowOtherSkillInput(false);
     setOtherSkill("");
+    setAgreeTermsAndCondition(false);
+    setConfirmAboutInfo(false);
   };
 
   return (
@@ -642,9 +686,9 @@ const ApplicationForm: React.FC = () => {
                   </label>
                 </div>
               </div>
-              </div>
-              {/* Criminal History */}
-              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+            </div>
+            {/* Criminal History */}
+            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
               <div className="">
                 <h3 className="text-lg font-semibold mb-2">Criminal History</h3>
                 <RadioInput
@@ -666,8 +710,8 @@ const ApplicationForm: React.FC = () => {
                   />
                 )}
               </div>
-             {/*Agreement to Support Company’s Mission  companyMissionAgreement*/}
-             <div className="mt-4">
+              {/*Agreement to Support Company’s Mission  companyMissionAgreement*/}
+              <div className="mt-4">
                 <h3 className="text-lg font-semibold mb-2">Agreement to Support Company’s Mission</h3>
                 <div className="flex items-center gap-4">
                   <Checkbox id="companyMissionAgreement" onCheckedChange={() => handleMissionAgreement()}
@@ -676,34 +720,34 @@ const ApplicationForm: React.FC = () => {
                     htmlFor="companyMissionAgreement"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                     I agree to support the mission and values of MeriRide.
+                    I agree to support the mission and values of MeriRide.
                   </label>
                 </div>
               </div>
-              </div>
-               {/* Availability */}
-              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-               <CheckboxGroup
+            </div>
+            {/* Availability */}
+            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+              <CheckboxGroup
                 label="Availability"
                 options={availabilityOptions}
                 selectedOptions={selectedAvailability}
                 onChange={handleAvailabilityChange}
               />
-              </div>
-               {/* Preferred Time Slots */}
-               <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-                <h3 className="text-lg font-semibold">Preferred Time Slot</h3>
-                <Dropdown
-                  label="Select Time Slot"
-                  options={timeSlotOptions}
-                  selectedOption={selectedTimeSlot}
-                  onChange={handleTimeSlotChange}
-                />
-              </div>
-               {/* Experience and Skills */}
-               <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-                <h3 className="text-lg font-bold">Experience and Skills</h3>
-                <div className="mt-4">
+            </div>
+            {/* Preferred Time Slots */}
+            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+              <h3 className="text-lg font-semibold">Preferred Time Slot</h3>
+              <Dropdown
+                label="Select Time Slot"
+                options={timeSlotOptions}
+                selectedOption={selectedTimeSlot}
+                onChange={handleTimeSlotChange}
+              />
+            </div>
+            {/* Experience and Skills */}
+            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+              <h3 className="text-lg font-bold">Experience and Skills</h3>
+              <div className="mt-4">
                 <RadioInput
                   label="Do you have previous experience driving a rickshaw or similar vehicle?"
                   name="previousExperience"
@@ -725,24 +769,123 @@ const ApplicationForm: React.FC = () => {
               </div>
               {/* Relevant Skills */}
               <div className="mt-4">
-              <CheckboxGroup
-                label="Relevant Skills"
-                options={skillOptions}
-                selectedOptions={selectedSkills}
-                onChange={handleSkillChange}
-              />
-               {showOtherSkillInput && (
+                <CheckboxGroup
+                  label="Relevant Skills"
+                  options={skillOptions}
+                  selectedOptions={selectedSkills}
+                  onChange={handleSkillChange}
+                />
+                {showOtherSkillInput && (
+                  <SingleInput
+                    label="Please specify your skill"
+                    type="text"
+                    name="otherSkill"
+                    value={otherSkill}
+                    onChange={(e) => setOtherSkill(e.target.value)}
+                    required
+                  />
+                )}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Additional Information</h3>
+              <div className="text-sm sm:text-sm w-full grid grid-cols-1 gap-2 sm:gap-6 md:gap-8">
+                {/* Why whyWorkWithUs */}
+                <TextareaInput
+                  label="Why do you want to work as a rickshaw driver with us?"
+                  name="whyWorkWithUs"
+                  value={formData.whyWorkWithUs}
+                  onChange={handleInputChange}
+                />
+
+                {/* Additional Information */}
+                <TextareaInput
+                  label="Any additional information you'd like to share?"
+                  name="additionalInfo"
+                  value={formData.additionalInfo}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            {/* References */}
+            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+              <h3 className="text-lg font-bold mb-2">References</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <SingleInput
-                  label="Please specify your skill"
-                  type="text"
-                  name="otherSkill"
-                  value={otherSkill}
-                  onChange={(e) => setOtherSkill(e.target.value)}
+                  label="Name"
+                  name="referenceName"
+                  value={formData.referenceName}
+                  onChange={handleInputChange}
                   required
                 />
-              )}
+                <SingleInput
+                  label="Relationship"
+                  name="referenceRelationship"
+                  value={formData.referenceRelationship}
+                  onChange={handleInputChange}
+                  required
+                />
+                <SingleInput
+                  label="Phone"
+                  name="referencePhone"
+                  value={formData.referencePhone}
+                  onChange={handleInputChange}
+                  required
+                />
+                <SingleInput
+                  label="Email"
+                  name="referenceEmail"
+                  value={formData.referenceEmail}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
+            </div>
+            {/* agree and signature */}
+            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+              {/* agreeTermsAndCondition */}
+              <div className="mt-4">
+                <div className="flex items-center gap-4">
+                  <Checkbox id="agreeTermsAndCondition" onCheckedChange={() => handleAgreeCondition()}
+                    checked={agreeTermsAndCondition} />
+                  <label
+                    htmlFor="agreeTermsAndCondition"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I agree to the terms and conditions of employment with MeriRide.
+                  </label>
+                </div>
               </div>
+              {/* [confirmAboutInfo */}
+              <div className="mt-4">
+                <div className="flex items-center gap-4">
+                  <Checkbox id="confirmAboutInfo" onCheckedChange={() => handleConfirmInfo()}
+                    checked={confirmAboutInfo} />
+                  <label
+                    htmlFor="confirmAboutInfo"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I confirm that all information provided is accurate and complete.
+                  </label>
+                </div>
+              </div>
+              {/* signature */}
+              <SingleInput
+                label="Signature"
+                name="Signature"
+                value={formData.Signature}
+                onChange={handleInputChange}
+                required
+              />
+              {/* date */}
+              <div
+                className=" border-b h-9 bg-transparent rounded-none p-0 flex items-center justify-start text-left font-normal"
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                <p>{dateString}</p>
+              </div>
+            </div>
+
 
             {/* Submit Button */}
             <div className="flex justify-center mt-8">
