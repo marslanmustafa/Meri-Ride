@@ -66,7 +66,7 @@ const VolunteerAppForm: React.FC = () => {
     country: "",
     phoneNo: "",
     email: "",
-    preferredRole:"",
+    preferredRole: "",
     volunteerExperience: "",
     whyVolunteer: "",
     additionalInfo: "",
@@ -184,10 +184,10 @@ const VolunteerAppForm: React.FC = () => {
       "volunteerExperience",
       "whyVolunteer",
       "additionalInfo",
-      "referenceName",
-      "referenceRelationship",
-      "referencePhone",
-      "referenceEmail",
+      // "referenceName",
+      // "referenceRelationship",
+      // "referencePhone",
+      // "referenceEmail",
     ];
 
     for (const field of requiredFields) {
@@ -201,6 +201,49 @@ const VolunteerAppForm: React.FC = () => {
         return false;
       }
     }
+
+    if (!selectedAvailability[0]) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select atleast 1 Day",
+        duration: 2000,
+      });
+      return false;
+    }
+
+    if (selectedTimeSlot === null) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select a Time slot",
+        duration: 2000,
+      });
+      return false;
+    }
+
+    if (!selectedSkills[0]) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please select atleast 1 skill",
+        duration: 2000,
+      });
+      return false;
+    }
+
+    if (selectedSkills.includes("Other")) {
+      if (otherSkill === "") {
+        toast({
+          variant: "destructive",
+          title: "Validation Error",
+          description: "Please fill specify skill ",
+          duration: 2000,
+        });
+        return false;
+      }
+    };
+
     return true;
   };
 
@@ -216,8 +259,8 @@ const VolunteerAppForm: React.FC = () => {
       timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
       relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
     };
-    // console.log("Form Data:", FormData);
-    addVolunteer(FormData);
+    console.log("Form Data:", FormData);
+    // addVolunteer(FormData);
   };
 
   const handleModalClose = () => {
@@ -406,7 +449,7 @@ const VolunteerAppForm: React.FC = () => {
                 selectedOptions={selectedSkills}
                 onChange={handleSkillChange}
               />
-               {showOtherSkillInput && (
+              {showOtherSkillInput && (
                 <SingleInput
                   label="Please specify your skill"
                   type="text"
@@ -472,13 +515,13 @@ const VolunteerAppForm: React.FC = () => {
 
           {/* Submit Button */}
           <div className="flex justify-center mt-8">
-          <button
-                type="submit"
-                className="bg-foreground px-10 w-fit py-3 text-sm md:text-[16px] !text-white rounded-lg"
-                disabled={isLoading}
-              >
-                {isLoading ? "Submitting..." : "Submit Application"}
-              </button>
+            <button
+              type="submit"
+              className="bg-foreground px-10 w-fit py-3 text-sm md:text-[16px] !text-white rounded-lg"
+              disabled={isLoading}
+            >
+              {isLoading ? "Submitting..." : "Submit Application"}
+            </button>
           </div>
         </form>
       </div>
@@ -488,7 +531,7 @@ const VolunteerAppForm: React.FC = () => {
             <Success />
             <p className="text-xs sm:text-base font-medium py-2 mx-auto w-fit text-center">Your information has been sent successfully! We will contact you soon.</p>
             <div className="flex items-center justify-center gap-3">
-            <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
+              <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
                 Close
               </Button>
             </div>
