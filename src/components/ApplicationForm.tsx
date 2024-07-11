@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Dropdown, SingleInput, TextareaInput, CheckboxGroup, RadioInput } from "./inputs";
 import { useNewRecruitmentRequestMutation } from "@/hooks/UseRecruitment";
 import { useToast } from "@/components/ui/use-toast";
@@ -20,6 +20,9 @@ import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui";
+import Signature from "./Signature";
+import ReactSignatureCanvas from "react-signature-canvas";
+import Image from "next/image";
 
 interface Option {
   label: string;
@@ -52,8 +55,34 @@ const ApplicationForm: React.FC = () => {
   const [otherSkill, setOtherSkill] = useState("");
   const [agreeTermsAndCondition, setAgreeTermsAndCondition] = useState<boolean>(false);
   const [confirmAboutInfo, setConfirmAboutInfo] = useState<boolean>(false);
+  const [isCanvasVisible, setIsCanvasVisible] = useState<boolean>(false);
+  const [signatureData, setSignatureData] = useState<string | null>(null);
+  const sigCanvasRef = useRef<ReactSignatureCanvas | null>(null);
 
   const [addRecruitment, { isSuccess, error, data: responseData, isLoading }] = useNewRecruitmentRequestMutation();
+
+  useEffect(() => {
+    if (!roadAccidentHistory) {
+      setRoadAccidentHistoryDetail("");
+    }
+  }, [roadAccidentHistory]);
+
+  useEffect(() => {
+    if (!drivingViolations) {
+      setDrivingViolationsDetail("");
+    }
+  }, [drivingViolations]);
+  useEffect(() => {
+    if (!criminalHistory) {
+      setCriminalHistoryDetail("");
+    }
+  }, [criminalHistory]);
+
+  useEffect(() => {
+    if (!previousExperience) {
+      setPreviousExperienceDetail("");
+    }
+  }, [previousExperience]);
 
   useEffect(() => {
     if (isLoading) {
@@ -131,7 +160,7 @@ const ApplicationForm: React.FC = () => {
     referenceRelationship: "",
     referencePhone: "",
     referenceEmail: "",
-    Signature: "",
+    Signature: signatureData,
     date: dateString,
   });
 
@@ -184,6 +213,23 @@ const ApplicationForm: React.FC = () => {
     }
   };
 
+  const toggleSignatureCanvas = () => {
+    setIsCanvasVisible(!isCanvasVisible);
+  };
+
+  const clearSignatureCanvas = () => {
+    sigCanvasRef.current?.clear();
+  };
+
+  const saveSignature = () => {
+    if (sigCanvasRef.current) {
+      const data = sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png');
+      setSignatureData(data);
+      console.log(signatureData);
+      toggleSignatureCanvas();
+    }
+  };
+
   const validateForm = () => {
     const requiredFields = [
       "fullName",
@@ -198,11 +244,10 @@ const ApplicationForm: React.FC = () => {
       "driverLicenseNumber",
       "whyWorkWithUs",
       "additionalInfo",
-      "referenceName",
-      "referenceRelationship",
-      "referencePhone",
-      "referenceEmail",
-      "Signature",
+      // "referenceName",
+      // "referenceRelationship",
+      // "referencePhone",
+      // "referenceEmail",
     ];
 
     for (const field of requiredFields) {
@@ -265,12 +310,31 @@ const ApplicationForm: React.FC = () => {
         toast({
           variant: "destructive",
           title: "Validation Error",
-          description: "Please Explain Road Accident History",
+          description: "Please Explain Criminal History",
           duration: 2000,
         });
         return false;
       }
     };
+    if (!authorizationForBackgroundCheck) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please Authorize your background Check",
+        duration: 2000,
+      });
+      return false;
+    }
+
+    if (!companyMissionAgreement) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please Agree to Support Company’s Mission",
+        duration: 2000,
+      });
+      return false;
+    }
 
     if (!selectedAvailability[0]) {
       toast({
@@ -340,6 +404,15 @@ const ApplicationForm: React.FC = () => {
       });
       return false;
     }
+    if (signatureData === null) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please add your Signature",
+        duration: 2000,
+      });
+      return false;
+    }
 
     return true;
   };
@@ -368,6 +441,7 @@ const ApplicationForm: React.FC = () => {
       relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
       agreeTermsAndCondition: agreeTermsAndCondition,
       confirmAboutInfo: confirmAboutInfo,
+      Signature: signatureData
 
     };
     console.log("Form Data:", FormData);
@@ -408,499 +482,524 @@ const ApplicationForm: React.FC = () => {
     setOtherSkill("");
     setAgreeTermsAndCondition(false);
     setConfirmAboutInfo(false);
+    setIsCanvasVisible(false);
+    setSignatureData(null);
+    setSigCanvasRef(null);
+    sigCanvasRef.current?.clear();
   };
 
   return (
-    <Dialog>
-      <DialogTrigger>
-        <div className='align bg-foreground text-white text-sm sm:text-base px-8 sm:px-16 py-2 rounded-lg'>Apply</div>
-      </DialogTrigger>
-      {showSuccessModal ? (
-        <div className="z-50 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 fixed top-0 left-0">
-          <div className="w-[94%] h-[300px] mx-2 sm:mx-0 sm:w-[420px] sm:h-[380px] flex items-center flex-col justify-around rounded-lg bg-secondary px-4 py-3 sm:p-5 shadow-lg">
-            <Success />
-            <p className="text-xs sm:text-base font-medium py-2 mx-auto w-fit text-center">Your information has been sent successfully! We will contact you soon.</p>
-            <div className="flex items-center justify-center gap-3">
-              <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
-                Close
-              </Button>
+    <div className="relative">
+      <Dialog>
+        <DialogTrigger>
+          <div className='align bg-foreground text-white text-sm sm:text-base px-8 sm:px-16 py-2 rounded-lg'>Apply</div>
+        </DialogTrigger>
+        {showSuccessModal ? (
+          <div className="z-50 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 fixed top-0 left-0">
+            <div className="w-[94%] h-[300px] mx-2 sm:mx-0 sm:w-[420px] sm:h-[380px] flex items-center flex-col justify-around rounded-lg bg-secondary px-4 py-3 sm:p-5 shadow-lg">
+              <Success />
+              <p className="text-xs sm:text-base font-medium py-2 mx-auto w-fit text-center">Your information has been sent successfully! We will contact you soon.</p>
+              <div className="flex items-center justify-center gap-3">
+                <Button className="mx-auto bg-primary text-white" variant={"outline"} onClick={handleModalClose}>
+                  Close
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Application Form</DialogTitle>
-            <DialogDescription>
-              An easy-to-use online form that allows potential drivers to apply for a position. This form collects essential information from applicants to streamline the hiring process.
-            </DialogDescription>
-          </DialogHeader>
-          <form
-            className="w-full px-4 pt-5 space-y-3 md:space-y-5 flex flex-col"
-            onSubmit={handleSubmit}
-          >
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-bold mb-2">Personal Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Full Name */}
-                <SingleInput
-                  label="Full Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                />
-
-                {/* DOB */}
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full !border-b border-border h-full border-0 bg-transparent rounded-none p-0  justify-start text-left font-normal",
-                        !dob && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {dob ? format(dob, "PPP") : <span>Date of Birth</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={dob}
-                      onSelect={setDob}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-
-                {/* Gender */}
-                <Dropdown
-                  label="Gender"
-                  options={genderOptions}
-                  selectedOption={selectedGender}
-                  onChange={handleGenderChange}
-                />
-                {/* Phone Number */}
-                <SingleInput
-                  label="Phone Number"
-                  name="phoneNo"
-                  type="tel"
-                  value={formData.phoneNo}
-                  onChange={handleInputChange}
-                  required
-                />
-
-                {/* Email Address */}
-                <SingleInput
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-semibold mb-2">Address</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Street Address */}
-                <SingleInput
-                  label="Street Address"
-                  name="streetAddress"
-                  value={formData.streetAddress}
-                  onChange={handleInputChange}
-                  required
-                />
-                {/* City */}
-                <SingleInput
-                  label="City"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  required
-                />
-                {/* State */}
-                <SingleInput
-                  label="State"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleInputChange}
-                  required
-                />
-                {/* Postal Code */}
-                <SingleInput
-                  label="Postal Code"
-                  name="postalCode"
-                  value={formData.postalCode}
-                  onChange={handleInputChange}
-                  required
-                />
-                {/* Country */}
-                <SingleInput
-                  label="Country"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* personal information end */}
-
-            {/* Emergency Contact Information */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-bold mb-2">Emergency Contact Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <SingleInput
-                  label="Name"
-                  name="emergencyContactName"
-                  value={formData.emergencyContactName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Relationship"
-                  name="emergencyContactRelationship"
-                  value={formData.emergencyContactRelationship}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Phone"
-                  name="emergencyContactPhone"
-                  value={formData.emergencyContactPhone}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Email"
-                  name="emergencyContactEmail"
-                  value={formData.emergencyContactEmail}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Driver Information */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-bold mb-2">Driver Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* License Number */}
-                <SingleInput
-                  label="License Number"
-                  name="driverLicenseNumber"
-                  value={formData.driverLicenseNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-
-                {/* Exp Date */}
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full !border-b border-border h-full border-0 bg-transparent rounded-none p-0  justify-start text-left font-normal",
-                        !licenseExpiryDate && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {licenseExpiryDate ? format(licenseExpiryDate, "PPP") : <span>License Expiry Date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={licenseExpiryDate}
-                      onSelect={setLicenseExpiryDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-
-              {/* Driving Violations */}
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Driving Violations</h3>
-                <RadioInput
-                  label="Do you have any driving violations?"
-                  name="drivingViolations"
-                  value={drivingViolations ? "yes" : "no"}
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                  onChange={(value: string) => setDrivingViolations(value === "yes")}
-                />
-                {drivingViolations && (
-                  <TextareaInput
-                    label="If yes, please explain"
-                    name="drivingViolationsDetail"
-                    value={drivingViolationsDetail}
-                    onChange={(e) => setDrivingViolationsDetail(e.target.value)}  // convert yes to true 
-                  />
-                )}
-              </div>
-              {/* Road Accident History */}
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Road Accident History</h3>
-                <RadioInput
-                  label="Have you been involved in any road accidents in the past 5 years?"
-                  name="roadAccidentHistory"
-                  value={roadAccidentHistory ? "yes" : "no"}
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                  onChange={(value: string) => setRoadAccidentHistory(value === "yes")}
-                />
-                {roadAccidentHistory && (
-                  <TextareaInput
-                    label="If yes, please explain"
-                    name="roadAccidentHistoryDetail"
-                    value={roadAccidentHistoryDetail}
-                    onChange={(e) => setRoadAccidentHistoryDetail(e.target.value)}  // convert yes to true 
-                  />
-                )}
-              </div>
-
-              {/* Road Accident History */}
-              {/* Authorization for Background Check */}
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Authorization for Background Check</h3>
-                <div className="flex items-center gap-4">
-                  <Checkbox id="authorizationForBackgroundCheck" onCheckedChange={() => handleBackgroundCheck()}
-                    checked={authorizationForBackgroundCheck} />
-                  <label
-                    htmlFor="authorizationForBackgroundCheck"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    I authorize Empowerment Through Partnership to conduct a background check.
-                  </label>
-                </div>
-              </div>
-            </div>
-            {/* Criminal History */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <div className="">
-                <h3 className="text-lg font-semibold mb-2">Criminal History</h3>
-                <RadioInput
-                  label="Have you ever been convicted of a criminal offense?"
-                  name="criminalHistory"
-                  value={criminalHistory ? "yes" : "no"}
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                  onChange={(value: string) => setCriminalHistory(value === "yes")}
-                />
-                {criminalHistory && (
-                  <TextareaInput
-                    label="If yes, please provide details"
-                    name="drivingViolationsDetail"
-                    value={criminalHistoryDetail}
-                    onChange={(e) => setCriminalHistoryDetail(e.target.value)}  // convert yes to true 
-                  />
-                )}
-              </div>
-              {/*Agreement to Support Company’s Mission  companyMissionAgreement*/}
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Agreement to Support Company’s Mission</h3>
-                <div className="flex items-center gap-4">
-                  <Checkbox id="companyMissionAgreement" onCheckedChange={() => handleMissionAgreement()}
-                    checked={companyMissionAgreement} />
-                  <label
-                    htmlFor="companyMissionAgreement"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    I agree to support the mission and values of MeriRide.
-                  </label>
-                </div>
-              </div>
-            </div>
-            {/* Availability */}
-            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-              <CheckboxGroup
-                label="Availability"
-                options={availabilityOptions}
-                selectedOptions={selectedAvailability}
-                onChange={handleAvailabilityChange}
-              />
-            </div>
-            {/* Preferred Time Slots */}
-            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-semibold">Preferred Time Slot</h3>
-              <Dropdown
-                label="Select Time Slot"
-                options={timeSlotOptions}
-                selectedOption={selectedTimeSlot}
-                onChange={handleTimeSlotChange}
-              />
-            </div>
-            {/* Experience and Skills */}
-            <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-bold">Experience and Skills</h3>
-              <div className="mt-4">
-                <RadioInput
-                  label="Do you have previous experience driving a rickshaw or similar vehicle?"
-                  name="previousExperience"
-                  value={previousExperience ? "yes" : "no"}
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                  onChange={(value: string) => setPreviousExperience(value === "yes")}
-                />
-                {previousExperience && (
-                  <TextareaInput
-                    label="If yes, please explain"
-                    name="previousExperienceDetail"
-                    value={previousExperienceDetail}
-                    onChange={(e) => setPreviousExperienceDetail(e.target.value)}  // convert yes to true 
-                  />
-                )}
-              </div>
-              {/* Relevant Skills */}
-              <div className="mt-4">
-                <CheckboxGroup
-                  label="Relevant Skills"
-                  options={skillOptions}
-                  selectedOptions={selectedSkills}
-                  onChange={handleSkillChange}
-                />
-                {showOtherSkillInput && (
+        ) : (
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Application Form</DialogTitle>
+              <DialogDescription>
+                An easy-to-use online form that allows potential drivers to apply for a position. This form collects essential information from applicants to streamline the hiring process.
+              </DialogDescription>
+            </DialogHeader>
+            <form
+              className="w-full px-4 pt-5 space-y-3 md:space-y-5 flex flex-col"
+              onSubmit={handleSubmit}
+            >
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-bold mb-2">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Full Name */}
                   <SingleInput
-                    label="Please specify your skill"
-                    type="text"
-                    name="otherSkill"
-                    value={otherSkill}
-                    onChange={(e) => setOtherSkill(e.target.value)}
+                    label="Full Name"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     required
                   />
+
+                  {/* DOB */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full !border-b border-border h-9 md:h-11 border-0 bg-transparent rounded-none p-0  justify-start text-left font-normal",
+                          !dob && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {dob ? format(dob, "PPP") : <span>Date of Birth</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={dob}
+                        onSelect={setDob}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+
+                  {/* Gender */}
+                  <Dropdown
+                    label="Gender"
+                    options={genderOptions}
+                    selectedOption={selectedGender}
+                    onChange={handleGenderChange}
+                  />
+                  {/* Phone Number */}
+                  <SingleInput
+                    label="Phone Number"
+                    name="phoneNo"
+                    type="tel"
+                    value={formData.phoneNo}
+                    onChange={handleInputChange}
+                    required
+                  />
+
+                  {/* Email Address */}
+                  <SingleInput
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold mb-2">Address</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Street Address */}
+                  <SingleInput
+                    label="Street Address"
+                    name="streetAddress"
+                    value={formData.streetAddress}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  {/* City */}
+                  <SingleInput
+                    label="City"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  {/* State */}
+                  <SingleInput
+                    label="State"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  {/* Postal Code */}
+                  <SingleInput
+                    label="Postal Code"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  {/* Country */}
+                  <SingleInput
+                    label="Country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* personal information end */}
+
+              {/* Emergency Contact Information */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-bold mb-2">Emergency Contact Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <SingleInput
+                    label="Name"
+                    name="emergencyContactName"
+                    value={formData.emergencyContactName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Relationship"
+                    name="emergencyContactRelationship"
+                    value={formData.emergencyContactRelationship}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Phone"
+                    name="emergencyContactPhone"
+                    value={formData.emergencyContactPhone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Email"
+                    name="emergencyContactEmail"
+                    value={formData.emergencyContactEmail}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Driver Information */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-bold mb-2">Driver Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* License Number */}
+                  <SingleInput
+                    label="License Number"
+                    name="driverLicenseNumber"
+                    value={formData.driverLicenseNumber}
+                    onChange={handleInputChange}
+                    required
+                  />
+
+                  {/* Exp Date */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full !border-b border-border h-9 md:h-11 border-0 bg-transparent rounded-none p-0  justify-start text-left font-normal",
+                          !licenseExpiryDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {licenseExpiryDate ? format(licenseExpiryDate, "PPP") : <span>License Expiry Date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={licenseExpiryDate}
+                        onSelect={setLicenseExpiryDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                {/* Driving Violations */}
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Driving Violations</h3>
+                  <RadioInput
+                    label="Do you have any driving violations?"
+                    name="drivingViolations"
+                    value={drivingViolations ? "yes" : "no"}
+                    options={[
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" },
+                    ]}
+                    onChange={(value: string) => setDrivingViolations(value === "yes")}
+                  />
+                  {drivingViolations && (
+                    <TextareaInput
+                      label="If yes, please explain"
+                      name="drivingViolationsDetail"
+                      value={drivingViolationsDetail}
+                      onChange={(e) => setDrivingViolationsDetail(e.target.value)}  // convert yes to true 
+                    />
+                  )}
+                </div>
+                {/* Road Accident History */}
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Road Accident History</h3>
+                  <RadioInput
+                    label="Have you been involved in any road accidents in the past 5 years?"
+                    name="roadAccidentHistory"
+                    value={roadAccidentHistory ? "yes" : "no"}
+                    options={[
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" },
+                    ]}
+                    onChange={(value: string) => setRoadAccidentHistory(value === "yes")}
+                  />
+                  {roadAccidentHistory && (
+                    <TextareaInput
+                      label="If yes, please explain"
+                      name="roadAccidentHistoryDetail"
+                      value={roadAccidentHistoryDetail}
+                      onChange={(e) => setRoadAccidentHistoryDetail(e.target.value)}  // convert yes to true 
+                    />
+                  )}
+                </div>
+
+                {/* Road Accident History */}
+                {/* Authorization for Background Check */}
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Authorization for Background Check</h3>
+                  <div className="flex items-center gap-4">
+                    <Checkbox id="authorizationForBackgroundCheck" onCheckedChange={() => handleBackgroundCheck()}
+                      checked={authorizationForBackgroundCheck} />
+                    <label
+                      htmlFor="authorizationForBackgroundCheck"
+                      className="text-sm font-medium md:leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I authorize Empowerment Through Partnership to conduct a background check.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              {/* Criminal History */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <div className="">
+                  <h3 className="text-lg font-semibold mb-2">Criminal History</h3>
+                  <RadioInput
+                    label="Have you ever been convicted of a criminal offense?"
+                    name="criminalHistory"
+                    value={criminalHistory ? "yes" : "no"}
+                    options={[
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" },
+                    ]}
+                    onChange={(value: string) => setCriminalHistory(value === "yes")}
+                  />
+                  {criminalHistory && (
+                    <TextareaInput
+                      label="If yes, please provide details"
+                      name="drivingViolationsDetail"
+                      value={criminalHistoryDetail}
+                      onChange={(e) => setCriminalHistoryDetail(e.target.value)}  // convert yes to true 
+                    />
+                  )}
+                </div>
+                {/*Agreement to Support Company’s Mission  companyMissionAgreement*/}
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Agreement to Support Company’s Mission</h3>
+                  <div className="flex items-center gap-4">
+                    <Checkbox id="companyMissionAgreement" onCheckedChange={() => handleMissionAgreement()}
+                      checked={companyMissionAgreement} />
+                    <label
+                      htmlFor="companyMissionAgreement"
+                      className="text-sm font-medium md:leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I agree to support the mission and values of MeriRide.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              {/* Availability */}
+              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+                <CheckboxGroup
+                  label="Availability"
+                  options={availabilityOptions}
+                  selectedOptions={selectedAvailability}
+                  onChange={handleAvailabilityChange}
+                />
+              </div>
+              {/* Preferred Time Slots */}
+              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-semibold">Preferred Time Slot</h3>
+                <Dropdown
+                  label="Select Time Slot"
+                  options={timeSlotOptions}
+                  selectedOption={selectedTimeSlot}
+                  onChange={handleTimeSlotChange}
+                />
+              </div>
+              {/* Experience and Skills */}
+              <div className="text-sm sm:text-sm w-full gap-2 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-bold">Experience and Skills</h3>
+                <div className="mt-4">
+                  <RadioInput
+                    label="Do you have previous experience driving a rickshaw or similar vehicle?"
+                    name="previousExperience"
+                    value={previousExperience ? "yes" : "no"}
+                    options={[
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" },
+                    ]}
+                    onChange={(value: string) => setPreviousExperience(value === "yes")}
+                  />
+                  {previousExperience && (
+                    <TextareaInput
+                      label="If yes, please explain"
+                      name="previousExperienceDetail"
+                      value={previousExperienceDetail}
+                      onChange={(e) => setPreviousExperienceDetail(e.target.value)}  // convert yes to true 
+                    />
+                  )}
+                </div>
+                {/* Relevant Skills */}
+                <div className="mt-4">
+                  <CheckboxGroup
+                    label="Relevant Skills"
+                    options={skillOptions}
+                    selectedOptions={selectedSkills}
+                    onChange={handleSkillChange}
+                  />
+                  {showOtherSkillInput && (
+                    <SingleInput
+                      label="Please specify your skill"
+                      type="text"
+                      name="otherSkill"
+                      value={otherSkill}
+                      onChange={(e) => setOtherSkill(e.target.value)}
+                      required
+                    />
+                  )}
+                </div>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Additional Information</h3>
+                <div className="text-sm sm:text-sm w-full grid grid-cols-1 gap-2 sm:gap-6 md:gap-8">
+                  {/* Why whyWorkWithUs */}
+                  <TextareaInput
+                    label="Why do you want to work as a rickshaw driver with us?"
+                    name="whyWorkWithUs"
+                    value={formData.whyWorkWithUs}
+                    onChange={handleInputChange}
+                  />
+
+                  {/* Additional Information */}
+                  <TextareaInput
+                    label="Any additional information you'd like to share?"
+                    name="additionalInfo"
+                    value={formData.additionalInfo}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              {/* References */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                <h3 className="text-lg font-bold mb-2">References</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <SingleInput
+                    label="Name"
+                    name="referenceName"
+                    value={formData.referenceName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Relationship"
+                    name="referenceRelationship"
+                    value={formData.referenceRelationship}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Phone"
+                    name="referencePhone"
+                    value={formData.referencePhone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <SingleInput
+                    label="Email"
+                    name="referenceEmail"
+                    value={formData.referenceEmail}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+              {/* agree and signature */}
+              <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
+                {/* agreeTermsAndCondition */}
+                <div className="mt-4">
+                  <div className="flex items-center gap-4">
+                    <Checkbox id="agreeTermsAndCondition" onCheckedChange={() => handleAgreeCondition()}
+                      checked={agreeTermsAndCondition} />
+                    <label
+                      htmlFor="agreeTermsAndCondition"
+                      className="text-sm font-medium md:leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I agree to the terms and conditions of employment with MeriRide.
+                    </label>
+                  </div>
+                </div>
+                {/* [confirmAboutInfo */}
+                <div className="mt-4">
+                  <div className="flex items-center gap-4">
+                    <Checkbox id="confirmAboutInfo" onCheckedChange={() => handleConfirmInfo()}
+                      checked={confirmAboutInfo} />
+                    <label
+                      htmlFor="confirmAboutInfo"
+                      className="text-sm font-medium md:leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I confirm that all information provided is accurate and complete.
+                    </label>
+                  </div>
+                </div>
+                {/* signature */}
+                <div className="mt-4">
+                  <Button type="button" variant="outline" onClick={toggleSignatureCanvas} className=" mb-4">
+                    {isCanvasVisible ? 'Hide Signature' : 'Add Signature'}
+                  </Button>
+                </div>
+                {isCanvasVisible && (
+                  <div className=" pt-3w-full flex items-center justify-center">
+                    <div className="bg-slate-100">
+                      <ReactSignatureCanvas
+                        penColor='green'
+                        canvasProps={{ width: 400, height: 400, className: 'sigCanvas border border-border rounded-md' }}
+                        ref={sigCanvasRef}
+                      />
+                      <div className="w-full flex items-center justify-between py-4">
+                        <Button variant="outline" type="button" onClick={clearSignatureCanvas}>Clear Signature</Button>
+                        <Button variant="outline" type="button" onClick={saveSignature}>Save Signature</Button>
+                      </div>
+                    </div></div>
                 )}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Additional Information</h3>
-              <div className="text-sm sm:text-sm w-full grid grid-cols-1 gap-2 sm:gap-6 md:gap-8">
-                {/* Why whyWorkWithUs */}
-                <TextareaInput
-                  label="Why do you want to work as a rickshaw driver with us?"
-                  name="whyWorkWithUs"
-                  value={formData.whyWorkWithUs}
-                  onChange={handleInputChange}
-                />
+                {signatureData && (
+                  <div>
+                    <h3>Saved Signature:</h3>
+                    <Image src={signatureData} alt="Signature" width={80} height={80} className="w-auto h-auto border border-border" />
+                  </div>
+                )}
 
-                {/* Additional Information */}
-                <TextareaInput
-                  label="Any additional information you'd like to share?"
-                  name="additionalInfo"
-                  value={formData.additionalInfo}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-            {/* References */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              <h3 className="text-lg font-bold mb-2">References</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <SingleInput
-                  label="Name"
-                  name="referenceName"
-                  value={formData.referenceName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Relationship"
-                  name="referenceRelationship"
-                  value={formData.referenceRelationship}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Phone"
-                  name="referencePhone"
-                  value={formData.referencePhone}
-                  onChange={handleInputChange}
-                  required
-                />
-                <SingleInput
-                  label="Email"
-                  name="referenceEmail"
-                  value={formData.referenceEmail}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-            {/* agree and signature */}
-            <div className="text-sm sm:text-sm w-full gap-5 sm:gap-6 md:gap-8">
-              {/* agreeTermsAndCondition */}
-              <div className="mt-4">
-                <div className="flex items-center gap-4">
-                  <Checkbox id="agreeTermsAndCondition" onCheckedChange={() => handleAgreeCondition()}
-                    checked={agreeTermsAndCondition} />
-                  <label
-                    htmlFor="agreeTermsAndCondition"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    I agree to the terms and conditions of employment with MeriRide.
-                  </label>
+                {/* date */}
+                <div
+                  className="mt-4 h-9 bg-transparent rounded-none p-0 flex items-center justify-end text-left font-normal"
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  <p>{dateString}</p>
                 </div>
               </div>
-              {/* [confirmAboutInfo */}
-              <div className="mt-4">
-                <div className="flex items-center gap-4">
-                  <Checkbox id="confirmAboutInfo" onCheckedChange={() => handleConfirmInfo()}
-                    checked={confirmAboutInfo} />
-                  <label
-                    htmlFor="confirmAboutInfo"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    I confirm that all information provided is accurate and complete.
-                  </label>
-                </div>
-              </div>
-              {/* signature */}
-              <SingleInput
-                label="Signature"
-                name="Signature"
-                value={formData.Signature}
-                onChange={handleInputChange}
-                required
-              />
-              {/* date */}
-              <div
-                className=" border-b h-9 bg-transparent rounded-none p-0 flex items-center justify-start text-left font-normal"
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                <p>{dateString}</p>
-              </div>
-            </div>
 
 
-            {/* Submit Button */}
-            <div className="flex justify-center mt-8">
-              <button
-                type="submit"
-                className="bg-foreground px-10 w-fit py-3 text-sm md:text-[16px] !text-white rounded-lg"
-                disabled={isLoading}
-              >
-                {isLoading ? "Submitting..." : "Submit Application"}
-              </button>
-            </div>
-          </form>
-        </DialogContent>
-      )}
-    </Dialog>
+              {/* Submit Button */}
+              <div className="flex justify-center mt-8">
+                <button
+                  type="submit"
+                  className="bg-foreground px-10 w-fit py-3 text-sm md:text-[16px] !text-white rounded-lg"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Submitting..." : "Submit Application"}
+                </button>
+              </div>
+            </form>
+          </DialogContent>
+        )}
+      </Dialog>
+    </div>
   );
 };
 

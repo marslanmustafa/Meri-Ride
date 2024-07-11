@@ -259,8 +259,8 @@ const VolunteerAppForm: React.FC = () => {
       timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
       relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
     };
-    console.log("Form Data:", FormData);
-    // addVolunteer(FormData);
+    // console.log("Form Data:", FormData);
+    addVolunteer(FormData);
   };
 
   const handleModalClose = () => {

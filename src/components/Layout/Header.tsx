@@ -35,6 +35,7 @@ const Header: React.FC = () => {
           <Image
             src="/logo.svg"
             alt="Meri Ride"
+            priority
             width={240}
             height={70}
             className="lg:w-[160px] xl:w-[190px] md:w-32 w-28 h-auto"

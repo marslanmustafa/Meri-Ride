@@ -57,7 +57,7 @@ const Home = () => {
         className="absolute top-0 left-0 w-full h-full z-[1] flex items-center px-4 md:px-8 lg:px-20 xl:px-28 py-5"
       >
         
-        <div className="h-full w-screen sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
+        <div className="h-full w-screen pr-5 sm:pr-0 sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
           <h1 className="text-2xl md:text-4xl xl:text-6xl text-white font-bold xl:leading-[80px]">
             Empowering individuals with{" "}
             <span className="text-themeGreen">disabilities.</span>
