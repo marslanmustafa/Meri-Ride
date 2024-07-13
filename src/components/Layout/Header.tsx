@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         className={`${navOpen ? "z-[200] !flex animate-fade-down" : "hidden"
           } absolute top-16 left-0 lg:static hidden bg-[#fff] lg:bg-transparent py-5 flex-col lg:flex-row w-full lg:flex items-center justify-between text-themeGrayText lg:w-[calc(100%-110px)] xl:w-[calc(92%-100px)] gap-5 lg:gap-0`}
       >
-        <ul className="flex-col lg:flex-row flex items-center justify-center text-sm lg:text-base xl:text-lg gap-5 md:gap-3 lg:gap-3 xl:gap-8">
+        <ul className="flex-col lg:flex-row flex items-center justify-center text-sm lg:text-base xl:text-lg gap-5 md:gap-3 lg:gap-3 xl:gap-7">
           <li>
             <Link
               className={`link ${pathname === "/" ? "text-themeGreen font-bold" : ""
