@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const bannerData: BannerData = {
   heading: "Local Courier Service",
-  image: "/images/services/localCourier.svg"
+  image: "/images/services/LocalCourier.png"
 };
 const businessData = [
   {

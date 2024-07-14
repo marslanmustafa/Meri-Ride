@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const bannerData: BannerData = {
   heading: "Driver Recruitment ",
-  image: "/images/driverRecruitment/Drivers.svg"
+  image: "/images/driverRecruitment/Drivers.png"
 };
 
 const recruitmentData = {

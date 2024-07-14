@@ -49,7 +49,7 @@ const Home = () => {
       >
         <div
         style={{
-          background: `url(/images/home/LandingBg.svg)`,
+          background: `url(/images/home/LandingBg.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",

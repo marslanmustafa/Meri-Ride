@@ -56,9 +56,9 @@ const ApplicationForm: React.FC = () => {
   const [agreeTermsAndCondition, setAgreeTermsAndCondition] = useState<boolean>(false);
   const [confirmAboutInfo, setConfirmAboutInfo] = useState<boolean>(false);
   const [isCanvasVisible, setIsCanvasVisible] = useState<boolean>(false);
-  const [signatureData, setSignatureData] = useState<string | null>(null);
-  const sigCanvasRef = useRef<ReactSignatureCanvas | null>(null);
-
+  const [signatureData, setSignatureData] = useState<File | null>(null);
+  const [signatureUrl, setSignatureUrl] = useState<string | null>(null);
+  const sigCanvasRef = useRef<any>(null);
   const [addRecruitment, { isSuccess, error, data: responseData, isLoading }] = useNewRecruitmentRequestMutation();
 
   useEffect(() => {
@@ -223,12 +223,26 @@ const ApplicationForm: React.FC = () => {
 
   const saveSignature = () => {
     if (sigCanvasRef.current) {
-      const data = sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png');
-      setSignatureData(data);
-      console.log(signatureData);
+      const dataurl = sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png');
+      let file = dataURLtoFile(dataurl, 'signature.png');
+      console.log(file);
+      setSignatureData(file);
+      setSignatureUrl(URL.createObjectURL(file)); // Create and set the object URL
       toggleSignatureCanvas();
     }
   };
+
+  function dataURLtoFile(dataurl, filename) {
+    let arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[arr.length - 1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
 
   const validateForm = () => {
     const requiredFields = [
@@ -244,6 +258,10 @@ const ApplicationForm: React.FC = () => {
       "driverLicenseNumber",
       "whyWorkWithUs",
       "additionalInfo",
+      "emergencyContactName",
+      "emergencyContactRelationship",
+      "emergencyContactPhone",
+      "emergencyContactEmail",
       // "referenceName",
       // "referenceRelationship",
       // "referencePhone",
@@ -417,35 +435,69 @@ const ApplicationForm: React.FC = () => {
     return true;
   };
 
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!validateForm()) return;
-    const filteredSkills = selectedSkills.filter(skill => skill !== "Other");
-    const FormData = {
-      ...formData,
-      dob: dob ? format(dob, "yyyy-MM-dd") : "",
-      driverLicenseExpiryDate: licenseExpiryDate ? format(licenseExpiryDate, "yyyy-MM-dd") : "",
-      drivingViolationHistory: drivingViolations,
-      drivingViolationHistoryDetail: drivingViolationsDetail,
-      roadAccidentHistory: roadAccidentHistory,
-      roadAccidentHistoryDetail: roadAccidentHistoryDetail,
-      authorizationForBackgroundCheck: authorizationForBackgroundCheck,
-      criminalHistory: criminalHistory,
-      criminalHistoryDetail: criminalHistoryDetail,
-      companyMissionAgreement: companyMissionAgreement,
-      availability: selectedAvailability,
-      timeSlots: selectedTimeSlot ? selectedTimeSlot.value : "",
-      previousExperience: previousExperience,
-      previousExperienceDetail: previousExperienceDetail,
-      relevantSkills: otherSkill ? [...filteredSkills, otherSkill] : filteredSkills,
-      agreeTermsAndCondition: agreeTermsAndCondition,
-      confirmAboutInfo: confirmAboutInfo,
-      Signature: signatureData
 
-    };
-    console.log("Form Data:", FormData);
-    addRecruitment(FormData);
+    const filteredSkills = selectedSkills.filter(skill => skill !== "Other");
+
+    const formattedFormData = new FormData();
+    formattedFormData.append("fullName", formData.fullName);
+    formattedFormData.append("gender", formData.gender);
+    formattedFormData.append("streetAddress", formData.streetAddress);
+    formattedFormData.append("city", formData.city);
+    formattedFormData.append("state", formData.state);
+    formattedFormData.append("postalCode", formData.postalCode);
+    formattedFormData.append("country", formData.country);
+    formattedFormData.append("phoneNo", formData.phoneNo);
+    formattedFormData.append("email", formData.email);
+    formattedFormData.append("driverLicenseNumber", formData.driverLicenseNumber);
+    formattedFormData.append("whyWorkWithUs", formData.whyWorkWithUs);
+    formattedFormData.append("additionalInfo", formData.additionalInfo);
+    formattedFormData.append("emergencyContactName", formData.emergencyContacName);
+    formattedFormData.append("emergencyContactRelationship", formData.emergencyContacRelationship);
+    formattedFormData.append("emergencyContactPhone", formData.emergencyContacPhone);
+    formattedFormData.append("emergencyContactEmail", formData.emergencyContacEmail);
+    formattedFormData.append("referenceName", formData.referenceName);
+    formattedFormData.append("referenceRelationship", formData.referenceRelationship);
+    formattedFormData.append("referencePhone", formData.referencePhone);
+    formattedFormData.append("referenceEmail", formData.referenceEmail);
+    formattedFormData.append("signature", signatureData);
+    formattedFormData.append("date", dateString);
+
+    if (dob) {
+      formattedFormData.append("dob", format(dob, "yyyy-MM-dd"));
+    }
+
+    if (licenseExpiryDate) {
+      formattedFormData.append("driverLicenseExpiryDate", format(licenseExpiryDate, "yyyy-MM-dd"));
+    }
+
+    formattedFormData.append("drivingViolationHistory", drivingViolations);
+    formattedFormData.append("drivingViolationHistoryDetail", drivingViolationsDetail);
+    formattedFormData.append("roadAccidentHistory", roadAccidentHistory);
+    formattedFormData.append("roadAccidentHistoryDetail", roadAccidentHistoryDetail);
+    formattedFormData.append("authorizationForBackgroundCheck", authorizationForBackgroundCheck);
+    formattedFormData.append("criminalHistory", criminalHistory);
+    formattedFormData.append("criminalHistoryDetail", criminalHistoryDetail);
+    formattedFormData.append("companyMissionAgreement", companyMissionAgreement);
+    formattedFormData.append("availability", selectedAvailability);
+    formattedFormData.append("timeSlots", selectedTimeSlot ? selectedTimeSlot.value : "");
+    formattedFormData.append("previousExperience", previousExperience);
+    formattedFormData.append("previousExperienceDetail", previousExperienceDetail);
+    formattedFormData.append("relevantSkills", filteredSkills);
+    formattedFormData.append("agreeTermsAndCondition", agreeTermsAndCondition);
+    formattedFormData.append("confirmAboutInfo", confirmAboutInfo);
+
+    const formDataObj: { [key: string]: any } = {};
+    formattedFormData.forEach((value, key) => {
+      formDataObj[key] = value;
+    });
+
+    console.log("Formatted FormData as Object:", formDataObj);
+    addRecruitment(formattedFormData);
   };
 
   const handleModalClose = () => {
@@ -484,7 +536,6 @@ const ApplicationForm: React.FC = () => {
     setConfirmAboutInfo(false);
     setIsCanvasVisible(false);
     setSignatureData(null);
-    setSigCanvasRef(null);
     sigCanvasRef.current?.clear();
   };
 
@@ -971,7 +1022,7 @@ const ApplicationForm: React.FC = () => {
                 {signatureData && (
                   <div>
                     <h3>Saved Signature:</h3>
-                    <Image src={signatureData} alt="Signature" width={80} height={80} className="w-auto h-auto border border-border" />
+                    <Image src={signatureUrl} alt="Signature" width={80} height={80} className="w-auto h-auto border border-border" />
                   </div>
                 )}
 

@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const bannerData: BannerData = {
   heading: "Last Mile Delivery",
-  image: "/images/services/lastMile.svg"
+  image: "/images/services/LastMile.png"
 };
 
 const businessData = [
