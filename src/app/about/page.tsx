@@ -86,7 +86,7 @@ const page = () => {
                   key={index}
                   className="px-4 py-3 xl:px-6 xl:py-5 w-full flex items-center justify-start gap-3 xl:gap-5 text-[16px] bg-foreground rounded-[6px]"
                 >
-                  <div className="w-7 h-7 rounded-full bg-themeGreen text-themeGrayText p-3 flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-primary text-themeGrayText p-3 flex items-center justify-center">
                     {data.sr}
                   </div>
                   <p className="font-semibold text-sm xl:text-[16px]">
@@ -100,7 +100,7 @@ const page = () => {
         </div>
       </div>
       {/* div3 */}
-      <div className="w-full bg-themeGreen  px-4 md:px-8 lg:px-20 xl:px-28 py-4">
+      <div className="w-full bg-primary  px-4 md:px-8 lg:px-20 xl:px-28 py-4">
         <h1 className="text-black font-bold text-lg sm:text-xl lg:text-[26px] pb-2 sm:pb-0">
           Join us in making a difference{" "}
         </h1>
@@ -133,7 +133,7 @@ const page = () => {
             lives of individuals with disabilities, please visit our careers
             page
           </p>
-          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-themeGreen">
+          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-primary">
             Join Us
           </div>
         </div>

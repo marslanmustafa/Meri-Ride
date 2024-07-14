@@ -60,14 +60,14 @@ const Home = () => {
         <div className="h-full w-screen pr-5 sm:pr-0 sm:w-[60%] bg-transparent flex flex-col justify-center gap-10 xl:gap-16">
           <h1 className="text-2xl md:text-4xl xl:text-6xl text-white font-bold xl:leading-[80px]">
             Empowering individuals with{" "}
-            <span className="text-themeGreen">disabilities.</span>
+            <span className="text-primary">disabilities.</span>
           </h1>
           <h2 className="text-lg md:text-2xl xl:text-4xl text-white">
             Through self-reliance and collaboration.
           </h2>
           <div
             className={
-              "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText bg-themeGreen"
+              "w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold border border-primary rounded-lg text-themeGrayText bg-primary"
             }
           >
             <Link href="/contact">Hire MeriRide</Link>
@@ -79,7 +79,7 @@ const Home = () => {
       {/* div2 */}
       <div className="relative bg-foreground flex items-center w-full h-fit md:h-[160px] xl:min-h-[200px] px-4 md:px-8 lg:px-20 xl:px-28 py-5">
         <p className="w-full md:w-[82%] lg:w-[86%] text-sm md:text-lg lg:text-2xl xl:text-3xl tracking-wide text-white font-semibold">
-          <span className="!text-themeGreen">We believe</span> in the power of
+          <span className="!text-primary">We believe</span> in the power of
           partnership and the potential of every individual, regardless of their
           physical abilities.
         </p>
@@ -153,7 +153,7 @@ const Home = () => {
         <div className="mt-4 sm:mt-10 md:mt-20 w-full h-fit md:h-[248px] lg:h-[256px] xl:h-[305px] items-center rounded-3xl text-white bg-foreground flex justify-between gap-3 overflow-hidden">
           <div className=" w-full md:w-[calc(100%-352px)] lg:w-[calc(100%-432px)] p-5 md:py-10 md:pl-10 md:pr-2 xl:pl-12 xl:pr-0 xl:py-12 space-y-3 xl:space-y-6">
             <h1 className="text-lg sm:text-xl md:text-[22px] lg:text-[26px] xl:text-[34px] font-semibold">
-              <span className="text-themeGreen">Join us</span> in making a
+              <span className="text-primary">Join us</span> in making a
               difference
             </h1>
             <p className="text-[10px] md:text-[11px] lg:text-sm">
@@ -166,7 +166,7 @@ const Home = () => {
               inclusion.
             </p>
             <div className="flex items-center justify start gap-2 sm:gap-4">
-              <Link href="/donateAndVolunteer" className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-themeGreen">
+              <Link href="/donateAndVolunteer" className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg !text-themeGrayText bg-primary">
                 Donate and Volunteer
               </Link>
               <Link href="/contact" className="w-fit px-3 py-2 lg:px-5 xl:px-8 lg:py-3 text-[10px] sm:text-xs md:text-sm lg:text-[16px] md:font-medium rounded-lg text-white bg-transparent">

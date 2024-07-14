@@ -107,7 +107,7 @@ const ApplicationForm: React.FC = () => {
     } else if (error) {
       toast({
         variant: "destructive",
-        title: "Failed",
+        title: "Error",
         description: "Failed to Add Driver Recruitment Information",
         duration: 2000,
       });
@@ -1004,36 +1004,36 @@ const ApplicationForm: React.FC = () => {
                   <Button type="button" variant="outline" onClick={toggleSignatureCanvas} className=" mb-4">
                     {isCanvasVisible ? 'Hide Signature' : 'Add Signature'}
                   </Button>
-                </div>
-                {isCanvasVisible && (
-                  <div className=" pt-3w-full flex items-center justify-center">
-                    <div className="bg-slate-100">
-                      <ReactSignatureCanvas
-                        penColor='green'
-                        canvasProps={{ width: 400, height: 400, className: 'sigCanvas border border-border rounded-md' }}
-                        ref={sigCanvasRef}
-                      />
-                      <div className="w-full flex items-center justify-between py-4">
-                        <Button variant="outline" type="button" onClick={clearSignatureCanvas}>Clear Signature</Button>
-                        <Button variant="outline" type="button" onClick={saveSignature}>Save Signature</Button>
+                  {isCanvasVisible && (
+                    <div className="m-auto w-[300px] sm:[400px] md:w-[500px] pt-3 flex items-center justify-center flex-col">
+                      <div className="bg-slate-100 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[300px]">
+                        <ReactSignatureCanvas
+                          penColor='green'
+                          canvasProps={{ width: 300, height: 300, className: '!w-full !h-full sigCanvas border border-border rounded-md' }}
+                          ref={sigCanvasRef}
+                        />
                       </div>
-                    </div></div>
-                )}
-                {signatureData && (
-                  <div>
-                    <h3>Saved Signature:</h3>
-                    <Image src={signatureUrl} alt="Signature" width={80} height={80} className="w-auto h-auto border border-border" />
-                  </div>
-                )}
-
-                {/* date */}
-                <div
-                  className="mt-4 h-9 bg-transparent rounded-none p-0 flex items-center justify-end text-left font-normal"
+                      <div className="w-full flex items-center justify-between py-4">
+                          <Button variant="outline" type="button" onClick={clearSignatureCanvas}>Clear Signature</Button>
+                          <Button variant="outline" type="button" onClick={saveSignature}>Save Signature</Button>
+                        </div>
+                      </div>
+                  )}
+                  {signatureData && (
+                    <div>
+                      <h3>Saved Signature:</h3>
+                      <Image src={signatureUrl} alt="Signature" width={80} height={80} className="w-auto h-auto border border-border" />
+                    </div>
+                  )}
+                </div>
+              </div>
+               {/* date */}
+               <div
+                  className="text-sm w-full mt-4 h-9 bg-transparent rounded-none p-0 flex items-center justify-end text-left font-normal"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   <p>{dateString}</p>
                 </div>
-              </div>
 
 
               {/* Submit Button */}

@@ -12,8 +12,14 @@ export const recruitment = createApi({
         body: addRecruitment,
       }),
     }),
+    getDriverRecruitmentRequests:builder.query({
+      query: () => ({
+        url: '/getDriverRecruitmentRequests',
+        method: 'GET',
+      }),
+    })
   }),
 });
 
 
-export const { useNewRecruitmentRequestMutation } = recruitment;
+export const { useNewRecruitmentRequestMutation ,useGetDriverRecruitmentRequestsQuery } = recruitment;

@@ -19,7 +19,7 @@ const HeaderAccordion = () => {
     <AccordionContent>
     <Link
             className={`text-sm lg:text-[16px] xl:text-lg text-center outline-none border-0 link ${pathname === "/services/transportation"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
             href="/services/transportation"
@@ -30,7 +30,7 @@ const HeaderAccordion = () => {
     <AccordionContent>
           <Link
             className={`text-sm lg:text-[16px] xl:text-lg text-center link ${pathname === "/services/lastMile"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
             href="/services/lastMile"
@@ -41,7 +41,7 @@ const HeaderAccordion = () => {
         <AccordionContent>
           <Link
             className={`text-sm lg:text-[16px] xl:text-lg text-center link ${pathname === "/services/localCourier"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
             href="/services/localCourier"
@@ -52,7 +52,7 @@ const HeaderAccordion = () => {
         <AccordionContent>
           <Link
             className={`text-sm lg:text-[16px] xl:text-lg text-center link ${pathname === "/services/ladModel"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
             href="/services/adModel"

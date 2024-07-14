@@ -40,7 +40,7 @@ const page = () => {
               className="h-auto w-[280px] lg:w-[340px]"
             />
           </div>
-          <h3 className="bg-themeGreen py-1 px-2 text-[16px] sm:text-lg uppercase w-fit rounded-md">
+          <h3 className="bg-primary py-1 px-2 text-[16px] sm:text-lg uppercase w-fit rounded-md">
             Pricing
           </h3>
           <h1 className="py-1 px-2 text-center themeGrayText2 font-bold text-2xl sm:text-4xl lg:text-6xl w-fit">
@@ -71,7 +71,7 @@ const page = () => {
       {/* div2 */}
       <div className="w-full lg:max-h-[796px] px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12 bg-black">
         <h1 className="py-1 px-2 mb-10 text-white font-bold text-2xl sm:text-4xl lg:text-5xl w-fit">
-          <span className="text-themeGreen">Advertisement</span> and Pricing Model for Rickshaw Service
+          <span className="text-primary">Advertisement</span> and Pricing Model for Rickshaw Service
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:flex md:flex-row flex-col items-center justify-center gap-5  ">
           {/* offer1 */}
@@ -169,7 +169,7 @@ const page = () => {
             </p>
             <h4 className="w-[110px] relative text-4xl font-semibold"><span className="text-lg absolute top-0 left-0">$</span> <span className="pl-5">12/</span> <span className="text-lg absolute bottom-0 right-0">mo</span></h4>
             <div className="w-full flex items-center justify-center">
-              <button className="py-2 text-[16px] font-semibold bg-themeGreen rounded-md text-themeGrayText2 w-[90%]" >Get Started</button>
+              <button className="py-2 text-[16px] font-semibold bg-primary rounded-md text-themeGrayText2 w-[90%]" >Get Started</button>
 
             </div>
             <div className="py-3 border-t border-border">

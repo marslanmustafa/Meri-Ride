@@ -25,8 +25,6 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
-        themeRed: "hsl(var(--red))",
-        themeGreen: "hsl(var(--green))",
         themeGrayText: "hsl(var(--grayText))",
         themeGrayText2: "hsl(var(--grayText2))",
 

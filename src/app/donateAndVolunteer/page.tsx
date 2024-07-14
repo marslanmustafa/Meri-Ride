@@ -106,7 +106,7 @@ const page = () => {
        {/* div7 */}
       <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-5'>
         <div className=" bg-black rounded-3xl lg:px-10 md:px-6 px-4 py-10 lg:py-12 space-y-3">
-          <h1 className=' text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-themeGreen' >Donate Resources</h1>
+          <h1 className=' text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-primary' >Donate Resources</h1>
           <h2 className=' text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white' >A list of needed items and resources that can be donated to support the organization’s operations and programs</h2>
           <ul className="list-disc text-xs sm:text-sm space-y-3 px-5 text-white">
             <li>Office Supplies: Paper, pens, computers, printers.</li>

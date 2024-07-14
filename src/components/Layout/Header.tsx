@@ -28,7 +28,7 @@ const Header: React.FC = () => {
       {/* responsive Div */}
       <div className="px-4 py-2 sm:py-4 sm:px-6 lg:p-0 h-16 w-full lg:w-fit justify-between flex items-center lg:justify-center bg-[#F7F8F7] border-none lg:bg-none lg:border-none">
         <Link
-          className={`link ${pathname === "/" ? "text-themeGreen font-bold" : ""
+          className={`link ${pathname === "/" ? "text-primary font-bold" : ""
             }`}
           href="/"
         >
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         <ul className="flex-col lg:flex-row flex items-center justify-center text-sm lg:text-base xl:text-lg gap-5 md:gap-3 lg:gap-3 xl:gap-7">
           <li>
             <Link
-              className={`link ${pathname === "/" ? "text-themeGreen font-bold" : ""
+              className={`link ${pathname === "/" ? "text-primary font-bold" : ""
                 }`}
               href="/"
             >
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
           </li>
           <li>
             <Link
-              className={`link ${pathname === "/about" ? "text-themeGreen font-bold" : ""
+              className={`link ${pathname === "/about" ? "text-primary font-bold" : ""
                 }`}
               href="/about"
             >
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
           <li>
             <Link
               className={`link ${pathname === "/driverRecruitment "
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
                 }`}
               href="/driverRecruitment "
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           </li>
           <li>
             <Link
-              className={`link ${pathname === "/contact" ? "text-themeGreen font-bold" : ""
+              className={`link ${pathname === "/contact" ? "text-primary font-bold" : ""
                 }`}
               href="/contact"
             >
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
           </li>
         </ul>
         <Link
-          className={`px-4 py-2 md:px-3 lg:px-5 xl:px-8 lg:py-3 text-sm lg:text-base md:font-medium lg:font-bold border border-themeGreen rounded-lg text-themeGrayText link ${pathname === "/donateAndVolunteer" ? "text-white bg-themeGreen" : ""
+          className={`px-4 py-2 md:px-3 lg:px-5 xl:px-8 lg:py-3 text-sm lg:text-base md:font-medium lg:font-bold border border-primary rounded-lg text-themeGrayText link ${pathname === "/donateAndVolunteer" ? "text-white bg-primary" : ""
             }`}
           href="/donateAndVolunteer"
         >

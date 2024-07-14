@@ -65,7 +65,7 @@ const page = () => {
       {/* div3 */}
       <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-5'>
         <div className=" bg-black rounded-3xl px-5 py-10">
-          <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-themeGreen'>Volunteers can share</span> their professional skills and expertise by providing training, mentorship</h1>
+          <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-primary'>Volunteers can share</span> their professional skills and expertise by providing training, mentorship</h1>
         </div>
       </div>
       {/* div4 */}
@@ -99,7 +99,7 @@ const page = () => {
                   key={index}
                   className="px-0 sm:px-4 py-3 xl:px-6 xl:py-5 w-full flex items-center justify-start gap-3 xl:gap-5 text-[16px] rounded-[6px]"
                 >
-                  <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full border border-themeGreen bg-white text-black p-3 flex items-center justify-center">
+                  <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full border border-primary bg-white text-black p-3 flex items-center justify-center">
                     {data.sr}
                   </div>
                   <div className="text-white p-3">

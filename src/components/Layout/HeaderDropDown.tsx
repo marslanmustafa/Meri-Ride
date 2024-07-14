@@ -27,7 +27,7 @@ const HeaderDropDown: React.FC = () => {
         <DropdownMenuItem onClick={() => handleNavigation("/services/transportation")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg outline-none border-0 link ${pathname === "/services/transportation"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
           >
@@ -37,7 +37,7 @@ const HeaderDropDown: React.FC = () => {
         <DropdownMenuItem onClick={() => handleNavigation("/services/lastMile")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/lastMile"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
           >
@@ -47,7 +47,7 @@ const HeaderDropDown: React.FC = () => {
         <DropdownMenuItem onClick={() => handleNavigation("/services/localCourier")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/localCourier"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
           >
@@ -57,7 +57,7 @@ const HeaderDropDown: React.FC = () => {
         <DropdownMenuItem onClick={() => handleNavigation("/services/adModel")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/ladModel"
-                ? "text-themeGreen font-bold"
+                ? "text-primary font-bold"
                 : ""
               }`}
           >

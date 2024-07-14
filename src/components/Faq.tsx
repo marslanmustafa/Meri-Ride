@@ -75,7 +75,7 @@ const Faq = () => {
             <input
               type="radio"
               name="faq"
-              className="bg-border w-6 h-6 checked:bg-themeGreen appearance-none rounded-full"
+              className="bg-border w-6 h-6 checked:bg-primary appearance-none rounded-full"
               checked={selectedQuestionIndex === index}
             />
             <p className="text-sm lg:text-[16px] w-[calc(100%-66px)] truncate-multiline-md">{faq.question}</p>

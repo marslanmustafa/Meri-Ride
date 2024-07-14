@@ -57,7 +57,7 @@ const page = () => {
       {/* div2 */}
       <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-5'>
         <div className=" bg-black rounded-3xl px-5 py-10">
-          <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-themeGreen'>Our Driver</span> Recruitment Page is designed to attract qualified candidates who are passionate </h1>
+          <h1 className=' text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white' ><span className='text-primary'>Our Driver</span> Recruitment Page is designed to attract qualified candidates who are passionate </h1>
         </div>
       </div>
       {/* div3 */}
