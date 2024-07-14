@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const bannerData: BannerData = {
   heading: "Donate and Volunteer",
-  image: "/images/donateAndVolunteer/Donate.svg"
+  image: "/images/donateAndVolunteer/Donate.png"
 };
 
 const detailsData = {
