@@ -9,13 +9,12 @@ import { useToast } from '@/components/ui/use-toast'; // Update with the correct
 import requireAuth from '@/hoc/requieAuth';
 
 const Page = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState<string | null>(null);
   const [login, { isSuccess, error: loginError, data: responseData, isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const router = useRouter();
-  const { toast } = useToast(); // Hook for toast notifications
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isLoading) {
@@ -31,8 +30,9 @@ const Page = () => {
           description: "Redirecting to dashboard",
           duration: 2000,
         });
-        dispatch(setCredentials({ token: responseData?.token , userId: responseData?.id}));
-        // router.push('/dashboard');
+        dispatch(setCredentials({ token: responseData?.token, userId: responseData?.id }));
+        // Uncomment this line to redirect after successful login
+        // router.push('/admin/dashboard');
       } else {
         toast({
           title: "Login Failed",
@@ -50,10 +50,44 @@ const Page = () => {
     }
   }, [isSuccess, isLoading, loginError, responseData, toast, dispatch, router]);
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const validateForm = () => {
+    if (!formData.email) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please Enter Email",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (!formData.password) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please Enter Password",
+        duration: 2000,
+      });
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError(null); // Reset error state
-    login({ email, password });
+
+    if (!validateForm()) return;
+
+    login(formData);
   };
 
   return (
@@ -69,18 +103,20 @@ const Page = () => {
               <p>Email:</p>
               <input
                 type="email"
+                name="email"
                 className="bg-white-500 px-3 border-solid border-2 rounded-lg border-black-500 w-full h-10"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleInputChange}
               />
             </div>
             <div className="w-full">
               <p>Password:</p>
               <input
                 type="password"
+                name="password"
                 className="bg-white-500 px-3 border-solid border-2 rounded-lg border-black-500 w-full h-10"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleInputChange}
               />
             </div>
             {error && (
@@ -101,4 +137,4 @@ const Page = () => {
   );
 };
 
-export default  requireAuth(Page, '/admin/dashboard'); ;
+export default requireAuth(Page, '/admin/dashboard');
