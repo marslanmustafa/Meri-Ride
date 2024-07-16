@@ -1,21 +1,23 @@
+// src/store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
-import { auth } from '@/hooks/UseAuth';
+import { authApi } from '@/hooks/UseAuth';
 import { contact } from '@/hooks/UseContact';
 import { volunteer } from '@/hooks/UseVolunteer';
 import { recruitment } from '@/hooks/UseRecruitment';
+import authReducer from '@/slice/AuthSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      [auth.reducerPath]: auth.reducer,
+      [authApi.reducerPath]: authApi.reducer,
       [contact.reducerPath]: contact.reducer,
       [volunteer.reducerPath]: volunteer.reducer,
       [recruitment.reducerPath]: recruitment.reducer,
-
+      auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(auth.middleware, contact.middleware, volunteer.middleware, recruitment.middleware),
+      getDefaultMiddleware().concat(authApi.middleware, contact.middleware, volunteer.middleware, recruitment.middleware),
   });
 };
 
