@@ -19,8 +19,8 @@ const DashboardPage = () => {
       <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-6">
         <h1 className="text-3xl font-bold mb-4 text-center text-gray-800">Dashboard</h1>
         <p className="text-center text-gray-600 mb-6">Welcome to the dashboard!</p>
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex space-x-4">
+        <div className="flex justify-between items-center mb-6 md:flex-row flex-col gap-3">
+          <div className="flex space-x-4 md:flex-row flex-col gap-3">
             <Link
               href="driverRecruitment"
               className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">

@@ -19,7 +19,7 @@ export const recruitment = createApi({
     }),
     getDriverRecruitmentById: builder.query({
       query: (id) => `/getDriverRecruitmentById/${id}`,
-    })
+    }),
   }),
 });
 

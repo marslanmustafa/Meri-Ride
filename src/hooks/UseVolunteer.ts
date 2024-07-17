@@ -14,8 +14,14 @@ export const volunteer = createApi({
         body: addVolunteer,
       }),
     }),
+    getAllVolunteersRequest: builder.query({
+      query: () => 'getAllVolunteersRequest',
+    }),
+    getVolunteerRequestById: builder.query({
+      query: (id) => `/getVolunteerRequestById/${id}`,
+    })
   }),
 });
 
 
-export const { useNewVolunteerRequestMutation } = volunteer;
+export const { useNewVolunteerRequestMutation, useGetAllVolunteersRequestQuery, useGetVolunteerRequestByIdQuery } = volunteer;

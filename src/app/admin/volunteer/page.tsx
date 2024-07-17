@@ -1,13 +1,10 @@
 // @ts-nocheck
 "use client"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Plus } from "lucide-react";
-import { useGetDriverRecruitmentRequestsQuery } from '@/hooks/UseRecruitment';
-import ProductCard from '@/components/productCard/ProductCard';
 import Link from "next/link";
 import withAuth from '@/hoc/withAuth';
 import { DataTable } from '@/components/dataTable/DataTable';
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { useGetAllVolunteersRequestQuery } from '@/hooks/UseVolunteer';
 
 const columns = [
   {
@@ -27,16 +24,15 @@ const columns = [
     header: 'Gender',
   },
   {
-    accessorKey: 'dob',
-    header: 'DOB',
+    accessorKey: 'city',
+    header: 'City',
   },
 ];
 
 
 const Page = () => {
-  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
-  const { data: responseData, isLoading, isError } = useGetDriverRecruitmentRequestsQuery();
+  const { data: responseData, isLoading, isError } = useGetAllVolunteersRequestQuery();
   if (isError) {
     return <div className="flex items-center justify-center text-2xl md:text-lg">Failed to Fetch</div>;
   }
@@ -50,10 +46,10 @@ const Page = () => {
         <div className='p-5'>
           <div className="py-4 w-full flex justify-between">
           <h1 className="text-2xl md:text-3xl xl:text-4xl text-themeGrayText2 font-bold xl:leading-[80px]">
-            Driver Recruitment
+            Volunteer
           </h1>
           </div>
-          <DataTable columns={columns} data={responseData?.data} detailsRoute="admin/driverRecruitment" />
+          <DataTable columns={columns} data={responseData?.data} detailsRoute="admin/volunteer" />
         </div>
       </div>)}
     </div>
