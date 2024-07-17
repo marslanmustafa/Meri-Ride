@@ -73,6 +73,7 @@
 @layer base {
   * {
     @apply border-border;
+    user-select: none;
   }
 
   body {
@@ -104,6 +105,14 @@
     width: 6px;
     border-radius: 20px;
     background-color: #8f8f8f;
+  }
+
+  .textwrap{
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* for ServiceCard */

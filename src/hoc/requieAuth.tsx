@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 
 const requireAuth = (WrappedComponent: React.ComponentType<any>, redirectPath = '/dashboard') => {
   const AuthComponent = (props: any) => {
@@ -12,13 +13,12 @@ const requireAuth = (WrappedComponent: React.ComponentType<any>, redirectPath = 
 
     useEffect(() => {
       if (token) {
-        router.push(redirectPath); // Redirect to dashboard if token is present
+        router.push(redirectPath);
       }
     }, [token, router, redirectPath]);
 
     if (token) {
-      // You can show a loading spinner or message while checking authentication
-      return <div>Loading...</div>;
+        return <LoadingSpinner />;
     }
 
     return <WrappedComponent {...props} />;

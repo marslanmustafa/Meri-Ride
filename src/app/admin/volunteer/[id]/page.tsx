@@ -5,23 +5,41 @@ import { useGetVolunteerRequestByIdQuery } from "@/hooks/UseVolunteer";
 import { useParams } from "next/navigation";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import withAuth from "@/hoc/withAuth";
+import { useDispatch } from "react-redux";
+import { logOut } from "@/slice/AuthSlice";
 
 const Page = () => {
+  const dispatch = useDispatch();
+  
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
+
   const { id } = useParams<{ id: string }>();
-  const { data: recruitmentData, isError, isLoading } = useGetVolunteerRequestByIdQuery(id);
-  const [recruitment, setRecruitment] = useState(null);
+  const { data: volunteerData, isError, isLoading, error } = useGetVolunteerRequestByIdQuery(id);
+  const [volunteer, setVolunteer] = useState(null);
 
   useEffect(() => {
-    if (recruitmentData) {
-      setRecruitment(recruitmentData.data);
+    if (volunteerData) {
+      setVolunteer(volunteerData.data);
     }
-  }, [recruitmentData]);
+  }, [volunteerData]);
+
+  if (isError) {
+    if (error.data?.error === 'Invalid token.') {
+      handleLogout();
+      return <div className="flex items-center justify-center text-2xl md:text-lg">Invalid token, logging out...</div>;
+    } else {
+      return <div className="flex items-center justify-center text-2xl md:text-lg">Failed to Fetch Volunteer Data</div>;
+    }
+  }
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  if (isError || !recruitment) {
-    return <div className="flex items-center justify-center text-2xl md:text-lg">Failed to Fetch Volunteer Recruitment</div>;
+
+  if (!volunteer) {
+    return <div className="flex items-center justify-center text-2xl md:text-lg">No Volunteer Data Available</div>;
   }
 
   const {
@@ -44,7 +62,7 @@ const Page = () => {
     referencePhone,
     referenceEmail,
     referenceRelationship,
-  } = recruitment;
+  } = volunteer;
 
   return (
     <div className="p-5">

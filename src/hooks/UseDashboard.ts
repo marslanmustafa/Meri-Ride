@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
-
-export const authApi = createApi({
-  reducerPath: 'authApi',
+export const dashboard = createApi({
+  reducerPath: 'dashboard',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/users/`,
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard/`,
     prepareHeaders: (headers) => {
       const token = Cookies.get('token');
       if (token) {
@@ -15,14 +14,11 @@ export const authApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (login) => ({
-        url: 'login',
-        method: 'POST',
-        body: login,
-      }),
-    }),
+    getDashboardTotal: builder.query({
+      query: () => "/getDashboardTotal",
+    })
   }),
 });
 
-export const { useLoginMutation } = authApi;
+
+export const { useGetDashboardTotalQuery } = dashboard;

@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
             <li><Link href="/driverRecruitment ">Driver Recruitment </Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
             <li><Link href="/donateAndVolunteer">Donate and Volunteer</Link></li>
-            <li><Link href="/admin/dashboard">Dashboard</Link></li>
+            {/* <li><Link href="/admin/dashboard">Dashboard</Link></li> */}
           </ul>
         </div>
         {/* div4 */}

@@ -31,8 +31,7 @@ const Page = () => {
           duration: 2000,
         });
         dispatch(setCredentials({ token: responseData?.token, userId: responseData?.id }));
-        // Uncomment this line to redirect after successful login
-        // router.push('/admin/dashboard');
+        router.push('/admin/dashboard');
       } else {
         toast({
           title: "Login Failed",
@@ -92,19 +91,19 @@ const Page = () => {
 
   return (
     <>
-      <div className="w-full h-[calc(100vh-80px)] sm:p-0 pt-8 flex sm:items-center justify-center">
-        <div className="bg-white-500 border-none h-[420px] w-full sm:w-[390px] md:w-[420px] mx-auto sm:border-solid border-2 rounded-lg border-black-500">
+      <div className="w-full sm:h-[calc(100vh-80px)] sm:p-0 pt-8 flex sm:items-center justify-center">
+        <div className="bg-white border-none h-[430px] pt-5 w-full sm:w-[390px] md:w-[420px] mx-auto sm:border-solid border rounded-lg border-black-500">
           <div className="w-full flex items-center justify-center py-5">
             <Image alt="Meri Ride" width={1560} height={369} src="/logo.svg" className="w-[180px]" />
           </div>
-          <h1 className="text-primary text-4xl font-bold block px-6 sm:hidden">Sign in</h1>
+          {/* <h1 className="text-primary text-2xl text-center font-bold block px-6 sm:hidden">Sign in</h1> */}
           <form onSubmit={handleSubmit} className="px-6 flex flex-col space-y-4 py-5">
             <div className="w-full">
               <p>Email:</p>
               <input
                 type="email"
                 name="email"
-                className="bg-white-500 px-3 border-solid border-2 rounded-lg border-black-500 w-full h-10"
+                className="bg-white px-3 border-solid border rounded-lg border-black-500 w-full h-10"
                 value={formData.email}
                 onChange={handleInputChange}
               />
@@ -114,7 +113,7 @@ const Page = () => {
               <input
                 type="password"
                 name="password"
-                className="bg-white-500 px-3 border-solid border-2 rounded-lg border-black-500 w-full h-10"
+                className="bg-white px-3 border-solid border rounded-lg border-black-500 w-full h-10"
                 value={formData.password}
                 onChange={handleInputChange}
               />

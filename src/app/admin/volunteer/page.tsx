@@ -5,6 +5,10 @@ import withAuth from '@/hoc/withAuth';
 import { DataTable } from '@/components/dataTable/DataTable';
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { useGetAllVolunteersRequestQuery } from '@/hooks/UseVolunteer';
+import { useDispatch } from "react-redux";
+import { logOut } from "@/slice/AuthSlice";
+
+
 
 const columns = [
   {
@@ -31,15 +35,33 @@ const columns = [
 
 
 const Page = () => {
-
-  const { data: responseData, isLoading, isError } = useGetAllVolunteersRequestQuery();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
+  
+  const { data: responseData, isLoading, isError, error } = useGetAllVolunteersRequestQuery();
+  
   if (isError) {
-    return <div className="flex items-center justify-center text-2xl md:text-lg">Failed to Fetch</div>;
+    if (error.data?.error === 'Invalid token.') {
+      handleLogout();
+      return <div className="flex items-center justify-center text-2xl md:text-lg">Invalid token, logging out...</div>;
+    } else {
+      return <div className="flex items-center justify-center text-2xl md:text-lg">{error.data?.error ?
+        (<>
+        <h1>{error.data?.error}</h1>
+        </>) :
+         (<div className="w-full h-screen flex items-center justify-center">
+        <h1>Failed to Fetch</h1>
+        </div>)
+      }</div>;
+    }
   }
-  console.log(responseData)
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
   return (
     <div>
       {responseData && (<div className="w-full min-h-full px-4 md:px-[1em] py-2 md:py-4 overflow-scroll">

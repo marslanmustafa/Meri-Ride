@@ -6,6 +6,7 @@ import { contact } from '@/hooks/UseContact';
 import { volunteer } from '@/hooks/UseVolunteer';
 import { recruitment } from '@/hooks/UseRecruitment';
 import authReducer from '@/slice/AuthSlice';
+import { dashboard } from '@/hooks/UseDashboard';
 
 export const makeStore = () => {
   return configureStore({
@@ -14,10 +15,11 @@ export const makeStore = () => {
       [contact.reducerPath]: contact.reducer,
       [volunteer.reducerPath]: volunteer.reducer,
       [recruitment.reducerPath]: recruitment.reducer,
+      [dashboard.reducerPath]: dashboard.reducer,
       auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authApi.middleware, contact.middleware, volunteer.middleware, recruitment.middleware),
+      getDefaultMiddleware().concat(authApi.middleware, contact.middleware, volunteer.middleware, recruitment.middleware, dashboard.middleware),
   });
 };
 

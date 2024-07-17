@@ -1,47 +1,51 @@
+// @ts-nocheck
 "use client"
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { logOut } from '@/slice/AuthSlice';
+import Link from "next/link";
 import withAuth from '@/hoc/withAuth';
-import Link from 'next/link';
+import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { useGetDashboardTotalQuery } from '@/hooks/UseDashboard';
+import DashCard from "@/components/DashCard";
+import { useDispatch } from "react-redux";
+import { logOut } from "@/slice/AuthSlice";
 
-const DashboardPage = () => {
+const Page = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.auth.token);
 
   const handleLogout = () => {
     dispatch(logOut());
   };
 
+  const { data: responseData, isLoading, isError, error } = useGetDashboardTotalQuery();
+
+  if (isError) {
+    if (error.data?.error === 'Invalid token.') {
+      handleLogout();
+      return <div className="flex items-center justify-center text-2xl md:text-lg">Invalid token, logging out...</div>;
+    } else {
+      return <div className="flex items-center justify-center text-2xl md:text-lg">{error.data?.error ?
+        (<>
+        <h1>{error.data?.error}</h1>
+        </>) :
+         (<div className="w-full h-screen flex items-center justify-center">
+        <h1>Failed to Fetch</h1>
+        </div>)
+      }</div>;
+    }
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
-      <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-6">
-        <h1 className="text-3xl font-bold mb-4 text-center text-gray-800">Dashboard</h1>
-        <p className="text-center text-gray-600 mb-6">Welcome to the dashboard!</p>
-        <div className="flex justify-between items-center mb-6 md:flex-row flex-col gap-3">
-          <div className="flex space-x-4 md:flex-row flex-col gap-3">
-            <Link
-              href="driverRecruitment"
-              className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-              Driver Recruitment
-            </Link>
-            <Link href="volunteer"
-              className="bg-themeGrayText text-white font-bold py-2 px-4 rounded shadow-lg">
-              Volunteer Data
-            </Link>
-          </div>
-          {token && (
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-              Logout
-            </button>
-          )}
-        </div>
+    <div className="min-h-screen bg-gray-100 flex flex-col md:pb-24 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
+      <h1 className="text-3xl font-bold mb-4 text-themeGraytext">Dashboard</h1>
+      <p className=" text-gray-600 mb-6"></p>
+      <div className="w-full mt-2">
+        <DashCard data={responseData.data} />
       </div>
     </div>
   );
 };
 
-export default withAuth(DashboardPage);
+export default withAuth(Page);
