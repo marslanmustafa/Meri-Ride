@@ -3,7 +3,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // Define a service using a base URL and expected endpoints
 export const recruitment = createApi({
   reducerPath: 'recruitment',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://97.74.95.127:4444/recruitment/' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/recruitment/`
+  }),
   endpoints: (builder) => ({
     newRecruitmentRequest: builder.mutation({
       query: (addRecruitment) => ({
@@ -12,14 +14,18 @@ export const recruitment = createApi({
         body: addRecruitment,
       }),
     }),
-    getDriverRecruitmentRequests:builder.query({
-      query: () => ({
-        url: '/getDriverRecruitmentRequests',
-        method: 'GET',
-      }),
+    getDriverRecruitmentRequests: builder.query({
+      query: () => '/getDriverRecruitmentRequests',
+    }),
+    getDriverRecruitmentById: builder.query({
+      query: (id) => `/getDriverRecruitmentById/${id}`,
     })
   }),
 });
 
 
-export const { useNewRecruitmentRequestMutation ,useGetDriverRecruitmentRequestsQuery } = recruitment;
+export const {
+  useNewRecruitmentRequestMutation,
+  useGetDriverRecruitmentRequestsQuery,
+  useGetDriverRecruitmentByIdQuery
+} = recruitment;

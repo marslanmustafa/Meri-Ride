@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://97.74.95.127:4444/users/',
+    baseUrl: `${process.env.API_URL}/users/`,
     prepareHeaders: (headers) => {
       const token = Cookies.get('token');
       if (token) {
@@ -15,10 +16,10 @@ export const authApi = createApi({
   }),
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (cred: { email: string; password: string }) => ({
+      query: (login) => ({
         url: 'login',
         method: 'POST',
-        body: cred,
+        body: login,
       }),
     }),
   }),

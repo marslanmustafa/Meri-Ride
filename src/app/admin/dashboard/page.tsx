@@ -4,16 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { logOut } from '@/slice/AuthSlice';
 import withAuth from '@/hoc/withAuth';
+import Link from 'next/link';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
   const token = useSelector((state: RootState) => state.auth.token);
 
   const handleLogout = () => {
-    // Dispatch action to clear credentials (token)
     dispatch(logOut());
-    // Optionally, redirect user to login page or home page after logout
-    // router.push('/login'); // Example: If using Next.js router
   };
 
   return (
@@ -25,6 +23,7 @@ const DashboardPage = () => {
           Logout
         </button>
       )}
+      <Link href={"admin/driverRecruitment"}>DriverRecruitment</Link>
     </div>
   );
 };
