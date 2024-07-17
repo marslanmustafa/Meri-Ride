@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const volunteer = createApi({
   reducerPath: 'volunteer',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.API_URL}/volunteer/`
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/volunteer/`
   }),
   endpoints: (builder) => ({
     newVolunteerRequest: builder.mutation({

@@ -15,15 +15,31 @@ const DashboardPage = () => {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard!</p>
-      {token && (
-        <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-          Logout
-        </button>
-      )}
-      <Link href={"admin/driverRecruitment"}>DriverRecruitment</Link>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+      <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mt-6">
+        <h1 className="text-3xl font-bold mb-4 text-center text-gray-800">Dashboard</h1>
+        <p className="text-center text-gray-600 mb-6">Welcome to the dashboard!</p>
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex space-x-4">
+            <Link
+              href="driverRecruitment"
+              className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+              Driver Recruitment
+            </Link>
+            <Link href="volunteer"
+              className="bg-themeGrayText text-white font-bold py-2 px-4 rounded shadow-lg">
+              Volunteer Data
+            </Link>
+          </div>
+          {token && (
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+              Logout
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -52,7 +52,7 @@ export function DataTable({
   )
   const [columnVisibility, setColumnVisibility] = React.useState({})
   const [rowSelection, setRowSelection] = React.useState({})
-  const [selectedColumn, setSelectedColumn] = React.useState(columns[0]?.id)
+  const [selectedColumn, setSelectedColumn] = React.useState(columns[0]?.id || '')
   const [filterValue, setFilterValue] = React.useState("")
   
   const router = useRouter()
@@ -79,7 +79,9 @@ export function DataTable({
   const handleFilterChange = (event) => {
     const value = event.target.value
     setFilterValue(value)
-    table.getColumn(selectedColumn)?.setFilterValue(value)
+    if (selectedColumn) {
+      table.getColumn(selectedColumn)?.setFilterValue(value)
+    }
   }
 
   const handleRowClick = (row) => {
@@ -91,8 +93,8 @@ export function DataTable({
       <div className="flex items-center py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="mr-2">
-              {selectedColumn} <ChevronDownIcon className="ml-2 h-4 w-4" />
+            <Button variant="outline" className="mr-2 border-border">
+              {selectedColumn || 'Select column'} <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
@@ -110,10 +112,11 @@ export function DataTable({
           </DropdownMenuContent>
         </DropdownMenu>
         <Input
-          placeholder={`Filter ${selectedColumn}...`}
+          placeholder={selectedColumn ? `Filter ${selectedColumn}...` : 'Select a column to filter...'}
           value={filterValue}
           onChange={handleFilterChange}
-          className="max-w-sm"
+          className="max-w-sm border-border outline-none focus:outline-none"
+          disabled={!selectedColumn}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -142,14 +145,14 @@ export function DataTable({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-xl overflow-hidden border border-border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="bg-themeGrayText hover:bg-themeGrayText">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="text-white">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -165,11 +168,11 @@ export function DataTable({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
+                <TableRow 
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   onClick={() => handleRowClick(row)}
-                  className="cursor-pointer"
+                  className="cursor-pointer bg-white"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -185,7 +188,7 @@ export function DataTable({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center bg-white"
                 >
                   No results.
                 </TableCell>
