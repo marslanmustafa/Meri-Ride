@@ -19,7 +19,7 @@ const Page = () => {
   const { id } = useParams<{ id: string }>();
   const { data: recruitmentData, isError, isLoading, error } = useGetDriverRecruitmentByIdQuery(id);
   const [recruitment, setRecruitment] = useState(null);
-
+  console.log(recruitmentData)
   useEffect(() => {
     if (recruitmentData) {
       setRecruitment(recruitmentData.data);
@@ -84,19 +84,19 @@ const Page = () => {
     signature,
     date,
   } = recruitment;
-
+  const availabilityArray = availability.split(',');
   const signatureUrl = `http://204.13.234.54/${signature}`;
 
   return (
-    <div className="p-5">
+    <div className="px-2 py-6 sm:p-5">
       <div className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="p-4 bg-primary text-white text-lg font-bold">
+        <div className="p-2 sm:p-4 bg-primary text-white text-lg font-bold">
           Driver Recruitment Details
         </div>
-        <div className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-black">
+        <div className="p-2 sm:p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             {/* Left Column */}
-            <div className="bg-white p-3">
+            <div className="">
               <div>
                 <h1 className="font-bold text-lg mb-4">Personal Information</h1>
                 <div className="mb-4">
@@ -162,14 +162,21 @@ const Page = () => {
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText">Signature</label>
-                <div className="mt-1 w-[300px] h-[300px] shadow-xl rounded-md border border-border">
-                  <Image src={signatureUrl} alt={`${signatureUrl}`} width={300} height={300} />
-                </div>
+                {signature === " " ? (
+                  <div className="mt-1 size-full p-4 sm:size-[300px] shadow-xl rounded-md border border-border overflow-hidden">
+                    <div className="size-full">
+                      <Image src={signatureUrl} alt="Signature" width={300} height={300} />
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-red-500 mt-4">Signature Not Available</p>
+                )}
+
               </div>
             </div>
 
             {/* Right Column */}
-            <div className="bg-white p-3">
+            <div className="">
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText">Driving Violation History</label>
                 <div className="mt-1">{drivingViolationHistory ? "Yes" : "No"}</div>
@@ -201,7 +208,7 @@ const Page = () => {
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText w-full">Availability</label>
-                <h2 className="mt-1">{recruitmentData.data.availability}</h2>
+                <p className="mt-1">{availabilityArray.join(', ')}</p>
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText">Time Slots</label>
@@ -209,7 +216,7 @@ const Page = () => {
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText">Previous Experience</label>
-                <div className="mt-1">{previousExperience  ? "Yes" : "No"}</div>
+                <div className="mt-1">{previousExperience ? "Yes" : "No"}</div>
                 {previousExperienceDetail && (
                   <div className="mt-1">{previousExperienceDetail}</div>
                 )}

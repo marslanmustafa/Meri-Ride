@@ -65,34 +65,56 @@ const Page = () => {
   } = volunteer;
 
   return (
-    <div className="p-5">
+    <div className="px-2 py-6 sm:p-5">
       <div className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="p-4 bg-primary text-white text-lg font-bold">
+        <div className="p-2 sm:p-4 bg-primary text-white text-lg font-bold">
           Volunteer Details
         </div>
-        <div className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-2 sm:p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {/* Left Column */}
             <div>
-              <div className="mb-4">
-                <label className="text-sm font-semibold text-gray-700">Full Name</label>
-                <div className="mt-1 text-lg font-semibold">{fullName}</div>
+              <div>
+                <h1 className="font-bold text-lg mb-4">Personal Information</h1>
+                <div className="mb-4">
+                  <label className="text-sm font-bold text-themeGrayText">Full Name</label>
+                  <div className="mt-1 text-lg font-semibold">{fullName}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Gender</label>
+                  <div className="mt-1">{gender}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Email</label>
+                  <div className="mt-1">{email}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Phone Number</label>
+                  <div className="mt-1">{phoneNo}</div>
+                </div>
               </div>
-              <div className="mb-4">
-                <label className="text-sm font-semibold text-gray-700">Gender</label>
-                <div className="mt-1">{gender}</div>
-              </div>
-              <div className="mb-4">
-                <label className="text-sm font-semibold text-gray-700">Email</label>
-                <div className="mt-1">{email}</div>
-              </div>
-              <div className="mb-4">
-                <label className="text-sm font-semibold text-gray-700">Phone Number</label>
-                <div className="mt-1">{phoneNo}</div>
-              </div>
-              <div className="mb-4">
-                <label className="text-sm font-semibold text-gray-700">Address</label>
-                <div className="mt-1">{streetAddress}, {city}, {state}, {postalCode}, {country}</div>
+              <div>
+                <h1 className="font-bold text-lg mb-4">Address</h1>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Street Address</label>
+                  <div className="mt-1">{streetAddress}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">City</label>
+                  <div className="mt-1">{city}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">State</label>
+                  <div className="mt-1">{state}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Postal Code</label>
+                  <div className="mt-1">{postalCode}</div>
+                </div>
+                <div className="mb-4">
+                  <label className="text-sm font-semibold text-themeGrayText">Country</label>
+                  <div className="mt-1">{country}</div>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-gray-700">Availability</label>

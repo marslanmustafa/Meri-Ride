@@ -64,8 +64,8 @@ const Page = () => {
 
   return (
     <div>
-      {responseData && (<div className="w-full min-h-full px-4 md:px-[1em] py-2 md:py-4 overflow-scroll">
-        <div className='p-5'>
+      {responseData && (<div className="w-full min-h-full px-1 md:px-2 py-2 md:py-4 overflow-scroll">
+        <div className='px-1 sm:p-5'>
           <div className="py-4 w-full flex justify-between">
           <h1 className="text-2xl md:text-3xl xl:text-4xl text-themeGrayText2 font-bold xl:leading-[80px]">
             Volunteer

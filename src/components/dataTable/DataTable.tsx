@@ -145,7 +145,7 @@ export function DataTable({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-xl overflow-hidden border border-border">
+      <div className="rounded-sm sm:rounded-lg overflow-hidden border border-border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

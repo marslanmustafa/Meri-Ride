@@ -40,7 +40,6 @@ const Page = () => {
   const handleLogout = () => {
     dispatch(logOut());
   };
-  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
   const { data: responseData, isLoading, isError, error } = useGetDriverRecruitmentRequestsQuery();
 
@@ -51,10 +50,10 @@ const Page = () => {
     } else {
       return <div className="flex items-center justify-center text-2xl md:text-lg">{error.data?.error ?
         (<>
-        <h1>{error.data?.error}</h1>
+          <h1>{error.data?.error}</h1>
         </>) :
-         (<div className="w-full h-screen flex items-center justify-center">
-        <h1>Failed to Fetch</h1>
+        (<div className="w-full h-screen flex items-center justify-center">
+          <h1>Failed to Fetch</h1>
         </div>)
       }</div>;
     }
@@ -66,16 +65,17 @@ const Page = () => {
 
   return (
     <div>
-      {responseData && (<div className="w-full min-h-full px-4 md:px-[1em] py-2 md:py-4 overflow-scroll">
-        <div className='p-5'>
-          <div className="py-4 w-full flex justify-between">
-          <h1 className="text-2xl md:text-3xl xl:text-4xl text-themeGrayText2 font-bold xl:leading-[80px]">
-            Driver Recruitment
-          </h1>
+      {responseData && (
+        <div className="w-full min-h-full px-1 md:px-2 py-2 md:py-4 overflow-scroll">
+          <div className='px-1 sm:p-5'>
+            <div className="py-4 w-full flex justify-between">
+              <h1 className="text-2xl md:text-3xl xl:text-4xl text-themeGrayText2 font-bold xl:leading-[80px]">
+                Driver Recruitment
+              </h1>
+            </div>
+            <DataTable columns={columns} data={responseData?.data} detailsRoute="admin/driverRecruitment" />
           </div>
-          <DataTable columns={columns} data={responseData?.data} detailsRoute="admin/driverRecruitment" />
-        </div>
-      </div>)}
+        </div>)}
     </div>
   );
 };

@@ -460,10 +460,10 @@ const ApplicationForm: React.FC = () => {
     formattedFormData.append("driverLicenseNumber", formData.driverLicenseNumber);
     formattedFormData.append("whyWorkWithUs", formData.whyWorkWithUs);
     formattedFormData.append("additionalInfo", formData.additionalInfo);
-    formattedFormData.append("emergencyContactName", formData.emergencyContacName);
-    formattedFormData.append("emergencyContactRelationship", formData.emergencyContacRelationship);
-    formattedFormData.append("emergencyContactPhone", formData.emergencyContacPhone);
-    formattedFormData.append("emergencyContactEmail", formData.emergencyContacEmail);
+    formattedFormData.append("emergencyContactName", formData.emergencyContactName);
+    formattedFormData.append("emergencyContactRelationship", formData.emergencyContactRelationship);
+    formattedFormData.append("emergencyContactPhone", formData.emergencyContactPhone);
+    formattedFormData.append("emergencyContactEmail", formData.emergencyContactEmail);
     formattedFormData.append("referenceName", formData.referenceName);
     formattedFormData.append("referenceRelationship", formData.referenceRelationship);
     formattedFormData.append("referencePhone", formData.referencePhone);
