@@ -19,7 +19,6 @@ const Page = () => {
   const { id } = useParams<{ id: string }>();
   const { data: recruitmentData, isError, isLoading, error } = useGetDriverRecruitmentByIdQuery(id);
   const [recruitment, setRecruitment] = useState(null);
-  console.log(recruitmentData)
   useEffect(() => {
     if (recruitmentData) {
       setRecruitment(recruitmentData.data);
@@ -85,8 +84,7 @@ const Page = () => {
     date,
   } = recruitment;
   const availabilityArray = availability.split(',');
-  const signatureUrl = `${process.env.NEXT_PUBLIC_API_URL}/${signature}`;
-
+  const signatureUrl = `https://meriride.com/${signature}`;
   return (
     <div className="px-2 py-6 sm:p-5">
       <div className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
@@ -162,16 +160,11 @@ const Page = () => {
               </div>
               <div className="mb-4">
                 <label className="text-sm font-semibold text-themeGrayText">Signature</label>
-                {signature === " " ? (
                   <div className="mt-1 size-full p-4 sm:size-[300px] shadow-xl rounded-md border border-border overflow-hidden">
                     <div className="size-full">
                       <Image src={signatureUrl} alt="Signature" width={300} height={300} />
                     </div>
                   </div>
-                ) : (
-                  <p className="text-red-500 mt-4">Signature Not Available</p>
-                )}
-
               </div>
             </div>
 

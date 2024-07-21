@@ -24,7 +24,7 @@ const HeaderDropDown: React.FC = () => {
       <DropdownMenuTrigger className='outline-none border-0'>Services</DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => handleNavigation("/services/transportation")}>
+        <DropdownMenuItem  className='cursor-pointer'onClick={() => handleNavigation("/services/transportation")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg outline-none border-0 link ${pathname === "/services/transportation"
                 ? "text-primary font-bold"
@@ -34,7 +34,7 @@ const HeaderDropDown: React.FC = () => {
             Transportation Services
           </span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleNavigation("/services/lastMile")}>
+        <DropdownMenuItem  className='cursor-pointer'onClick={() => handleNavigation("/services/lastMile")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/lastMile"
                 ? "text-primary font-bold"
@@ -44,7 +44,7 @@ const HeaderDropDown: React.FC = () => {
             Last Mile Delivery
           </span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleNavigation("/services/localCourier")}>
+        <DropdownMenuItem  className='cursor-pointer'onClick={() => handleNavigation("/services/localCourier")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/localCourier"
                 ? "text-primary font-bold"
@@ -54,7 +54,7 @@ const HeaderDropDown: React.FC = () => {
             Local Courier Service
           </span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleNavigation("/services/adModel")}>
+        <DropdownMenuItem  className='cursor-pointer'onClick={() => handleNavigation("/services/adModel")}>
           <span
             className={`text-sm lg:text-[16px] xl:text-lg link ${pathname === "/services/ladModel"
                 ? "text-primary font-bold"

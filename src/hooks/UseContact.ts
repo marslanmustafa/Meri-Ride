@@ -4,7 +4,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const contact = createApi({
   reducerPath: 'contact',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.API_URL}/contact/`
+    // baseUrl: `${process.env.API_URL}/contact/`
+    baseUrl: 'https://api.meriride.com/contact/'
   }),
   endpoints: (builder) => ({
     contactUsRequest: builder.mutation({

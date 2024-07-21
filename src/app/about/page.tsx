@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { SupportBanner } from "@/components"
+import Link from "next/link";
 
 const featuresData = [
   { sr: 1, feature: "User Profile Management" },
@@ -133,9 +134,9 @@ const page = () => {
             lives of individuals with disabilities, please visit our careers
             page
           </p>
-          <div className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-primary">
+          <Link href="/contact" className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-primary">
             Join Us
-          </div>
+          </Link>
         </div>
         <div className="hidden md:block">
           <Image

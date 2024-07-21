@@ -4,7 +4,8 @@ import Cookies from 'js-cookie';
 export const recruitment = createApi({
   reducerPath: 'recruitment',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/recruitment/`,
+    // baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/recruitment/`,
+    baseUrl: 'https://api.meriride.com/recruitment/',
     prepareHeaders: (headers) => {
       const token = Cookies.get('token');
       if (token) {

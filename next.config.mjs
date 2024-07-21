@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '204.13.234.54',
+        protocol: 'https',
+        hostname: 'meriride.com',
         pathname: '**',
       },
     ],

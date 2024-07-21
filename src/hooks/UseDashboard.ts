@@ -4,7 +4,8 @@ import Cookies from 'js-cookie';
 export const dashboard = createApi({
   reducerPath: 'dashboard',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard/`,
+    // baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard/`,
+    baseUrl: 'https://api.meriride.com/dashboard/',
     prepareHeaders: (headers) => {
       const token = Cookies.get('token');
       if (token) {
