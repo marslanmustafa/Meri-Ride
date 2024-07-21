@@ -85,7 +85,7 @@ const Page = () => {
     date,
   } = recruitment;
   const availabilityArray = availability.split(',');
-  const signatureUrl = `http://204.13.234.54/${signature}`;
+  const signatureUrl = `${process.env.NEXT_PUBLIC_API_URL}/${signature}`;
 
   return (
     <div className="px-2 py-6 sm:p-5">
