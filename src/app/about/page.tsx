@@ -32,22 +32,16 @@ const page = () => {
             About Us
           </h1>
           <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">
-            Welcome to Empowerment
+          Welcome to MeriRide
           </h2>
           <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
-            Through Partnership, a non-profit organization dedicated to
-            transforming the lives of individuals with disabilities by creating
-            sustainable income opportunities. Our mission is to bridge the gap
-            between able-bodied individuals and those with disabilities,
-            especially the blind, to foster a collaborative environment where
-            both can thrive.
+          Welcome to MeriRide, a non-profit organization dedicated to transforming the lives of individuals with different abilities by creating inclusive environments, sustainable income opportunities and self-reliance. 
           </p>
           <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
-            We believe in the power of partnership and the potential of every
-            individual, regardless of their physical abilities. By developing
-            innovative projects that pair able-bodied and disabled individuals,
-            we aim to create a more inclusive society where everyone has the
-            chance to succeed and contribute.
+          Our mission is to bridge the gap between able-bodied and those who are born with physical barriers such as sight, speech, and hearing impairments, to foster a collaborative environment where both can thrive in countries where infrastructure and governmental support are lacking.
+          </p>
+          <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
+          At MeriRide, we believe in the power of partnership and the potential of every individual and that individuals with different abilities possess incredible talent in other areas. By tapping into these abilities and fostering an environment of inclusion, we aim to enable them to contribute on equal footing with their peers. By developing innovative projects that pair able-bodied and individuals with different abilities, we aim to create a more inclusive society where everyone has the chance to succeed and contribute. Our programs are designed to turn challenges into opportunities, promoting independence and self-sufficiency.
           </p>
         </div>
       </div>
@@ -274,7 +268,7 @@ const page = () => {
         </div>
       </div>
         {/* support */}
-       <SupportBanner/>
+       {/* <SupportBanner/> */}
       {/* div7 */}
      {/* <ConnectForm /> */}
     </div>

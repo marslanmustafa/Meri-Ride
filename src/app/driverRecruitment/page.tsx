@@ -11,16 +11,22 @@ const bannerData: BannerData = {
 const recruitmentData = {
   listItems: [
     {
-      category: "Qualifications",
+      category: "Benefits of Joining MeriRide:",
       items: [
-        "Valid driver’s license with a clean driving record.",
-        "Minimum age requirement (e.g., 21 years old).",
-        "Ability to pass a background check and drug screening.",
-        "Prior experience in driving, especially in transportation services for individuals with disabilities, is preferred.",
-        "Excellent communication skills and a customer-focused attitude.",
-        "Physical ability to assist passengers with mobility needs, including lifting and securing wheelchairs."
+        "Inclusive Work Environment: Work alongside individuals with diverse abilities in a supportive and collaborative setting..",
+        "Sustainable Income: Earn a steady income while contributing to a meaningful cause.",
+        "Training and Support: Receive comprehensive training and ongoing support to excel in your role.",
       ]
     },
+    {
+      category: "Benefits of Joining MeriRide:",
+      items: [
+        "Valid driving license",
+        "Commitment to our mission and values",
+        "Willingness to work in a team-oriented environment",
+      ]
+    },
+    
     {
       category: "Responsibilities",
       items: [
@@ -32,19 +38,6 @@ const recruitmentData = {
         "Completing necessary documentation and ride logs."
       ]
     },
-    {
-      category: "Benefits",
-      items: [
-        "Competitive Pay",
-        "Flexible Scheduling",
-        "Training and Development",
-        "Supportive Work Environment",
-        "Health and Wellness",
-        "Paid Time Off",
-        "Employee Assistance Program",
-        "Rewarding Work"
-      ]
-    }
   ]
 };
 
@@ -61,11 +54,19 @@ const page = () => {
         </div>
       </div>
       {/* div3 */}
+      <div className='w-full h-fit md:pb-5 px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-10'>
+          <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6">
+              <div className="w-full space-y-4 sm:space-y-7 py-2 sm:py-5">
+                <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold">Join Our Team</h1>
+                <p className="text-sm lg:text-[16px]">
+                At MeriRide, we are always looking for dedicated and passionate individuals to join our team. If you have a strong commitment to making a difference and want to be part of an inclusive workforce, we want to hear from you!
+                </p>
+              </div>
+          </div>
+        </div>
+      {/* div4 */}
       <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-16'>
         <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
-          <p className="text-xs sm:text-sm py-2 sm:py-4">
-            This section outlines the qualifications and responsibilities expected of our drivers. It ensures that potential applicants understand what is required for the role and can assess their suitability before applying.
-          </p>
           <div>
             {recruitmentData.listItems.map((section, index) => (
               <div key={index} className="w-full space-y-4 sm:space-y-7 py-2 sm:py-5">
@@ -77,6 +78,12 @@ const page = () => {
                 </ul>
               </div>
             ))}
+            <div className="w-full space-y-4 sm:space-y-7 py-2 sm:py-5">
+                <h2 className="font-bold text-xl md:text-2xl lg:text-3xl">How to Apply: </h2>
+                <p className="list-disc text-xs sm:text-sm space-y-3">
+                Fill out our online application form or contact us directly at <a href="mailto:info@meriride.com" className='text-primary font-bold'>info@meriride.com</a>. We look forward to welcoming you to our team
+                </p>
+              </div>
           </div>
           <div className='w-full flex items-center justify-center sm:w-fit sm:block'>
             <ApplicationForm />

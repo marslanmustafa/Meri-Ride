@@ -50,6 +50,10 @@ const bookRideData = [
   }
 ];
 
+const supportData = {
+  para: "Utilize our courier service for your delivery needs. By doing so, you help provide jobs and empower individuals with disabilities."
+}
+
 const page = () => {
   return (
     <div className="overflow-x-hidden w-full">
@@ -72,7 +76,7 @@ const page = () => {
       <div className='w-full h-fit  px-4 md:px-8 lg:px-20 xl:px-28 pb-5 '>
         <div className=" rounded-3xl px-5 md:py-10">
           <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black pb-5' >{bannerData.heading}</h1>
-          <p className='w-full text-sm lg:text-[16px] text-black'>Our motorcycle rickshaw service provides affordable and reliable transportation for local communities. Our drivers are partnered with blind individuals to ensure that both benefit from the earnings, fostering a sense of teamwork and shared success.</p>
+          <p className='w-full text-sm lg:text-[16px] text-black'>Our local courier service offers a reliable solution for delivering important documents and packages within the community. This service ensures that critical items reach their destination promptly, while also providing meaningful work for our partnered teams.</p>
         </div>
       </div>
       {/* div5 */}
@@ -136,7 +140,7 @@ const page = () => {
         </div>
       </div>
       {/* div7 */}
-      <SupportBanner />
+      <SupportBanner data={supportData}/>
       {/* div8 */}
       {/* <ConnectForm /> */}
     </div>

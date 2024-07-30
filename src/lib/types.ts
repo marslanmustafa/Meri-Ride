@@ -9,9 +9,14 @@ export type Service = {
 
 export type FAQAnswer = {
   heading: string;
-  paras: string[];
+  paras?: string[];
+  list?: listItem[];
 }
 
+export type listItem = {
+  heading?: string;
+  para: string;
+}
 export type FAQItem = {
   question: string;
   answer: FAQAnswer;
