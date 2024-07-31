@@ -63,7 +63,7 @@ const Home = () => {
             <span className="text-primary"> Transforming Lives.</span>
           </h1>
           <h2 className="text-lg md:text-2xl xl:text-4xl text-white">
-          fostering independence, self-reliance, and an inclusive environment.
+          Fostering independence, self-reliance, and an inclusive environment.
           </h2>
           <div
             className={

@@ -28,10 +28,10 @@ const page = () => {
               className="w-40 h-auto lg:w-[410px] lg:h-[114px]"
             />
           </div>
-          <h1 className="text-4xl lg:text-6xl xl:text-8xl font-semibold">
+          <h1 className="text-4xl lg:text-6xl xl:text-8xl font-bold">
             About Us
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">
+          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-semibold">
           Welcome to MeriRide
           </h2>
           <p className="text-sm md:text-[16px] lg:text-lg xl:text-xl tracking-wide">
@@ -258,7 +258,7 @@ const page = () => {
           </div>
         </div>
         {/* buttons */}
-        <div className="w-full flex justify-end gap-4">
+        <div className="w-full flex justify-end gap-4 py-4">
           <div className="w-10 h-10 lg:w-14 lg:h-14 text-[24px] lg:text-[32px] flex items-center justify-center rounded-full p-3 bg-foreground text-white">
             <ChevronLeft size={32} />
           </div>
