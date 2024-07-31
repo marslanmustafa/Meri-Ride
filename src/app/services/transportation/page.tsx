@@ -34,25 +34,6 @@ const businessData = [
   },
 ];
 
-const bookRideData = [
-  {
-    heading: "Call the Hotline:",
-    para: "Dial our dedicated transportation booking hotline at [hotline number], available from [operating hours]."
-  },
-  {
-    heading: "Provide Details",
-    para: "Speak with one of our customer service representatives and provide necessary details including your name, contact information, pickup and drop-off locations, and desired time."
-  },
-  {
-    heading: "Special Requests",
-    para: "Inform the representative of any special requirements such as wheelchair access or assistance needed during the ride."
-  },
-  {
-    heading: "Receive Confirmation",
-    para: "The representative will confirm the booking and provide you with a reference number and expected arrival time."
-  }
-];
-
 const supportData = {
   para: "Use our transportation services for your daily commute and recommend us to friends and family. Your support helps create jobs and empowers those with disabilities."
 }

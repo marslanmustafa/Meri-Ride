@@ -1,31 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-let businessData = [
-  {
-    heading: "Targeted Audience",
-    para: "Reach a dedicated and engaged audience that supports our mission and values."
-  },
-  {
-    heading: "Enhanced Brand Image",
-    para: "Association with a reputable nonprofit can enhance the business’s image and demonstrate corporate social responsibility."
-  },
-  {
-    heading: "Increased Visibility",
-    para: "Gain exposure through our website, newsletters, and events."
-  },
-  {
-    heading: "Community Support",
-    para: "Show your business’s support for individuals with disabilities and the broader community."
-  },
-  {
-    heading: "Customizable Options",
-    para: "Various ad formats and pricing models to fit different marketing strategies and budgets."
-  }
-];
-
-
-const page = () => {
+const page: React.FC = () => {
   return (
     <div className="overflow-x-hidden w-full bg-[#F7F8F7]">
       {/* div1 */}
@@ -254,29 +230,25 @@ const page = () => {
       {/* div3 */}
       <div className="w-full px-4 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-12">
         <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6">
-          <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">Benefits for Business</h1>
-          <p className="text-sm sm:text-[16px]">This section highlights the advantages of advertising with Empowering Opportunities Inc., helping businesses see the value in partnering with a nonprofit organization that has a dedicated audience.</p>
+          <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">Advertisement on Rickshaws .. COMING SOON.</h1>
           <div className="w-full space-y-4 sm:space-y-7">
-            {businessData.map((data, index) => {
-              return (
-                <div className="space-y-4 sm:space-y-6" key={index}>
+                <div className="space-y-4 sm:space-y-6">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
-                    {data.heading}
+                  How can I advertise on MeriRide rickshaws?
                   </h3>
                   <p className="text-sm sm:text-[16px] space-y-3">
-                    {data.para}
+                  To advertise on our rickshaws, please contact our marketing team at [insert contact details]. We offer various advertising options, including full and partial wraps, interior ads, and digital displays.
                   </p>
                 </div>
-              )
-            })
-            }
+                <div className="space-y-4 sm:space-y-6">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
+                  What are the benefits of advertising on MeriRide rickshaws?
+                  </h3>
+                  <p className="text-sm sm:text-[16px] space-y-3">
+                  Advertising on our rickshaws provides high visibility within the community, reaching a wide audience. It also supports a good cause, as the revenue from advertisements helps fund our programs and services for individuals with disabilities.
+                  </p>
+                </div>
           </div>
-        </div>
-        <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 pt-10">
-          <h1 className="py-1 font-bold text-xl sm:text-2xl md:text-3xl lg:text-5xl w-fit">How To Advertise with Us</h1>
-          <p className="text-sm sm:text-[16px]">This section provides a step-by-step guide on how businesses can start advertising with Empowering Opportunities Inc. It simplifies the process and encourages potential advertisers to take action. An easy-to-use online form that allows potential drivers to apply for a position. This form collects essential information from applicants to streamline the hiring process.</p>
-          <p className="text-[16px]">An easy-to-use online form that allows potential drivers to apply for a position. This form collects essential information from applicants to streamline the hiring process. This section provides a step-by-step guide on how businesses can start advertising with Empowering Opportunities Inc. It simplifies the process and encourages potential advertisers to take action. An easy-to-use online form that allows potential drivers to apply for a position. This form collects essential information from applicants to streamline the hiring process.</p>
-
         </div>
       </div>
     </div>

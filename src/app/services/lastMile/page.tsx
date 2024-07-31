@@ -3,6 +3,7 @@ import React from 'react'
 import { LandingBanner, SupportBanner } from "@/components"
 import { BannerData } from '@/lib/types';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const bannerData: BannerData = {
@@ -122,22 +123,18 @@ const page = () => {
       </div>
       {/* div6 */}
       <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-16'>
-      <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
-          <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">How to Book a Ride</h1>
+        <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
           <div className="w-full space-y-4 sm:space-y-7">
-            {bookRideData.map((data, index) => {
-              return (
-                <div className="space-y-4 sm:space-y-6" key={index}>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
-                    {data.heading}
-                  </h3>
-                  <p className="text-sm sm:text-[16px] space-y-3">
-                    {data.para}
-                  </p>
-                </div>
-              )
-            })
-            }
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">How can my business partner with MeriRide for delivery services?</h1>
+            <p className="text-sm sm:text-[16px] space-y-3">
+            COMING SOON. To partner with MeriRide for delivery services, please contact our business development team at [insert contact details]. We will provide you with all the necessary information and help you get started.
+            </p>
+          </div>
+          <div className="w-full space-y-4 sm:space-y-7">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">What types of goods can MeriRide deliver?</h1>
+            <p className="text-sm sm:text-[16px] space-y-3">
+            COMING SOON. We will be able to deliver a wide range of goods, including retail products, groceries, and small packages. For specific inquiries about the types of goods we can deliver, please contact our customer service team.
+            </p>
           </div>
         </div>
       </div>

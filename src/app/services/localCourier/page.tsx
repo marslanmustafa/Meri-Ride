@@ -121,21 +121,15 @@ const page = () => {
       {/* div6 */}
       <div className='w-full h-fit md:pb-5 px-0 py-8 md:px-8 lg:px-20 xl:px-28 md:pt-16'>
       <div className="w-full text-themeGrayText2 space-y-4 sm:space-y-6 px-4 py-5 sm:p-10 bg-white md:rounded-xl">
-          <h1 className="py-1 font-bold text-xl md:text-3xl lg:text-5xl w-fit">How to Book a Ride</h1>
           <div className="w-full space-y-4 sm:space-y-7">
-            {bookRideData.map((data, index) => {
-              return (
-                <div className="space-y-4 sm:space-y-6" key={index}>
+                <div className="space-y-4 sm:space-y-6">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">
-                    {data.heading}
+                  How do I send a package using MeriRide courier service?
                   </h3>
                   <p className="text-sm sm:text-[16px] space-y-3">
-                    {data.para}
+                  COMING SOON. You will be able to send a package by booking our courier service by calling our customer service.
                   </p>
                 </div>
-              )
-            })
-            }
           </div>
         </div>
       </div>
