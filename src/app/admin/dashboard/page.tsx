@@ -42,7 +42,7 @@ const Page = () => {
       <h1 className="text-3xl font-bold mb-4 text-themeGraytext">Dashboard</h1>
       <p className=" text-gray-600 mb-6"></p>
       <div className="w-full mt-2">
-        <DashCard data={responseData.data} />
+        <DashCard data={responseData.data}  />
       </div>
     </div>
   );
