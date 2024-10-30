@@ -29,13 +29,13 @@ const Footer: React.FC = () => {
           <ul>
             <li className="py-4">
               <h2 className="font-bold">Address</h2>
-              <p className="py-3">6-9 The Squre Stockley Park UXBRIDGE, UB11 1FW United Kingdom, Uxbridge, England</p>
+              {/* <p className="py-3">6-9 The Squre Stockley Park UXBRIDGE, UB11 1FW United Kingdom, Uxbridge, England</p> */}
             </li>
             <li>
               <h2 className="font-bold">Contact</h2>
               <div>
-                <a href="mailto:info@meriride.co" className="block py-3" >info@meriride.co</a>
-                <a href="tel:+447777777777">+44 000 00000</a>
+                {/* <a href="mailto:info@meriride.co" className="block py-3" >info@meriride.co</a> */}
+                {/* <a href="tel:+447777777777">+44 000 00000</a> */}
               </div>
             </li>
           </ul>

@@ -130,19 +130,19 @@ const ContactForm: React.FC = () => {
             <div className="text-lg">
               <Phone size={24} />
             </div>
-            <h3 className="text-sm sm:text-base">+1012 3456 789</h3>
+            {/* <h3 className="text-sm sm:text-base">+1012 3456 789</h3> */}
           </div>
           <div className="flex items-center justify-start gap-4">
             <div className="text-lg">
               <Mail size={24} />
             </div>
-            <h3 className="text-sm sm:text-base">demo@gmail.com</h3>
+            {/* <h3 className="text-sm sm:text-base">demo@gmail.com</h3> */}
           </div>
           <div className="flex items-center justify-start gap-4">
             <div className="text-lg">
               <MapPin size={24} />
             </div>
-            <h3 className="text-sm sm:text-base">132 Dartmouth Street Boston, Massachusetts 02156 United States</h3>
+            {/* <h3 className="text-sm sm:text-base">132 Dartmouth Street Boston, Massachusetts 02156 United States</h3> */}
           </div>
         </div>
       </div>

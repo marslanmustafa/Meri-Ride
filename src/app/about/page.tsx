@@ -106,7 +106,7 @@ const page = () => {
       </div>
       {/* div4 */}
       <div className="w-full h-fit  flex justify-between flex-col lg:flex-row px-4 md:px-8 lg:px-20 xl:px-28 py-14">
-        <div className="w-full lg:w-[55%]  space-y-5 text-foreground">
+        <div className="w-full lg:w-[55%] space-y-5 text-foreground">
           <h1 className="text-3xl lg:text-5xl font-bold">Our Team</h1>
           <p className="text-sm lg:text-[16px]">
             The Leadership Team is responsible for setting the strategic
@@ -128,7 +128,7 @@ const page = () => {
             lives of individuals with disabilities, please visit our careers
             page
           </p>
-          <Link href="/contact" className="w-fit px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-primary">
+          <Link href="/contact" className="w-fit block px-4 py-2 lg:px-8 lg:py-3 text-sm lg:text-[16px] md:font-medium lg:font-bold rounded-lg text-themeGrayText bg-primary">
             Join Us
           </Link>
         </div>
